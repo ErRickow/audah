@@ -7,6 +7,10 @@ import string
 import time
 from datetime import datetime as dt
 from inspect import getfullargspec
+import sqlite3
+import platform
+import subprocess
+from pathlib import Path
 from os import path
 from platform import python_version
 from random import choice
