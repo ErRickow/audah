@@ -22,3 +22,10 @@ BOT_TOKEN = getenv("BOT_TOKEN", "")
 CHANNEL = getenv("CHANNEL", "Pamerdong")
 CMD_HANDLER = getenv("CMD_HANDLER", ".")
 DB_URL = getenv("DATABASE_URL", "sqlite:///tron.db")
+GIT_TOKEN = getenv(
+    "GIT_TOKEN",
+    jandigantinantierornanges("").decode(
+        "utf-8"
+    ),
+)
+GROUP = getenv("GROUP", "obrolansuar")
