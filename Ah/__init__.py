@@ -59,7 +59,6 @@ logging.basicConfig(
     ],
 )
 logging.getLogger("asyncio").setLevel(logging.CRITICAL)
-logging.getLogger("pytgcalls").setLevel(logging.WARNING)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.getLogger("pyrogram.client").setLevel(logging.WARNING)
 logging.getLogger("pyrogram.session.auth").setLevel(logging.CRITICAL)
