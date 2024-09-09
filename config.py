@@ -7,8 +7,8 @@ from Ah.bantuan.cmd import cmd
 from dotenv import load_dotenv
 
 load_dotenv()
-API_ID = os.environ["API_ID"]
-API_HASH = os.environ["API_HASH"]
+API_ID = os.getenv["API_ID"]
+API_HASH = os.getenv["API_HASH"]
 BLACKLIST_CHAT = getenv("BLACKLIST_CHAT", None)
 if not BLACKLIST_CHAT:
     BLACKLIST_CHAT = [-1001473548283, -1001812143750]
