@@ -6,7 +6,7 @@ from Ah.bantuan.cmd import cmd
 
 from dotenv import load_dotenv
 
-load_dotenv("config.env")
+load_dotenv(".env")
 API_ID = os.getenv["API_ID"]
 API_HASH = os.getenv["API_HASH"]
 BLACKLIST_CHAT = getenv("BLACKLIST_CHAT", None)
