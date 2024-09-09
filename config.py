@@ -5,10 +5,10 @@ from Ah.bantuan.cmd import cmd
 
 from dotenv import load_dotenv
 
-load_dotenv("config.env")
-
-API_HASH = getenv("API_HASH")
-API_ID = int(getenv("API_ID", ""))
+load_dotenv()
+API_ID = os.environ["API_ID"]
+API_HASH = os.environ["API_HASH"]
+SESSION = os.environ["SESSION"]
 BLACKLIST_CHAT = getenv("BLACKLIST_CHAT", None)
 if not BLACKLIST_CHAT:
     BLACKLIST_CHAT = [-1001473548283, -1001812143750]
