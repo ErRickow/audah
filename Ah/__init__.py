@@ -104,21 +104,11 @@ else:
 
 LOOP = asyncio.get_event_loop()
 
-trl = Translator()
-
-aiosession = ClientSession()
-
-CMD_HELP = {}
-
 scheduler = AsyncIOScheduler()
 
 StartTime = time.time()
 
 START_TIME = datetime.now()
-
-TEMP_SETTINGS: Dict[Any, Any] = {}
-TEMP_SETTINGS["PM_COUNT"] = {}
-TEMP_SETTINGS["PM_LAST_MSG"] = {}
 
 app = Client(
     name="app",
