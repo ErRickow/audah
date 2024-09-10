@@ -19,7 +19,7 @@ from logging.handlers import RotatingFileHandler
 from typing import Any, Dict
 
 
-from aiohttp import ClientSession
+from aiohttp import mechaSession
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gpytranslate import Translator
 from pyrogram import Client as mecha
@@ -65,7 +65,7 @@ logging.basicConfig(
 )
 logging.getLogger("asyncio").setLevel(logging.CRITICAL)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
-logging.getLogger("pyrogram.client").setLevel(logging.WARNING)
+logging.getLogger("pyrogram.mecha").setLevel(logging.WARNING)
 logging.getLogger("pyrogram.session.auth").setLevel(logging.CRITICAL)
 logging.getLogger("pyrogram.session.session").setLevel(logging.CRITICAL)
 
@@ -130,7 +130,7 @@ StartTime = time.time()
 
 START_TIME = datetime.now()
 
-app = Client(
+app = mecha(
     name="app",
     api_id=API_ID,
     api_hash=API_HASH,
@@ -140,7 +140,7 @@ app = Client(
 )
 
 bot1 = (
-    Client(
+    mecha(
         name="bot1",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -152,7 +152,7 @@ bot1 = (
 )
 
 bot2 = (
-    Client(
+    mecha(
         name="bot2",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -164,7 +164,7 @@ bot2 = (
 )
 
 bot3 = (
-    Client(
+    mecha(
         name="bot3",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -176,7 +176,7 @@ bot3 = (
 )
 
 bot4 = (
-    Client(
+    mecha(
         name="bot4",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -188,7 +188,7 @@ bot4 = (
 )
 
 bot5 = (
-    Client(
+    mecha(
         name="bot5",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -200,7 +200,7 @@ bot5 = (
 )
 
 bot6 = (
-    Client(
+    mecha(
         name="bot6",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -212,7 +212,7 @@ bot6 = (
 )
 
 bot7 = (
-    Client(
+    mecha(
         name="bot7",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -224,7 +224,7 @@ bot7 = (
 )
 
 bot8 = (
-    Client(
+    mecha(
         name="bot8",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -236,7 +236,7 @@ bot8 = (
 )
 
 bot9 = (
-    Client(
+    mecha(
         name="bot9",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -248,7 +248,7 @@ bot9 = (
 )
 
 bot10 = (
-    Client(
+    mecha(
         name="bot10",
         api_id=API_ID,
         api_hash=API_HASH,
