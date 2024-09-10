@@ -42,6 +42,16 @@ from config import (
     SUDO_USERS,
     BOT_TOKEN
 )
+
+class Config:
+    """This class generates the configs """
+    pass
+
+
+def isLocalHost():
+    """Check if it is localhost"""
+    return os.path.exists(".env")
+
 LOG_FILE_NAME = "logs.txt"
 
 logging.basicConfig(
