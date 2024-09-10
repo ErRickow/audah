@@ -19,7 +19,7 @@ from logging.handlers import RotatingFileHandler
 from typing import Any, Dict
 
 
-from aiohttp import mechaSession
+from aiohttp import ClientSession
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gpytranslate import Translator
 from pyrogram import Client as mecha
