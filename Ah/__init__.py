@@ -71,10 +71,23 @@ logging.getLogger("pyrogram.session.session").setLevel(logging.CRITICAL)
 
 LOGS = logging.getLogger(__name__)
 
-
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
+class Ubot(mecha):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def on_message(self, filters=None, group=-1):
+        def decorator(func):
+            self.add_handler(MessageHandler(func, filters), group)
+            return func
+
+        return decorator
+
+    async def start(self):
+        await super().start()
+        logger.info("Bot started")
 
 if (
     not STRING_SESSION1
