@@ -104,6 +104,8 @@ else:
 
 LOOP = asyncio.get_event_loop()
 
+aiosession = ClientSession()
+
 scheduler = AsyncIOScheduler()
 
 StartTime = time.time()
