@@ -22,7 +22,7 @@ from typing import Any, Dict
 from aiohttp import ClientSession
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gpytranslate import Translator
-from pyrogram import Client
+from pyrogram import Client as mecha
 
 from config import (
     API_HASH,
