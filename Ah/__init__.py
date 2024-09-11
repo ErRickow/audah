@@ -14,7 +14,15 @@ clients = []
 ids = []
 LOG_FILE_NAME = "logs.txt"
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(levelname)s] - %(name)s - %(message)s",
+    datefmt="%d-%b-%y %H:%M:%S",
+    handlers=[
+        RotatingFileHandler(LOG_FILE_NAME, maxBytes=50000000, backupCount=10),
+        logging.StreamHandler(),
+    ],
+)
 logger = logging.getLogger(__name__)
 
 START_TIME = datetime.now()
