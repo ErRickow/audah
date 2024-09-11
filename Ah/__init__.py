@@ -1,6 +1,7 @@
 #Created By HakutakaID # TELEGRAM t.me/hakutakaid
 import logging
 import time
+import sys
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
 from pyrogram import Client as mecha
