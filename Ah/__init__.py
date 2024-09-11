@@ -53,7 +53,7 @@ START_TIME = datetime.now()
 
 StartTime = time.time()
 
-class Ubot(mecha):
+class Ubot(Client):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
