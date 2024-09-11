@@ -4,7 +4,7 @@ import importlib
 import logging
 from pyrogram import idle
 from Ah import ubot
-from Ah.modules import ALL_MODULES
+from Ah.plugins import ALL_MODULES
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
