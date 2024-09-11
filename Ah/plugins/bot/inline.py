@@ -20,7 +20,7 @@ from pyrogram.types import (
 from Ah.bantuan.data import Data
 from Ah.bantuan.inline import inline_wrapper, paginate_help
 from config import BOT_VER, BRANCH as branch
-from Ah import CMD_HELP, StartTime, app
+from Ah import CMD_HELP, StartTime, ubot
 
 modules = CMD_HELP
 
@@ -145,7 +145,7 @@ async def help_function(answers):
     return answers
 
 
-@app.on_inline_query()
+@ubot.on_inline_query()
 @inline_wrapper
 async def inline_query_handler(client: Client, query):
     try:
