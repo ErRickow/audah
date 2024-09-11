@@ -11,14 +11,13 @@ API_HASH = os.getenv("API_HASH")
 
 SESSION = os.getenv("SESSION")
 
-BOTLOG_CHATID = os.getenv("BOTLOG_CHATID")
+BOTLOG_CHATID = os.getenv("BOTLOG")
 BOT_VER = "1.1.5@main"
 BRANCH = getenv("BRANCH", "main") #don't change
 prefix = cmd
 OWNER_ID = getenv("OWNER_ID", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-OPENAI_API = getenv("OPENAI_API", "")
-CHANNEL = getenv("CHANNEL", "Karc0de")
+CHANNEL = getenv("CHANNEL", "Pamerdong")
 CMD_HANDLER = getenv("CMD_HANDLER", ".")
 DB_URL = getenv("DATABASE_URL", "")
 GIT_TOKEN = getenv(
