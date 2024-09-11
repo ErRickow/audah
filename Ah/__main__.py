@@ -6,7 +6,7 @@ import logging
 from pyrogram import idle
 from Ah import ubot, BOTLOG, LOGGER, bots, ids
 from Ah.plugins.basic import join
-from Ah.plugins import ALL_MODULES
+from Ah.modules import ALL_MODULES
 
 BOT_VER = "0.1.0"
 CMD_HANDLER = ["." "," "?" "!"]
