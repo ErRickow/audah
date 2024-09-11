@@ -2,7 +2,7 @@ from Ah import *
 import time
 from datetime import datetime
 
-@HAKU.CHA("ping")
+@Client.on_message(filters.me & filters.command("ping", cmd))
 async def pingme(client, message):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
