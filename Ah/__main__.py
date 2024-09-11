@@ -7,6 +7,17 @@ from pyrogram import idle
 from Ah import ubot, BOTLOG, LOGGER, aiosession, bots, ids
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
+
+BOT_VER = "0.1.0"
+CMD_HANDLER = ["." "," "?" "!"]
+MSG_ON = """
+💢 **PyroKar Telah Hidup** 💢
+╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
+❍▹ **Userbot Version -** `{}`
+❍▹ **Ketik** `{}alive` **untuk Mengecek Bot**
+╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
+"""
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
