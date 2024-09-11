@@ -6,6 +6,8 @@ from pyrogram import Client as mecha
 from pyrogram import filters as indri
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from config import *
+from Ah.bantuan import *
+
 
 DATABASE_URL = DB_URL
 CMD_HELP = {}
@@ -195,8 +197,6 @@ bot10 = (
 
 
 bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5, bot6, bot7, bot8, bot9, bot10] if bot]
-
-from Ah.bantuan import *
 
 for bot in bots:
 
