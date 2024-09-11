@@ -5,7 +5,7 @@ import sys
 from logging.handlers import RotatingFileHandler
 from aiohttp import ClientSession
 from datetime import datetime
-from pyrogram import Client as mecha
+from pyrogram import Client
 from pyrogram import filters as indri
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from config import *
