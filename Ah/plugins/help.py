@@ -4,7 +4,7 @@ from prettytable import PrettyTable
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
-from Ah import app, CMD_HELP
+from Ah import ubot, CMD_HELP
 from Ah.bantuan.cmd import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from Ah.bantuan.utility import split_list
@@ -22,7 +22,7 @@ async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
 async def module_help(client: Client, message: Message):
     cmd = message.command
     help_arg = ""
-    bot_username = (await app.get_me()).username
+    bot_username = (await ubot.get_me()).username
     if len(cmd) > 1:
         help_arg = " ".join(cmd[1:])
     elif not message.reply_to_message and len(cmd) == 1:
