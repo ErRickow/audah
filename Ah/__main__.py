@@ -42,7 +42,7 @@ async def start_bot():
     await ubot.start()
     await idle()
     await aiosession.close()
-    logger.info("Bot is idle")
+    logger.info("Bot is sange")
 
 if __name__ == "__main__":
     logger.info("Starting bot")
