@@ -5,7 +5,7 @@ import importlib
 import logging
 from pyrogram import idle
 from Ah import ubot, BOTLOG, LOGGER, aiosession, bots, ids
-from Ah.bantuan import join
+from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
