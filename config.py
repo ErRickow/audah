@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 
+from Ah.bantuan.cmd import cmd
+
 load_dotenv(".env")
 
 API_ID = os.getenv("API_ID")
