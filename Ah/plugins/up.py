@@ -50,4 +50,4 @@ async def ngapdate(client, message):
         format_output = "\n".join(format_line)
 
         await pros.edit(f"<blockquote>{memeg}\n\n{teks}{format_output}</blockquote>")
-    os.execl(sys.executable, sys.executable, "-m", "bangke")
+    os.execl(sys.executable, sys.executable, "-m", "Ah")
