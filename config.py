@@ -11,6 +11,24 @@ SESSION = os.getenv("SESSION")
 
 prefix = [".", "", "-"]
 
+BOTLOG_CHATID = os.getenv("BOTLOG_CHATID")
+BOT_VER = "1.1.5@main"
+BRANCH = getenv("BRANCH", "main") #don't change
+CMD_HNDLR = cmd
+OWNER_ID = getenv("OWNER_ID", "")
+BOT_TOKEN = getenv("BOT_TOKEN", "")
+OPENAI_API = getenv("OPENAI_API", "")
+CHANNEL = getenv("CHANNEL", "Karc0de")
+CMD_HANDLER = getenv("CMD_HANDLER", ".")
+DB_URL = getenv("DATABASE_URL", "")
+GIT_TOKEN = getenv(
+    "GIT_TOKEN",
+    jandigantinantierornanges("").decode(
+        "utf-8"
+    ),
+)
+GROUP = getenv("GROUP", "obrolansuar")
+
 DEVS = [1831850761]
 
 BLACKLIST_GCAST = [-1001921519384, -1002053287763, -1002044997044, -1002022625433, -1002050846285]
