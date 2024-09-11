@@ -1,6 +1,7 @@
 from base64 import b64decode as jandigantinantierornanges
 from distutils.util import strtobool
-import os
+import os 
+from os import getenv
 from dotenv import load_dotenv
 
 from Ah.bantuan.cmd import cmd
