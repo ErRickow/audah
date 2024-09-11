@@ -25,6 +25,21 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+def LOGGER(name: str) -> logging.Logger:
+    return logging.getLogger(name)
+
+
+if (
+    not STRING_SESSION1
+    and not STRING_SESSION2
+    and not STRING_SESSION3
+    and not STRING_SESSION4
+    and not STRING_SESSION5
+):
+    LOGGER(__name__).warning("STRING SESSION TIDAK DITEMUKAN, SHUTDOWN BOT!")
+    sys.exit()
+
+
 START_TIME = datetime.now()
 
 StartTime = time.time()
