@@ -11,7 +11,7 @@ from git.exc import (
     NoSuchPathError
 )
 
-from pyrogram import Client
+from pyrogram import *
 from pyrogram.types import Message
 
 from Ah import *
