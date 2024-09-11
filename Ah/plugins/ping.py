@@ -2,6 +2,7 @@ from Ah import *
 import time
 from datetime import datetime
 from pyrogram import *
+from Ah.bantuan.tools import *
 
 @Client.on_message(filters.me & filters.command("ping", cmd))
 async def pingme(client, message):
