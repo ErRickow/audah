@@ -47,8 +47,6 @@ if BOTLOG:
 else:
    BOTLOG = "me"
 
-aiosession = ClientSession()
-
 START_TIME = datetime.now()
 
 StartTime = time.time()
