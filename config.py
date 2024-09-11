@@ -18,8 +18,8 @@ prefix = cmd
 OWNER_ID = getenv("OWNER_ID", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL = getenv("CHANNEL", "Pamerdong")
-PREFIX = getenv("PREFIX", ".")
-DB_URL = getenv("DATABASE_URL", "")
+PREFIX = getenv("PREFIX", "x")
+DB_URL = getenv("DATABASE_URL", "sqlite:///tron.db")
 GIT_TOKEN = getenv(
     "GIT_TOKEN",
     jandigantinantierornanges("").decode(
