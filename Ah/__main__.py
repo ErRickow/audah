@@ -4,7 +4,7 @@ import asyncio
 import importlib
 import logging
 from pyrogram import idle
-from Ah import ubot, BOTLOG, LOGGER, aiosessiin
+from Ah import ubot, BOTLOG, LOGGER, aiosession, bots, ids
 from Ah.plugins import ALL_MODULES
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
