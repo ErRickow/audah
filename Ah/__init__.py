@@ -67,8 +67,7 @@ ubot = Ubot(
     name="sange",
     api_id=API_ID,
     api_hash=API_HASH,
-    BOT_TOKEN=BOT_TOKEN,
-    session_string=SESSION,
+    bot_token=BOT_TOKEN,
     in_memory=True,
 )
 
