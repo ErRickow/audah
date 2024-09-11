@@ -25,9 +25,23 @@ async def start_bot():
     for all_module in ALL_MODULES:
         importlib.import_module("Ah.plugins." + all_module)
         logger.info(f"Module {all_module} imported")
+    for bot in bots:
+        try:
+            await bot.start()
+            ex = await bot.get_me()
+            await join(bot)
+            try:
+                await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, CMD_HANDLER))
+            except BaseException:
+                pass
+            print(f"Started as {ex.first_name} | {ex.id} ")
+            ids.append(ex.id)
+        except Exception as e:
+            print(f"{e}")
         
     await ubot.start()
     await idle()
+    await aiosession.close()
     logger.info("Bot is idle")
 
 if __name__ == "__main__":
