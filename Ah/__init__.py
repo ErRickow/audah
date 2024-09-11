@@ -9,7 +9,6 @@ from pyrogram import Client as mecha
 from pyrogram import filters as indri
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from config import *
-from Ah.bantuan import *
 
 
 DATABASE_URL = DB_URL
