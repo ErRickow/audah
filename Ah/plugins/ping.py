@@ -1,6 +1,7 @@
 from Ah import *
 import time
 from datetime import datetime
+from pyrogram import *
 
 @Client.on_message(filters.me & filters.command("ping", cmd))
 async def pingme(client, message):
