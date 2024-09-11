@@ -17,7 +17,7 @@ from pyrogram.types import Message
 from Ah import *
   # TODO: write code...
   
-@Client.on_message(filters.me & filters.command("afk", cmd))
+@Client.on_message(filters.me & filters.command("up", cmd))
 async def ngapdate(client, message):
     pros = await message.reply(
         f"<blockquote><b>Memeriksa pembaruan resources {client.me.mention} ..</b></blockquote>"
