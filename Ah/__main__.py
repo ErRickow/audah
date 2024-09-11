@@ -3,8 +3,8 @@ import asyncio
 import importlib
 import logging
 from pyrogram import idle
-from HakuBot import ubot
-from HakuBot.modules import ALL_MODULES
+from Ah import ubot
+from Ah.modules import ALL_MODULES
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
