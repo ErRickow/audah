@@ -197,8 +197,3 @@ bot10 = (
 
 
 bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5, bot6, bot7, bot8, bot9, bot10] if bot]
-
-for bot in bots:
-    if not hasattr(bot, "group_call"):
-
-
