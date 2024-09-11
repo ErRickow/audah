@@ -18,7 +18,7 @@ prefix = cmd
 OWNER_ID = getenv("OWNER_ID", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL = getenv("CHANNEL", "Pamerdong")
-CMD_HANDLER = getenv("CMD_HANDLER", ".")
+PREFIX = getenv("PREFIX", ".")
 DB_URL = getenv("DATABASE_URL", "")
 GIT_TOKEN = getenv(
     "GIT_TOKEN",
