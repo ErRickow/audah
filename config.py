@@ -26,7 +26,7 @@ GIT_TOKEN = getenv(
         "utf-8"
     ),
 )
-GROUP = getenv("GROUP", "obrolansuar")
+GROUP = getenv("GROUP", "Support Demus")
 
 DEVS = [1831850761]
 
