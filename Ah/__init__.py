@@ -39,6 +39,10 @@ if (
     LOGGER(__name__).warning("STRING SESSION TIDAK DITEMUKAN, SHUTDOWN BOT!")
     sys.exit()
 
+if BOTLOG:
+   BOTLOG = BOTLOG
+else:
+   BOTLOG = "me"
 
 START_TIME = datetime.now()
 
