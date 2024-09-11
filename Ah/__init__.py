@@ -3,6 +3,7 @@ import logging
 import time
 import sys
 from logging.handlers import RotatingFileHandler
+from aiohttp import ClientSession
 from datetime import datetime
 from pyrogram import Client as mecha
 from pyrogram import filters as indri
