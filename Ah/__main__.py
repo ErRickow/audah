@@ -1,4 +1,5 @@
 #Created By HakutakaID # TELEGRAM t.me/hakutakaid
+from uvloop import install
 import asyncio
 import importlib
 import logging
