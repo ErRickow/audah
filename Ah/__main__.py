@@ -4,7 +4,7 @@ import asyncio
 import importlib
 import logging
 from pyrogram import idle
-from Ah import ubot, BOTLOG, LOGGER, aiosession, bots, ids
+from Ah import ubot, BOTLOG, LOGGER, bots, ids
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 
@@ -41,7 +41,6 @@ async def start_bot():
         
     await ubot.start()
     await idle()
-    await aiosession.close()
     logger.info("Bot is sange")
 
 if __name__ == "__main__":
