@@ -10,6 +10,13 @@ from config import *
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+DATABASE_URL = DB_URL
+CMD_HELP = {}
+SUDO_USER = SUDO_USERS
+clients = []
+ids = []
+LOG_FILE_NAME = "logs.txt"
+
 START_TIME = datetime.now()
 
 StartTime = time.time()
