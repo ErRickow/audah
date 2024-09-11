@@ -11,7 +11,6 @@ from Ah.bantuan import *
 
 DATABASE_URL = DB_URL
 CMD_HELP = {}
-SUDO_USER = SUDO_USERS
 clients = []
 ids = []
 LOG_FILE_NAME = "logs.txt"
