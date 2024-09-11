@@ -1,5 +1,5 @@
 #Created By HakutakaID # TELEGRAM t.me/hakutakaid
-from Ah import *
+from Ah import ubot
 from pyrogram import *
 from pyrogram.types import *
 from config import *
