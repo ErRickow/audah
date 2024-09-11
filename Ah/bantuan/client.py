@@ -2,7 +2,7 @@
 from Ah import *
 from pyrogram import *
 from pyrogram.types import *
-from config import prefix, DEVS
+from config import *
 
 async def devs_cmdp(_, client, message):
     sudo_users = DEVS
