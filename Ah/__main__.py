@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 async def start_bot():
     for all_module in ALL_MODULES:
-        importlib.import_module("Ah.plugins." + all_module)
+        importlib.import_module("Ah.plugins" + all_module)
         logger.info(f"Module {all_module} imported")
     for bot in bots:
         try:
