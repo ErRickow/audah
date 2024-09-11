@@ -11,12 +11,10 @@ API_HASH = os.getenv("API_HASH")
 
 SESSION = os.getenv("SESSION")
 
-prefix = [".", "", "-"]
-
 BOTLOG_CHATID = os.getenv("BOTLOG_CHATID")
 BOT_VER = "1.1.5@main"
 BRANCH = getenv("BRANCH", "main") #don't change
-CMD_HNDLR = cmd
+prefix = cmd
 OWNER_ID = getenv("OWNER_ID", "")
 BOT_TOKEN = getenv("BOT_TOKEN", "")
 OPENAI_API = getenv("OPENAI_API", "")
