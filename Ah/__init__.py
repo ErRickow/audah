@@ -41,6 +41,11 @@ if (
 ):
     LOGGER(__name__).warning("api Hashnya missing")
     sys.exit()
+if (
+    not BOT_TOKEN
+):
+    LOGGER(__name__).warning("Isilah bot token nya")
+    sys.exit()
 
 if (
     not STRING_SESSION1
