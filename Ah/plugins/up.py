@@ -42,7 +42,7 @@ async def update_bot(_, message: Message):
                 disable_web_page_preview=True,
             )
 
-        return await hell.edit(
+        return await anji.edit(
             f"**🍂 𝖴𝗉𝖽𝖺𝗍𝖾 𝖠𝗏𝖺𝗂𝗅𝖺𝖻𝗅𝖾 𝖿𝗈𝗋 𝖯𝗅𝗎𝗀𝗂𝗇𝗌:**\n\n{changelogs}",
             disable_web_page_preview=True,
         )
