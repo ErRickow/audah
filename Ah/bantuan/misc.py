@@ -93,30 +93,7 @@ def git():
         except GitCommandError:
             repo.git.reset("--hard", "FETCH_HEAD")
         install_req("pip3 install --no-cache-dir -U -r requirements.txt")
-        LOGGER("PyroKar").info("Fetched Latest Updates")
-
-
-def is_heroku():
-    return "heroku" in socket.getfqdn()
-
-
-def heroku():
-    global HAPP
-    if is_heroku:
-        if HEROKU_API_KEY and HEROKU_APP_NAME:
-            try:
-                Heroku = heroku3.from_key(HEROKU_API_KEY)
-                HAPP = Heroku.app(HEROKU_APP_NAME)
-                LOGGER("PyroKar").info(f"Heroku App Configured")
-            except BaseException as e:
-                LOGGER("Heroku").error(e)
-                LOGGER("Heroku").info(
-                    f"Pastikan HEROKU_API_KEY dan HEROKU_APP_NAME anda dikonfigurasi dengan benar di config vars heroku."
-                )
-
-
-async def in_heroku():
-    return "heroku" in socket.getfqdn()
+        LOGGER("AhAhAh").info("Fetched Latest Updates")
 
 
 async def create_botlog(client):
