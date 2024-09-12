@@ -24,6 +24,9 @@ async def ai_hadeh(c, text):
   url = "https://api.botcahx.eu.org/api/search/openai-custom"
   payloaf = {"message":, bahan, "apikey": "LwulPck3"}
   res = await fetch.post(url, json=payloaf)
+  if res.status_code == 200:
+      data = res.json()
+      return data["result"]
     try:
         params = {
             'message': message,
