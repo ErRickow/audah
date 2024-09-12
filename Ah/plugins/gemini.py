@@ -5,8 +5,8 @@ from pyrogram.types import Message
 from Ah import *
 from config import PREFIX as cmd
 
- Ganti dengan API key Anda
-API_KEY = ''    # Definisikan prefix
+# Ganti dengan API key Anda
+API_KEY = ''  
 
 def ai_btc(message):
     try:
