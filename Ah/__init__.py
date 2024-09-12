@@ -31,6 +31,11 @@ logger = logging.getLogger(__name__)
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
+if (
+    not API_ID
+):
+    LOGGER(__name__).warning("api id missing")
+    sys.exit()
 
 if (
     not STRING_SESSION1
