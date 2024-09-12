@@ -8,7 +8,7 @@ from datetime import datetime
 from pyrogram import Client
 from pyrogram import filters as indri
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
-from config import Config
+from config import *
 
 
 DATABASE_URL = DB_URL
