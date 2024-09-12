@@ -26,3 +26,6 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pyrogram.types import *
 
 from Ah import *
+from Ah.bantuan.tools import *
+
+@Client.on_message(filters.me & filters.command("ping", cmd))
