@@ -9,6 +9,7 @@ from config import PREFIX as cmd
   
 
 async def ai_hadeh(c, text):
+  gwa = f"<a href=tg://user?id={c.me.id}>{c.ne.first_name}"
     try:
         params = {
             'message': message,
