@@ -6,7 +6,7 @@ from pyrogram.enums import ChatAction
 from Ah import *
 from Ah.bantuan.tools import get_text
 from config import PREFIX as cmd
-
+from .help import add_command_help
 # Ganti dengan API key Anda
   
 
