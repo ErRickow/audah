@@ -29,7 +29,7 @@ GIT_TOKEN = getenv(
 )
 GROUP = getenv("GROUP", "Support Demus")
 
-gemini_key = getenv("GEMINI_KEY", "AIzaSyBsV9nPFwhG1HrMQdfQbAncAKqtTW0z8b8")
+gemini_key = os.getenv("GEMINI_KEY")
 REPO_URL = getenv("REPO_URL", "https://github.com/ErRickow/audah")
 STRING_SESSION1 = getenv("STRING_SESSION1", "")
 STRING_SESSION2 = getenv("STRING_SESSION2", "")
