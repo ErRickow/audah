@@ -146,3 +146,14 @@ async def get_readable_time(seconds: int) -> str:
     up_time += ":".join(time_list)
 
     return up_time
+    
+def humanbytes(size: int):
+    if not size:
+        return ""
+    power = 2**10
+    number = 0
+    dict_power_n = {0: " ", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
+    while size > power:
+        size /= power
+        number += 1
+    return str(round(size, 2)) + " " + dict_power_n[number] + "B"
