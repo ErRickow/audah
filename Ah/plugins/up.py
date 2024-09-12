@@ -41,7 +41,7 @@ async def update_bot(_, message: Message):
         upstream = repo.remote("upstream")
         upstream.fetch(active_branch)
 
-        changelogs = await gen_changelogs(repo, f"HEAD..upstream/{active_branch}")
+        changelogs = await gen_chlog(repo, f"HEAD..upstream/{active_branch}")
         if not changelogs and not force:
             repo.__del__()
             return await anji.edit("__Gada update tersedia.__"
