@@ -7,7 +7,7 @@ import shutil
 import time
 
 async def restart(
-    update: bool = True,
+    update: bool = False,
     clean_up: bool = False,
     shutdown: bool = False,
 ):
