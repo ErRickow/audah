@@ -33,8 +33,7 @@ async def update_bot(_, message: Message):
         changelogs = await gen_changelogs(repo, f"HEAD..upstream/{active_branch}")
         if not changelogs and not force:
             repo.__del__()
-            return await hellbot.delete(
-                hell, "__There are no updates available right now.__"
+            return await anji.edit("__Gada update tersedia.__"
             )
 
         if force:
