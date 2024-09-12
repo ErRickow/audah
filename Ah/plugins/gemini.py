@@ -35,7 +35,7 @@ async def ai_hadeh(c, text):
 
 @Client.on_message(filters.command("ask", cmd))
 async def handle_message(client, message):
-    a = client.get_text(message)
+    a = message.text
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
     au = await message.reply_text("sabar tod")
     try:
