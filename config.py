@@ -8,8 +8,6 @@ from Ah.bantuan.cmd import cmd
 
 load_dotenv(".env")
 
-class Config:
-
 API_ID = os.getenv("API_ID")
 
 API_HASH = os.getenv("API_HASH")
@@ -50,3 +48,4 @@ BLACKLIST_GCAST = [-1001921519384, -1002053287763, -1002044997044, -100202262543
 class Config:
     DWL_DIR = "./downloads/"
     TEMP_DIR = "./temp/"
+    REPO_URL = getenv("REPO_URL", "https://github.com/ErRickow/audah")
