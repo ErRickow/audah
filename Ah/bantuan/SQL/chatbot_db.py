@@ -5,7 +5,7 @@ from Ah.bantuan.SQL import BASE, SESSION
 from sqlalchemy.orm import sessionmaker
 from models import Chatbot, db_connect, create_table
 
-class Chatbot:
+class Chatbot(BASE):
     def __init__(self):
         engine = db_connect()
         create_table(engine)
