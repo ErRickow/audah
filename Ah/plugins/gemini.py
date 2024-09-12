@@ -27,6 +27,8 @@ async def ai_hadeh(c, text):
   if res.status_code == 200:
       data = res.json()
       return data["result"]
+  else:
+      return f"{res.text}"
     try:
         params = {
             'message': message,
