@@ -45,3 +45,10 @@ async def handle_message(client, message):
     except Exception as e:
         await au.delete()
         return await au.edit(f"Error: {str(e)}")  # Mengembalikan pesan kesalahan secara langsung
+
+add_command_help(
+    "ai",
+    [
+        ["ask", "Bertanya kepada ai."
+    ],
+)
