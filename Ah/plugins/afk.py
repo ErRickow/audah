@@ -12,7 +12,7 @@ import time
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import CMD_HANDLER as cmd
+from config import PREFIX as cmd
 from Ah import BOTLOG_CHATID
 from Ah.bantuan.msg_types import Types, get_message_type
 from Ah.bantuan.parser import escape_markdown, mention_markdown
