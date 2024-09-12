@@ -13,7 +13,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIX as cmd
-from Ah import BOTLOG_CHATID
+from Ah import BOTLOG
 from Ah.bantuan.msg_types import Types, get_message_type
 from Ah.bantuan.parser import escape_markdown, mention_markdown
 from Ah.bantuan.SQL.afk_db import get_afk, set_afk
@@ -93,7 +93,7 @@ async def afk_mentioned(client: Client, message: Message):
         )
         try:
             await client.send_message(
-                BOTLOG_CHATID,
+                BOTLOG,
                 "<b>#MENTION\n • Dari :</b> {}\n • <b>Grup :</b> <code>{}</code>\n • <b>Pesan :</b> <code>{}</code>".format(
                     message.from_user.mention,
                     message.chat.title,
@@ -111,7 +111,7 @@ async def no_longer_afk(client: Client, message: Message):
     if get and get["afk"]:
         set_afk(False, "")
         try:
-            await client.send_message(BOTLOG_CHATID, "Anda sudah tidak lagi AFK!")
+            await client.send_message(BOTLOG, "Anda sudah tidak lagi AFK!")
         except BaseException:
             pass
         text = "<b>Total {} Mention Saat Sedang AFK<b>\n".format(len(MENTIONED))
@@ -127,7 +127,7 @@ async def no_longer_afk(client: Client, message: Message):
                 msg_text,
             )
         try:
-            await client.send_message(BOTLOG_CHATID, text)
+            await client.send_message(BOTLOG, text)
         except BaseException:
             pass
         MENTIONED = []
