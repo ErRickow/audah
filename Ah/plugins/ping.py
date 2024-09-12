@@ -18,3 +18,9 @@ async def pingme(client, message):
         f"├• **Uptime -** `{uptime}` \n"
         f"└• **Owner :** {client.me.mention}" % (duration)
     )
+add_command_help(
+    "ping",
+    [
+        ["ping", "Untuk melihat respon bot."
+    ],
+)
