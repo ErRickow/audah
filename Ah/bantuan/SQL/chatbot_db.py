@@ -1,5 +1,7 @@
 from sqlalchemy import Boolean, Column, String, UnicodeText
 
+from Ah.bantuan.SQL import BASE, SESSION
+
 class Chatbot:
     def __init__(self, db_name):
         self.connection = sqlite3.connect(db_name)
