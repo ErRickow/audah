@@ -24,7 +24,7 @@ async def update_bot(_, message: Message):
     if len(message.command) < 2:
         status, repo, force = await initialize_git(Config.PLUGINS_REPO)
         if not status:
-            return await hellbot.error(hell, repo)
+            return await message.error(anji, repo)
 
         active_branch = repo.active_branch.name
         upstream = repo.remote("upstream")
