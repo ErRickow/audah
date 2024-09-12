@@ -11,6 +11,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from pyrogram.types import Message
 
 from Ah.bantuan.core import Symbols
+from config import *
 
 from .formatter import humanbytes, readable_time
 
