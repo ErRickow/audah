@@ -182,3 +182,38 @@ def readable_time(seconds: int) -> str:
     out_time += " ".join(time_list)
 
     return out_time or "0 secs"
+
+def import_library(library_name: str, package_name: str = None):
+    """
+    Loads a library, or installs it in ImportError case
+    :param library_name: library name (import example...)
+    :param package_name: package name in PyPi (pip install example)
+    :return: loaded module
+    """
+    if package_name is None:
+        package_name = library_name
+    requirements_list.append(package_name)
+
+    try:
+        return importlib.import_module(library_name)
+    except ImportError as exc:
+        completed = subprocess.run(
+            [sys.executable, "-m", "pip", "install", "--upgrade", package_name], check=True)
+        if completed.returncode != 0:
+            raise AssertionError(
+                f"Failed to install library {package_name} (pip exited with code {completed.returncode})"
+                ) from exc
+        return importlib.import_module(library_name)
+
+
+def uninstall_library(package_name: str):
+    """
+    Uninstalls a library
+    :param package_name: package name in PyPi (pip uninstall example)
+    """
+    completed = subprocess.run(
+        [sys.executable, "-m", "pip", "uninstall", "-y", package_name], check=True)
+    if completed.returncode != 0:
+        raise AssertionError(
+            f"Failed to uninstall library {package_name} (pip exited with code {completed.returncode})"
+        )
