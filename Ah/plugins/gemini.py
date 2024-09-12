@@ -21,6 +21,7 @@ async def ai_hadeh(c, text):
       },
       {"role": "user", "content": f"{text}"},
   ]
+  url = "https://api.botcahx.eu.org/api/search/openai-custom"
     try:
         params = {
             'message': message,
