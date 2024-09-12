@@ -16,6 +16,7 @@ from pyrogram.types import Message
 
 from Ah.bantuan.restart import *
 from Ah import *
+from config import *
   # TODO: write code...
   
 @Client.on_message(filters.me & filters.command("up", cmd))
