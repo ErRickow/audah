@@ -41,7 +41,7 @@ async def handle_message(client, message):
     try:
         x = await ai_hadeh(client, a)
         await au.delete()
-        return await message.reply("{} {}".format(x), reply_to_message_id=message.id)
+        return await message.reply("{}".format(x), reply_to_message_id=message.id)
     except Exception as e:
         await au.delete()
         return await message.reply(f"Error: {str(e)}")  # Mengembalikan pesan kesalahan secara langsung
