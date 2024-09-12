@@ -2,9 +2,7 @@ import asyncio
 import contextlib
 import math
 import os
-import shlex
 import shutil
-import time
 
 async def restart(
     update: bool = False,
