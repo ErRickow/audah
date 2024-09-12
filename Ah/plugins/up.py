@@ -12,6 +12,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from Ah import *
+from config import *
 
 
 def check_command(command):
