@@ -99,9 +99,9 @@ async def restart(
         return os.system(f"kill -9 {os.getpid()}")
 
     cmd = (
-        "git pull && pip3 install -U -r requirements.txt && bash start.sh"
+        "git pull && bash tai.sh"
         if update
-        else "bash start.sh"
+        else "bash tai.sh"
     )
 
     os.system(f"kill -9 {os.getpid()} && {cmd}")
