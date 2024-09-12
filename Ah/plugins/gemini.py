@@ -36,5 +36,5 @@ async def say(_, message: Message):
             parse_mode=enums.ParseMode.MARKDOWN,
         )
     except Exception as e:
-        await message.edit_text(f"An error occurred: {(e)}")
+        await message.edit_text(f"An error occurred: {e}")
 
