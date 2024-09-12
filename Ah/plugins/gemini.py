@@ -29,18 +29,6 @@ async def ai_hadeh(c, text):
       return data["result"]
   else:
       return f"{res.text}"
-    try:
-        params = {
-            'message': message,
-            'apikey': ''
-        }
-        
-        response = requests.post('https://api.botcahx.eu.org/api/search/openai-custom', json=params)
-        response.raise_for_status()  # Memicu exception jika status kode bukan 2xx
-        return response.json()  # Mengembalikan data JSON dari respons
-
-    except Exception as error:
-        return str(error)  # Mengembalikan pesan kesalahan sebagai string
 
 @Client.on_message(filters.command("ask", cmd))
 def handle_message(client, message):
