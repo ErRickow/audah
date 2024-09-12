@@ -3,6 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from Ah import *
+from config import PREFIX as cmd
 
  Ganti dengan API key Anda
 API_KEY = ''    # Definisikan prefix
