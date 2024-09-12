@@ -11,8 +11,8 @@ from config import PREFIX as cmd
 def ai_btc(message):
     try:
         params = {
-            message: message,
-            apikey: 'LwulPck3'
+            'message': message,
+            'apikey': 'LwulPck3'
         }
         
         response = requests.post('https://api.botcahx.eu.org/api/search/openai-custom', json=params)
