@@ -34,7 +34,7 @@ async def ngapdate(client, message):
     memeg = f"<b>❒ Perubahan logs by {client.me.mention}</b>"
     
     if "Already up to date." in str(out):
-        return await pros.edit(f"<pre>{teks}\n┖ {out}\n<blockquote><b>Last Commit:</b> {last_commit}</blockquote></pre>")
+        return await pros.edit(f"<pre>{teks}\n┖ {out}\n<b>Last Commit:</b> {last_commit}</pre>")
 
     if len(out) > 4096:
         await pros.edit(
