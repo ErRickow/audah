@@ -18,7 +18,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import BRANCH, GIT_TOKEN, REPO_URL
-from PyroKar import LOGGER
+from Ah import LOGGER
 
 HAPP = None
 
