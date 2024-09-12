@@ -4,32 +4,26 @@ from pyrogram.types import Message
 
 from Ah import *
 
-@Client.on_message(filters.command("ask", prefix) & filters.me)
-async def handle_message(client, message):
-    # Mengambil teks dari pesan
-    text = message.text
-    
-    # Memanggil API dan mendapatkan respons
-    url = f"https://api.botcahx.eu.org/api/search/blackbox-chat?text={text}&apikey=LwulPck3"
-    
+def ai_btc(message):
     try:
-        response = requests.get(url)
+        params = {
+            'message': message,
+            'apikey': ''  # Ganti dengan API key Anda
+        }
         
-        if response.status_code == 200:
-            data = response.json()
-            
-            if data is None or "result" not in data:
-                await message.reply("Terjadi kesalahan dalam mendapatkan hasil.")
-                return
-            
-            result = data["result"]
-            
-            if len(result) > 0:
-                await message.reply(result)
-            else:
-                await message.reply("Hasil kosong.")
-        else:
-            await message.reply(f"Kesalahan saat mengakses API: {response.status_code}")
+        response = requests.post('https://api.botcahx.eu.org/api/search/openai-custom', json=params)
+        response.raise_for_status()  # Memicu exception jika status kode bukan 2xx
+        return response.json()  # Mengembalikan data JSON dari respons
 
-    except Exception as e:
-        await message.reply(f"Terjadi kesalahan: {e}")
+    except Exception as error:
+        return str(error)  # Mengembalikan pesan kesalahan sebagai string
+@Client.on_message(filters.command("ask", prefix) & filters.me)
+def handle_message(client, message):
+    # Ambil isi pesan dari pengguna
+    user_message = message.text
+    
+    # Dapatkan respons dari fungsi ai_btc
+    ai_response = ai_btc(user_message)
+    
+    # Balas dengan respons dari AI
+    message.reply(ai_response)
