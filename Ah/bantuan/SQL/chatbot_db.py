@@ -1,4 +1,4 @@
-import sqlite3
+from sqlalchemy import Boolean, Column, String, UnicodeText
 
 class Chatbot:
     def __init__(self, db_name):
