@@ -49,6 +49,6 @@ async def handle_message(client, message):
 add_command_help(
     "ai",
     [
-        ["ask", "Bertanya kepada ai."
+        ["ask", "Bertanya kepada ai."]
     ],
 )
