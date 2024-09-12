@@ -20,34 +20,44 @@ def check_command(command):
 
 @Client.on_message(filters.command("up", prefix) & filters.me)
 async def ngapdate(client, message):
-  pros = await message.reply(
-        f"<blockquote> <b>Memeriksa pembaruan resources {client.me.mention}</b></blockquote>"
+    pros = await message.reply(
+        f"Memeriksa pembaruan resources {client.me.mention}..."
     )
-  out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
-  teks = f"<b>❒ Status resources :</b>\n"
-  memeg = f"<b>Perubahan logs by {client.me.mention}</b>"
-  if "Already up to date." in str(out):
-        return await pros.edit(f"<blockquote>{teks}┖ {out}</blockquote>")
-  if len(out) > 4096:
-          anuk = await pros.edit(
-            f"<blockquote> <b>Hasil akan dikirimkan dalam bentuk file ..</b></blockquote>"
-        )
-  anuk = None
-  with open("output.txt", "w+") as file:
-            file.write(out)
+    
+    # Melakukan pull dari repository git
+    out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
+    
+    # Mendapatkan commit terakhir
+    last_commit = subprocess.check_output(["git", "log", "-1", "--pretty=format:%h %s"]).decode("UTF-8").strip()
+    
+    teks = f"**Status resources:**\n"
+    memeg = f"**Perubahan logs by {client.me.mention}**"
+    
+    if "Already up to date." in str(out):
+        return await pros.edit(f"```\n{teks}┖ {out}\n```\n**Last Commit:** {last_commit}")
 
-           # X = f"<blockquote> <b>Perubahan logs </b></blockquote>"
-  #await client.send_document(
-  #        message.chat.id,
-  #        "output.txt",
-  #        caption=f"{X}",
-   #       reply_to_message_id=message.id,
-   #       )
-  os.remove("output.txt")
-  format_line = [f"┣ {line}" for line in out.splitlines()]
-  if format_line:
-    format_line[-1] = f"┖ {format_line[-1][2:]}"
-    format_output = "\n".join(format_line)
-  await pros.edit(f"<blockquote>{memeg}\n\n{teks}{format_output}\n\nZzzzz LuciferReborns</blockquote>")
-  os.execl(sys.executable, sys.executable, "erbanget.py")
-  
+    if len(out) > 4096:
+        await pros.edit(
+            f"**Hasil akan dikirimkan dalam bentuk file...**"
+        )
+        with open("output.txt", "w+") as file:
+            file.write(out)
+        # Kirim file jika output terlalu panjang
+        await client.send_document(
+            message.chat.id,
+            "output.txt",
+            caption=f"**Perubahan logs:**",
+            reply_to_message_id=message.id,
+        )
+        os.remove("output.txt")
+        return
+
+    # Format output untuk ditampilkan
+    format_line = [f"┣ {line}" for line in out.splitlines()]
+    if format_line:
+        format_line[-1] = f"┖ {format_line[-1][2:]}"
+        format_output = "\n".join(format_line)
+        
+    await pros.edit(f"**{memeg}\n\n{teks}{format_output}\n\n**Last Commit:** {last_commit}**")
+    
+    os.execl(sys.executable, sys.executable, "erbanget.py")
