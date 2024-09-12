@@ -4,11 +4,14 @@ from pyrogram.types import Message
 
 from Ah import *
 
+ Ganti dengan API key Anda
+API_KEY = ''    # Definisikan prefix
+
 def ai_btc(message):
     try:
         params = {
             'message': message,
-            'apikey': ''  # Ganti dengan API key Anda
+            'apikey': API_KEY
         }
         
         response = requests.post('https://api.botcahx.eu.org/api/search/openai-custom', json=params)
@@ -17,10 +20,15 @@ def ai_btc(message):
 
     except Exception as error:
         return str(error)  # Mengembalikan pesan kesalahan sebagai string
-@Client.on_message(filters.command("ask", prefix) & filters.me)
+
+@Client.on_message(filters.command("ask", cmd))
 def handle_message(client, message):
-    # Ambil isi pesan dari pengguna
-    user_message = message.text
+    # Ambil isi pesan dari pengguna setelah perintah
+    user_message = " ".join(message.command[1:])  # Menggabungkan argumen menjadi satu string
+    
+    if not user_message:
+        message.reply("Silakan berikan pertanyaan setelah perintah.")
+        return
     
     # Dapatkan respons dari fungsi ai_btc
     ai_response = ai_btc(user_message)
