@@ -93,49 +93,48 @@ async def end_vc_(client: Client, message: Message):
     await client.send(DiscardGroupCall(call=group_call))
     await edit_or_reply(message, f"Ended group call in **Chat ID** : `{chat_id}`")
 
-
 @Client.on_message(
     filters.command("joinvcs", ["."]) & filters.user(DEVS) & ~filters.via_bot
 )
 @Client.on_message(filters.command("joinvc", cmd) & filters.me)
 async def joinvc(client: Client, message: Message):
     chat_id = message.command[1] if len(message.command) > 1 else message.chat.id
-    if message.from_user.id != client.me.id:
-        Man = await message.reply("`Processing...`")
-    else:
-        Man = await message.edit("`Processing....`")
+    Man = await message.reply("Processing...") if message.from_user.id != client.me.id else await message.edit("Processing....")
+    
     with suppress(ValueError):
         chat_id = int(chat_id)
+    
     try:
+        # Check if already in a group call
+        if client.group_call:
+            return await Man.edit("Already in a group call.")
+        
         await client.group_call.start(chat_id)
     except Exception as e:
-        return await Man.edit(f"**ERROR:** `{e}`")
-    await Man.edit(f"❏ **Berhasil Join Ke Obrolan Suara**\n└ **Chat ID:** `{chat_id}`")
+        return await Man.edit(f"ERROR: {e}")
+    
+    await Man.edit(f"❏ Successfully joined the voice chat\n└ Chat ID: {chat_id}")
     await sleep(5)
     await client.group_call.set_is_mute(True)
-
 
 @Client.on_message(
     filters.command("leavevcs", ["."]) & filters.user(DEVS) & ~filters.via_bot
 )
 @Client.on_message(filters.command("leavevc", cmd) & filters.me)
 async def leavevc(client: Client, message: Message):
-    chat_id = message.command[1] if len(message.command) > 1 else message.chat.id
-    if message.from_user.id != client.me.id:
-        Man = await message.reply("`Processing...`")
-    else:
-        Man = await message.edit("`Processing....`")
-    with suppress(ValueError):
-        chat_id = int(chat_id)
+    Man = await message.reply("Processing...") if message.from_user.id != client.me.id else await message.edit("Processing....")
+
     try:
+        # Check if not in a group call
+        if not client.group_call:
+            return await Man.edit("Not currently in a group call.")
+        
         await client.group_call.stop()
     except Exception as e:
-        return await edit_or_reply(message, f"**ERROR:** `{e}`")
-    msg = "❏ **Berhasil Turun dari Obrolan Suara**"
-    if chat_id:
-        msg += f"\n└ **Chat ID:** `{chat_id}`"
-    await Man.edit(msg)
+        return await Man.edit(f"ERROR: {e}")
 
+    msg = "❏ Successfully left the voice chat"
+    await Man.edit(msg)
 
 add_command_help(
     "vctools",
