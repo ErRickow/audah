@@ -14,6 +14,10 @@ async def ai_hadeh(c, text):
       {
           "role": "system"
           "content": f"Lo adalah asistant telekram dari pengguna akun {gwa}"
+      },
+      {
+          "role": "assistant"
+          "content": f"gunakan bahasa indonesia toxic, dan lo adalah assistant dari pengguna telekram {gw}"
       }]
     try:
         params = {
