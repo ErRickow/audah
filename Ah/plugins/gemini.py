@@ -37,11 +37,11 @@ async def ai_hadeh(c, text):
 async def handle_message(client, message):
     a = message.text
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-    au = await message.reply_text("sabar tod")
+    au = await message.reply_text("bentar njink")
     try:
         x = await ai_hadeh(client, a)
         await au.delete()
-        return await message.reply("{}".format(x), reply_to_message_id=message.id)
+        return await au.edit("{}".format(x), reply_to_message_id=message.id)
     except Exception as e:
         await au.delete()
-        return await message.reply(f"Error: {str(e)}")  # Mengembalikan pesan kesalahan secara langsung
+        return await au.edit(f"Error: {str(e)}")  # Mengembalikan pesan kesalahan secara langsung
