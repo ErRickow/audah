@@ -60,4 +60,4 @@ async def ngapdate(client, message):
         
     await pros.edit(f"<b>{memeg}</b><br><br>{teks}{format_output}<br><b>Last Commit:</b> {last_commit}")
     
-    os.execl(sys.executable, sys.executable, "-m" "Ah")
+    os.execl(sys.executable, sys.executable, "-m", "Ah")
