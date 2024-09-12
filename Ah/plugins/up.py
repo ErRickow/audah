@@ -14,6 +14,7 @@ from git.exc import (
 from pyrogram import *
 from pyrogram.types import Message
 
+from Ah.bantuan.restart import restart
 from Ah import *
   # TODO: write code...
   
