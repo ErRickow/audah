@@ -8,7 +8,7 @@ from config import PREFIX as cmd
 # Ganti dengan API key Anda
   
 
-def ai_btc(message):
+async def ai_hadeh(c, text):
     try:
         params = {
             'message': message,
