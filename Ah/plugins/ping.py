@@ -21,6 +21,6 @@ async def pingme(client, message):
 add_command_help(
     "ping",
     [
-        ["ping", "Untuk melihat respon bot."
+        ["ping", "Untuk melihat respon bot."]
     ],
 )
