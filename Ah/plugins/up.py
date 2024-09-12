@@ -24,7 +24,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import BRANCH
-from config import CMD_HANDLER as cmd
+from config import PREFIX as cmd
 from config import GIT_TOKEN, REPO_URL
 from Ah.bantuan.adminHelpers import DEVS
 from Ah.bantuan.basic import edit_or_reply
