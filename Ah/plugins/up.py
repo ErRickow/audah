@@ -19,7 +19,7 @@ from Ah import *
 from config import Config
   # TODO: write code...
   
-@Client.on_message(filters.me & filters.command("up", cmd))
+@Client.on_message(filters.me & filters.command("update", cmd))
 async def update_bot(_, message: Message):
     anji = await message.reply(message, "**🔄 Sabar nyet...**")
 
