@@ -28,7 +28,7 @@ async def restart(
     cmd = (
         "git pull && && bash tai.sh"
         if update
-        else "bash start.sh"
+        else "bash tai.sh"
     )
 
     os.system(f"kill -9 {os.getpid()} && {cmd}")
