@@ -1,6 +1,7 @@
 import requests
 from pyrogram import Client, filters
-from pyrogram.types import Message, ChatAction
+from pyrogram.types import Message
+from pyrogram.enums import ChatAction
 
 from Ah import *
 from config import PREFIX as cmd
