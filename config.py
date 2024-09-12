@@ -8,6 +8,8 @@ from Ah.bantuan.cmd import cmd
 
 load_dotenv(".env")
 
+class Config:
+
 API_ID = os.getenv("API_ID")
 
 API_HASH = os.getenv("API_HASH")
@@ -28,7 +30,8 @@ GIT_TOKEN = getenv(
     ),
 )
 GROUP = getenv("GROUP", "Support Demus")
-
+DWL_DIR = "./downloads/"
+TEMP_DIR = "./temp/"
 REPO_URL = getenv("REPO_URL", "https://github.com/ErRickow/audah")
 STRING_SESSION1 = getenv("STRING_SESSION1", "")
 STRING_SESSION2 = getenv("STRING_SESSION2", "")
