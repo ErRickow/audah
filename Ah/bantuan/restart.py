@@ -10,7 +10,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from pyrogram.types import Message
 
-from Ah.core import Config, Symbols
+from Ah.bantuan.core import Symbols
 
 from .formatter import humanbytes, readable_time
 
