@@ -21,7 +21,7 @@ def check_command(command):
 @Client.on_message(filters.command("up", prefix) & filters.me)
 async def ngapdate(client, message):
     pros = await message.reply(
-        f"Memeriksa pembaruan resources {client.me.mention}..."
+        f"<b>Memeriksa pembaruan resources {client.me.mention}...</b>"
     )
     
     # Melakukan pull dari repository git
@@ -30,15 +30,15 @@ async def ngapdate(client, message):
     # Mendapatkan commit terakhir
     last_commit = subprocess.check_output(["git", "log", "-1", "--pretty=format:%h %s"]).decode("UTF-8").strip()
     
-    teks = f"**Status resources:**\n"
-    memeg = f"**Perubahan logs by {client.me.mention}**"
+    teks = "<b>Status resources:</b><br>"
+    memeg = f"<b>Perubahan logs by {client.me.mention}</b>"
     
     if "Already up to date." in str(out):
-        return await pros.edit(f"```\n{teks}┖ {out}\n```\n**Last Commit:** {last_commit}")
+        return await pros.edit(f"<pre>{teks}┖ {out}</pre><br><b>Last Commit:</b> {last_commit}")
 
     if len(out) > 4096:
         await pros.edit(
-            f"**Hasil akan dikirimkan dalam bentuk file...**"
+            "<b>Hasil akan dikirimkan dalam bentuk file...</b>"
         )
         with open("output.txt", "w+") as file:
             file.write(out)
@@ -46,7 +46,7 @@ async def ngapdate(client, message):
         await client.send_document(
             message.chat.id,
             "output.txt",
-            caption=f"**Perubahan logs:**",
+            caption="<b>Perubahan logs:</b>",
             reply_to_message_id=message.id,
         )
         os.remove("output.txt")
@@ -56,8 +56,8 @@ async def ngapdate(client, message):
     format_line = [f"┣ {line}" for line in out.splitlines()]
     if format_line:
         format_line[-1] = f"┖ {format_line[-1][2:]}"
-        format_output = "\n".join(format_line)
+        format_output = "<br>".join(format_line)
         
-    await pros.edit(f"**{memeg}\n\n{teks}{format_output}\n\n**Last Commit:** {last_commit}**")
+    await pros.edit(f"<b>{memeg}</b><br><br>{teks}{format_output}<br><b>Last Commit:</b> {last_commit}")
     
-    os.execl(sys.executable, sys.executable, "erbanget.py")
+    os.execl(sys.executable, sys.executable, "tai.sh")
