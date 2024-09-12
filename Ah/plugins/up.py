@@ -31,7 +31,7 @@ async def ngapdate(client, message):
     last_commit = subprocess.check_output(["git", "log", "-1", "--pretty=format:%h %s"]).decode("UTF-8").strip()
     
     teks = "<b>❒ Status resources:</b><br>"
-    memeg = f"<b>Perubahan logs by {client.me.mention}</b>"
+    memeg = f"<b>❒ Perubahan logs by {client.me.mention}</b>"
     
     if "Already up to date." in str(out):
         return await pros.edit(f"<pre>{teks}\n┖ {out}</pre><br><b>Last Commit:</b> {last_commit}")
