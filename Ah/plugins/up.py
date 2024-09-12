@@ -25,7 +25,7 @@ from pyrogram.types import Message
 
 from config import BRANCH
 from config import CMD_HANDLER as cmd
-from config import GIT_TOKEN, HEROKU_API_KEY, HEROKU_APP_NAME, REPO_URL
+from config import GIT_TOKEN, REPO_URL
 from Ah.bantuan.adminHelpers import DEVS
 from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.misc import HAPP, XCB
