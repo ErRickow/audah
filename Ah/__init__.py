@@ -36,6 +36,11 @@ if (
 ):
     LOGGER(__name__).warning("api id missing")
     sys.exit()
+if (
+    not API_HASH
+):
+    LOGGER(__name__).warning("api Hashnya missing")
+    sys.exit()
 
 if (
     not STRING_SESSION1
