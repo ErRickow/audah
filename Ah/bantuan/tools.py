@@ -201,7 +201,7 @@ def import_library(library_name: str, package_name: str = None):
         return importlib.import_module(library_name)
     except ImportError as exc:
         completed = subprocess.run(
-            [sys.executable, "-m", "pip", "install", "--upgrade", package_name], check=True)
+            [sys.executable, "-m", "pip3", "install", "--upgrade", package_name], check=True)
         if completed.returncode != 0:
             raise AssertionError(
                 f"Failed to install library {package_name} (pip exited with code {completed.returncode})"
@@ -215,7 +215,7 @@ def uninstall_library(package_name: str):
     :param package_name: package name in PyPi (pip uninstall example)
     """
     completed = subprocess.run(
-        [sys.executable, "-m", "pip", "uninstall", "-y", package_name], check=True)
+        [sys.executable, "-m", "pip3", "uninstall", "-y", package_name], check=True)
     if completed.returncode != 0:
         raise AssertionError(
             f"Failed to uninstall library {package_name} (pip exited with code {completed.returncode})"
