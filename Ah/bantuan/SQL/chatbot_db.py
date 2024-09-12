@@ -6,11 +6,11 @@ from sqlalchemy.orm import sessionmaker
 from models import Chatbot, db_connect, create_table
 
 class Chatbot(BASE):
-    def __init__(self):
-        engine = db_connect()
-        create_table(engine)
-        Session = sessionmaker(bind=engine)
-        self.session = Session()
+    __tablename__ = "chatbot"
+    chat_id = Column(String(14), primary_key=True)
+
+    def __init__(self, chat_id):
+        self.chat_id = str(chat_id)  #
 
     async def add_chatbot(self, chat_id, user_id):
         chatbot = Chatbot(chat_id=chat_id, user_id=user_id)
