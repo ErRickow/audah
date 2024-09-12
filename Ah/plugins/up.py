@@ -37,8 +37,8 @@ async def update_bot(_, message: Message):
             )
 
         if force:
-            return await hell.edit(
-                f"Force-Sync in progress... Please wait for a moment and try again.\n\n{changelogs}",
+            return await anji.edit(
+                f"Force-sync...... sabar dulu ya njink.\n\n{changelogs}",
                 disable_web_page_preview=True,
             )
 
