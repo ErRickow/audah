@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, String, UnicodeText
 
-from PyroKar.helpers.SQL import BASE, SESSION
+from Ah.bantuan.SQL import BASE, SESSION
 
 Owner = 0
 
