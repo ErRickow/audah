@@ -22,10 +22,11 @@ async def ai_hadeh(c, text):
       {"role": "user", "content": f"{text}"},
   ]
   url = "https://api.botcahx.eu.org/api/search/openai-custom"
+  payloaf = "message":, bahan, "apikey": "LwulPck3"
     try:
         params = {
             'message': message,
-            'apikey': 'LwulPck3'
+            'apikey': ''
         }
         
         response = requests.post('https://api.botcahx.eu.org/api/search/openai-custom', json=params)
