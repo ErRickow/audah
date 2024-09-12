@@ -13,7 +13,7 @@ from pyrogram.types import Message
 from Ah.bantuan.core import Symbols
 from config import *
 
-from Ah.bantuan.tools import humanbytes, readable_time
+from Ah.bantuan.tools import *
 
 
 async def progress(
