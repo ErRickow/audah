@@ -19,6 +19,15 @@ from Ah import *
 from config import Config
   # TODO: write code...
   
+async def gen_chlog(repo, diff):
+    ch_log = ""
+    d_form = "%d/%m/%y"
+    for c in repo.iter_commits(diff):
+        ch_log += (
+            f"• [{c.committed_datetime.strftime(d_form)}]: {c.summary} <{c.author}>\n"
+        )
+    return ch_log
+
 @Client.on_message(filters.me & filters.command("update", cmd))
 async def update_bot(_, message: Message):
     anji = await message.reply(message, "**🔄 Sabar nyet...**")
