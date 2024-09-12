@@ -19,7 +19,7 @@ from Ah import *
   
 @Client.on_message(filters.me & filters.command("up", cmd))
 async def update_bot(_, message: Message):
-    anji = await message.reply(message, "**🔄 𝖨𝗇 𝖯𝗋𝗈𝗀𝗋𝖾𝗌𝗌...**")
+    anji = await message.reply(message, "**🔄 Sabar nyet...**")
 
     if len(message.command) < 2:
         status, repo, force = await initialize_git(Config.PLUGINS_REPO)
