@@ -49,7 +49,7 @@ async def update_bot(_, message: Message):
         )
 
     cmd = message.command[1].lower()
-    if cmd == "plugins":
+    if cmd == "y":
             await anji.edit(
                 "**🔄 M e n g u p d a t e!** \n__B o t A k a n S t a r t D a l a m B e b e r a p a M e n i t.__"
             )
