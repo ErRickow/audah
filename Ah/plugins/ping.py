@@ -4,6 +4,8 @@ from datetime import datetime
 from pyrogram import *
 from Ah.bantuan.tools import *
 
+from .help import add_command_help
+
 @Client.on_message(filters.me & filters.command("ping", cmd))
 async def pingme(client, message):
     uptime = await get_readable_time((time.time() - StartTime))
