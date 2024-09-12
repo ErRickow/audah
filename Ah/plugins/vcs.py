@@ -20,9 +20,9 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pyrogram.types import Message
 
 from config import PREFIX as cmd
-from PyroKar.helpers.adminHelpers import DEVS
-from PyroKar.helpers.basic import edit_or_reply
-from PyroKar.helpers.tools import get_arg
+from Ah.bantuan.adminHelpers import DEVS
+from Ah.bantuan.basic import edit_or_reply
+from Ah.bantuan.tools import get_arg
 
 from .help import add_command_help
 
