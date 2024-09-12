@@ -16,7 +16,7 @@ from pyrogram.types import Message
 
 from Ah.bantuan.restart import *
 from Ah import *
-from config import *
+from config import Config
   # TODO: write code...
   
 @Client.on_message(filters.me & filters.command("up", cmd))
@@ -24,7 +24,7 @@ async def update_bot(_, message: Message):
     anji = await message.reply(message, "**🔄 Sabar nyet...**")
 
     if len(message.command) < 2:
-        status, repo, force = await initialize_git(config.REPO_URL)
+        status, repo, force = await initialize_git(Config.PLUGINS_REPO)
         if not status:
             return await message.error(anji, repo)
 
