@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from pyrogram.enums import ChatAction
 
 from Ah import *
-from Ah.bantuan.tools import *
+from Ah.bantuan.tools import get_text
 from config import PREFIX as cmd
 
 # Ganti dengan API key Anda
