@@ -31,16 +31,5 @@ async def ai_hadeh(c, text):
       return f"{res.text}"
 
 @Client.on_message(filters.command("ask", cmd))
-def handle_message(client, message):
-    # Ambil isi pesan dari pengguna setelah perintah
-    user_message = " ".join(message.command[1:])  # Menggabungkan argumen menjadi satu string
-    
-    if not user_message:
-        message.reply("Silakan berikan pertanyaan setelah perintah.")
-        return
-    
-    # Dapatkan respons dari fungsi ai_btc
-    ai_response = ai_btc(user_message)
-    
-    # Balas dengan respons dari AI
-    message.reply(ai_response)
+async def handle_message(client, message):
+  a = client.get_text(message)
