@@ -12,7 +12,7 @@ def ai_btc(message):
     try:
         params = {
             'message': message,
-            'apikey': API_KEY
+            'apikey': LwulPck3
         }
         
         response = requests.post('https://api.botcahx.eu.org/api/search/openai-custom', json=params)
