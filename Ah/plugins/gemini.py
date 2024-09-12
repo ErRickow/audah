@@ -6,7 +6,7 @@ from Ah import *
 from config import PREFIX as cmd
 
 # Ganti dengan API key Anda
-API_KEY = ''  
+API_KEY = 'LwulPck3'  
 
 def ai_btc(message):
     try:
