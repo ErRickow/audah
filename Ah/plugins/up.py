@@ -23,7 +23,7 @@ async def update_bot(_, message: Message):
     anji = await message.reply(message, "**🔄 Sabar nyet...**")
 
     if len(message.command) < 2:
-        status, repo, force = await initialize_git(Config.PLUGINS_REPO)
+        status, repo, force = await initialize_git(config.PLUGINS_REPO)
         if not status:
             return await message.error(anji, repo)
 
