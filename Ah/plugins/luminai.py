@@ -31,7 +31,7 @@ async def saya(client: Client, message: Message):
     result = await tanya(prompt)
     
     if result is None:
-        await message.reply_text("Failed to get a response from LUMINAI.")
+        await message.reply_text("API DED.")
     else:
         await message.reply_text(f"<blockquote>{result}</blockquote>")
 
