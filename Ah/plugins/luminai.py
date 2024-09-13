@@ -25,7 +25,7 @@ async def saya(client: Client, message: Message):
     else:
         return await message.reply_text("Provide a prompt for LUMINAI")
 
-    result = await luminer(prompt)
+    result = await fetch_content(prompt)
 
     if result is None:
         await message.reply_text("Failed to get a response from LUMINAI.")
