@@ -12,9 +12,6 @@ async def luminer(content):
         if response.status_code != 200:
             return None
         return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"HTTP Request failed: {e}")
-        return None
 
 @Client.on_message(filters.me & filters.command("uy"))
 async def saya(client: Client, message: Message):
