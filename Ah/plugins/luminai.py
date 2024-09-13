@@ -11,6 +11,8 @@ async def luminer(content):
     try:
         response = requests.post(url, json={"content": content})
         if response.status_code != 200:
+            data = res.json()
+            return data["result"]
             return None
         return response.json()
     except requests.exceptions.RequestException as e:
