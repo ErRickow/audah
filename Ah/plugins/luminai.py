@@ -28,7 +28,7 @@ async def saya(client: Client, message: Message):
         return await message.reply_text("Give ask from LUMINAI")
     
     # Memanggil fungsi luminer dan menunggu hasilnya
-    result = await luminer(prompt)
+    result = await tanya(prompt)
     
     if result is None:
         await message.reply_text("Failed to get a response from LUMINAI.")
