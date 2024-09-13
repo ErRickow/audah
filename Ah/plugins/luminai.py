@@ -11,3 +11,4 @@ async def luminer(messagestr):
     return response.json()
     
 @Client.on_message(filters.me & filters.command("uy", cmd))
+async def saya(client: Client, message: Message)
