@@ -18,7 +18,7 @@ async def tanya(text):
  #   else:
  #       return f"{response.text}"
 
-@Client.on_message(filters.me & filters.command("luminai", cmd))
+@Client.on_message(filters.me & filters.command("asg", cmd))
 async def saya(client: Client, message: Message):
     if len(message.command) > 1:
         prompt = message.text.split(maxsplit=1)[1]
