@@ -2,6 +2,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 import requests
 
+from Ah import *
+
 async def luminer(content):
     url = "https://lumin-ai.xyz/"
     try:
