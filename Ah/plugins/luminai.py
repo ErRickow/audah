@@ -1,4 +1,4 @@
-async def chatgptold(messagestr):
+async def luminer(messagestr):
     url = "https://lumin-ai.xyz/"
     response = requests.post(url, json={"content": content})
     if response.status_code != 200:
