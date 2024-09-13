@@ -23,6 +23,7 @@ async def tanya(text):
 async def _(client, message):
     text = get_text(message)
     if not text:
-        return await message.reply("**Kasih teks GOLBOK!!**")
-        hasil = await tanya(text)
-        return await message.reply(hasil)
+        return await message.reply("Kasih teks GOLBOK!!")
+    
+    hasil = await tanya(text)
+    return await message.reply(hasil)
