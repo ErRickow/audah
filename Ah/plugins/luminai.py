@@ -7,7 +7,6 @@ from Ah.bantuan.tools import *
 
 async def luminer(content):
     url = "https://lumin-ai.xyz/"
-    try:
         response = requests.post(url, json={"content": content})
         if response.status_code != 200:
             return None
