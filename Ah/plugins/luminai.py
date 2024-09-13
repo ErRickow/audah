@@ -18,11 +18,11 @@ async def fetch_content(content):
 
 @Client.on_message(filters.me & filters.command("luminai"))
 async def saya(client: Client, message: Message):
-    if len(message.command) > 1:
-        prompt = message.text.split(maxsplit=1)[1]
-    elif message.reply_to_message:
-        prompt = message.reply_to_message.text
-    else:
+ #   if len(message.command) > 1:
+#        prompt = message.text.split(maxsplit=1)[1]
+#    elif message.reply_to_message:
+  #      prompt = message.reply_to_message.text
+#    else:
         return await message.reply_text("Provide a prompt for LUMINAI")
 
     result = await fetch_content(prompt)
