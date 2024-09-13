@@ -16,7 +16,7 @@ async def luminer(content):
 async def saya(client: Client, message: Message):
     if len(message.command) > 1:
         prompt = message.text.split(maxsplit=1)[1]
-    elif message.reply_to_message:
+    elif message.reply_text:
         prompt = message.reply.text
     else:
         return await message.reply_text("Give ask from LUMINAI")
