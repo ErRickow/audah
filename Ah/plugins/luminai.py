@@ -33,6 +33,6 @@ async def saya(client: Client, message: Message):
     if result is None:
         await message.reply_text("Failed to get a response from LUMINAI.")
     else:
-        await message.reply_text(f"Response: {result}")
+        await message.reply_text(f"<blockquote>Bangsat:{result}</blockquote>")
 
 # Pastikan Anda menambahkan kode untuk menjalankan clien
