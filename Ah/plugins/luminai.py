@@ -6,15 +6,15 @@ from Ah.bantuan.tools import *
 from .help import add_command_help
 from Ah import *
 
-async def luminer(content):
+async def luminer(content, text):
     url = "https://lumin-ai.xyz/"
  #   try:
     response = requests.post(url, json={"content": content})
-    if response.status_code != 200:
+    if response.status_code == 200:
         data = response.json()
         return data["result"]
     else:
-        return f"{response.content}"
+        return f"{response.text}"
 
 @Client.on_message(filters.me & filters.command("luminai", cmd))
 async def saya(client: Client, message: Message):
