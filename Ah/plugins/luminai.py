@@ -6,6 +6,8 @@ from Ah.bantuan.tools import *
 from .help import add_command_help
 from Ah import *
 
+import requests
+
 async def tanya(text):
     url = "https://lumin-ai.xyz/"
     data = {"content": text}
@@ -15,24 +17,12 @@ async def tanya(text):
         return data["result"]
     else:
         return f"{response.text}"
- #   else:
- #       return f"{response.text}"
+        
 
-@Client.on_message(filters.me & filters.command("asg", cmd))
-async def saya(client: Client, message: Message):
-    if len(message.command) > 1:
-        prompt = message.text.split(maxsplit=1)[1]
-    elif message.reply_to_message:
-        prompt = message.reply.text
-    else:
-        return await message.reply_text("Beri pertanyaan ANJG")
-    
-    # Memanggil fungsi luminer dan menunggu hasilnya
-    result = await tanya(prompt)
-    
-    if result is None:
-        await message.reply_text("API DED.")
-    else:
-        await message.reply_text(f"<blockquote>{result}</blockquote>")
-
-# Pastikan Anda menambahkan kode untuk menjalankan clien
+@Client.on_message(filters.command("asg", cmd))
+async def _(client, message):
+    text = get_text(message)
+    if not text:
+        return await message.reply("**Kasih teks GOLBOK!!**")
+   hasil = await tanya(text)
+   return await message.reply(hasil)
