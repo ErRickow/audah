@@ -9,3 +9,5 @@ async def luminer(messagestr):
     if response.status_code != 200:
         return None
     return response.json()
+    
+@Client.on_message(filters.me & filters.command("uy", cmd))
