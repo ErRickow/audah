@@ -11,13 +11,10 @@ async def luminer(content):
     try:
         response = requests.post(url, json={"content": content})
         if response.status_code != 200:
-            data = res.json()
+            data = response.json()
             return data["result"]
-            return None
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"HTTP Request failed: {e}")
-        return None
+        else:
+            return f"response.text"
 
 @Client.on_message(filters.me & filters.command("luminai", cmd))
 async def saya(client: Client, message: Message):
