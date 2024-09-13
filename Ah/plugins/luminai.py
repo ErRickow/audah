@@ -1,3 +1,8 @@
+from  pyrogram import *
+from pyrogram import Client, filters
+from pyrogram.types import *
+import requests
+
 async def luminer(messagestr):
     url = "https://lumin-ai.xyz/"
     response = requests.post(url, json={"content": content})
