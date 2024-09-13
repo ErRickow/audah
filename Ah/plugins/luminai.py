@@ -7,10 +7,10 @@ from Ah.bantuan.tools import *
 
 async def luminer(content):
     url = "https://lumin-ai.xyz/"
-        response = requests.post(url, json={"content": content})
-        if response.status_code != 200:
-            return None
-        return response.json()
+    response = requests.post(url, json={"content": content})
+    if response.status_code != 200:
+        return None
+    return response.json()
 
 @Client.on_message(filters.me & filters.command("uy"))
 async def saya(client: Client, message: Message):
