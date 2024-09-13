@@ -9,10 +9,10 @@ async def fetch_content(content):
     response = requests.post(url, json={'content': content})
     
     if response.status_code == 200:
-        m.reply(response.json())
+#        print(response.json())
         return response.json()
     else:
-        m.reply(f'Error: {response.status_code}')
+ #       print(f'Error: {response.status_code}')
         return None
 
 @Client.on_message(filters.me & filters.command("luminai"))
