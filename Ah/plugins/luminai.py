@@ -25,7 +25,7 @@ async def saya(client: Client, message: Message):
     elif message.reply_to_message:
         prompt = message.reply.text
     else:
-        return await message.reply_text("Give ask from LUMINAI")
+        return await message.reply_text("Beri pertanyaan ANJG")
     
     # Memanggil fungsi luminer dan menunggu hasilnya
     result = await tanya(prompt)
