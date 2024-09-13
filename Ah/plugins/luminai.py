@@ -17,7 +17,7 @@ async def luminer(content):
         print(f"HTTP Request failed: {e}")
         return None
 
-@Client.on_message(filters.me & filters.command("uy", cmd))
+@Client.on_message(filters.me & filters.command("luminai"))
 async def saya(client: Client, message: Message):
     if len(message.command) > 1:
         prompt = message.text.split(maxsplit=1)[1]
