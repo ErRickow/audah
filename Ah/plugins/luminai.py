@@ -33,6 +33,6 @@ async def saya(client: Client, message: Message):
     if result is None:
         await message.reply_text("API DED.")
     else:
-        await message.reply_text(f"<blockquote>{result}</blockquote>", parse_mode=enums.ParseMode.HTML)
+        await message.reply_text(f"<blockquote>{result}</blockquote>")
 
 # Pastikan Anda menambahkan kode untuk menjalankan clien
