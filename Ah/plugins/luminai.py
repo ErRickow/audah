@@ -6,13 +6,15 @@ from Ah.bantuan.tools import *
 from .help import add_command_help
 from Ah import *
 
-async def luminer(content):
+async def tanya(text):
     url = "https://lumin-ai.xyz/"
- #   try:
-    response = requests.post(url, json={"content": content})
+    data = {"content": text}
+    response = requests.post(url, json=data)
     if response.status_code == 200:
         data = response.json()
         return data["result"]
+    else:
+        return f"{response.text}"
  #   else:
  #       return f"{response.text}"
 
