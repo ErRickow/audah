@@ -3,9 +3,6 @@ from pyrogram.types import Message
 import requests
 from Ah.bantuan.tools import *
 
-from .help import add_command_help
-from Ah import *
-
 async def luminer(content):
     url = "https://lumin-ai.xyz/"
     try:
@@ -22,16 +19,13 @@ async def saya(client: Client, message: Message):
     if len(message.command) > 1:
         prompt = message.text.split(maxsplit=1)[1]
     elif message.reply_to_message:
-        prompt = message.reply.text
+        prompt = message.reply_to_message.text
     else:
-        return await message.reply_text("Give ask from LUMINAI")
-    
-    # Memanggil fungsi luminer dan menunggu hasilnya
+        return await message.reply_text("Provide a prompt for LUMINAI")
+
     result = await luminer(prompt)
-    
+
     if result is None:
         await message.reply_text("Failed to get a response from LUMINAI.")
     else:
         await message.reply_text(f"Response: {result}")
-
-# Pastikan Anda menambahkan kode untuk menjalankan client
