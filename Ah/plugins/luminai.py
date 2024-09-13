@@ -1,7 +1,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 import requests
+from Ah.bantuan.tools import *
 
+from .help import add_command_help
 from Ah import *
 
 async def luminer(content):
