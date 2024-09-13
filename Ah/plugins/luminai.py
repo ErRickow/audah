@@ -3,15 +3,17 @@ from pyrogram.types import Message
 import requests
 from Ah.bantuan.tools import *
 
-async def luminer(content):
-    url = "https://lumin-ai.xyz/"
-    try:
-        response = requests.post(url, json={"content": content})
-        if response.status_code != 200:
-            return None
+import requests
+
+async def fetch_content(content):
+    url = 'https://lumin-ai.xyz/'
+    response = requests.post(url, json={'content': content})
+    
+    if response.status_code == 200:
+        print(response.json())
         return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"HTTP Request failed: {e}")
+    else:
+        print(f'Error: {response.status_code}')
         return None
 
 @Client.on_message(filters.me & filters.command("luminai"))
