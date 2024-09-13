@@ -34,6 +34,4 @@ async def saya(client: Client, message: Message):
     else:
         await message.reply_text(f"Response: {result}")
 
-# Pastikan Anda menambahkan kode untuk menjalankan client
-
-kenapa ini tidak berjalan
+# Pastikan Anda menambahkan kode untuk menjalankan clien
