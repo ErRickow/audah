@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from Ah.bantuan.tools import *
 
+from Ah import *
 import requests
 
 async def fetch_content(content):
@@ -15,7 +16,7 @@ async def fetch_content(content):
  #       print(f'Error: {response.status_code}')
         return None
 
-@Client.on_message(filters.me & filters.command("luminai"))
+@Client.on_message(filters.me & filters.command("luminai", cmd))
 async def saya(client: Client, message: Message):
     await message.reply_text("Provide a prompt for LUMINAI")
 
