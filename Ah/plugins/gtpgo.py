@@ -21,7 +21,7 @@ async def tanya(text):
 #        return f"Error: {str(e)}"
 
 @Client.on_message(filters.command("gtp", cmd))
-async def gtp(client, message: Message):
+async def _(client, message: Message):
     text = get_text(message)
     if not text:
         return await message.reply("Kasih teks GOLBOK!!")
