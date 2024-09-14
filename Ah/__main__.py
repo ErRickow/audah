@@ -10,7 +10,7 @@ from Ah.plugins import ALL_MODULES
 from config import *
 
 BOT_VER = "0.1.0"
-CMD_HANDLER = [".", ",", "?", "!"]
+PREFIX = [".", ",", "?", "!"]
 MSG_ON = """
 💢 **PyroKar Telah Hidup** 💢
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
