@@ -27,4 +27,4 @@ async def gtp(client, message: Message):
         return await message.reply("Kasih teks GOLBOK!!")
     
     hasil = tanya(text)
-    return await message.reply(hasil)
+    return message.reply(hasil)
