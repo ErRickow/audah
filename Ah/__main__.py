@@ -20,9 +20,6 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 async def main():
     await app.start()
     print("LOG: Founded Bot token Booting..")
