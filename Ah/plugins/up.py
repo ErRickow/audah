@@ -58,6 +58,6 @@ async def ngapdate(client, message):
         format_line[-1] = f"┖ {format_line[-1][2:]}"
         format_output = "\n".join(format_line)
         
-    await pros.edit(f"<pre><b>{memeg}</b>\n\n{teks}{format_output}<br>\n<b>Last Commit:</b> {last_commit}</pre>")
+    await pros.edit(f"<pre><b>{memeg}</b>\n\n{teks}{format_output}<br>\n\n<b>Last Commit:</b> {last_commit}</pre>")
     
     os.execl(sys.executable, sys.executable, "-m", "Ah")
