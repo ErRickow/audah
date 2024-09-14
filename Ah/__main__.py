@@ -51,6 +51,6 @@ async def start_bot():
 if __name__ == "__main__":
     logger.info("Starting bot")
     install()
- #   LOOP.run_until_complete(start_bot())
-    asyncio.get_event_loop().run_until_complete(start_bot())
+    LOOP.run_until_complete(start_bot())
+#    asyncio.get_event_loop().run_until_complete(start_bot())
     logger.info("Bot stopped")
