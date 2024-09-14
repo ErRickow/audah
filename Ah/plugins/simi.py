@@ -40,7 +40,7 @@ async def chatbot_response(client, message: Message):
         return
 
     # Beri respon sementara saat proses berlangsung
-#    response_message = await message.reply("Sabar sebentar...")
+    response_message = await message.reply("Sabar sebentar...")
 
     # Panggil fungsi untuk mendapatkan balasan dari Simsimi
     simtalk_response = send_simtalk(text)
