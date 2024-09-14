@@ -33,6 +33,7 @@ logging.getLogger("pyrogram.session.auth").setLevel(logging.CRITICAL)
 logging.getLogger("pyrogram.session.session").setLevel(logging.CRITICAL)
 
 LOGS = logging.getLogger(__name__)
+aiosession = ClientSession()
 
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
