@@ -56,21 +56,6 @@ START_TIME = datetime.now()
 
 StartTime = time.time()
 
-class Ubot(Client):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-    def on_message(self, filters=None, group=-1):
-        def decorator(func):
-            self.add_handler(MessageHandler(func, filters), group)
-            return func
-
-        return decorator
-
-    async def start(self):
-        await super().start()
-        logger.info("Bot started")
-
 ubot = Ubot(
     name="sange",
     api_id=API_ID,
