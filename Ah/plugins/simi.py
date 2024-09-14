@@ -46,14 +46,14 @@ async def chatbot_response(client, message: Message):
     await message.reply(simtalk_response)
 
 # Handler untuk command "/chatbot on"
-@Client.on_message(filters.command("off", cmd) & filters.user(DEVS))
+@Client.on_message(filters.command("off", cmd) & filters.me)
 async def chatbot_on(client, message: Message):
     global chatbot_active
     chatbot_active = True
     await message.reply("Chatbot diaktifkan.")
 
 # Handler untuk command "/chatbot off"
-@Client.on_message(filters.command("on", cmd) & filters.user(DEVS))
+@Client.on_message(filters.command("on", cmd) & filters.me)
 async def chatbot_off(client, message: Message):
     global chatbot_active
     chatbot_active = False
