@@ -49,5 +49,4 @@ async def main():
 if __name__ == "__main__":
     LOGGER("Er Anjing").info("The-Ubot Telah Hidup")
     install()
-    heroku()
     LOOP.run_until_complete(main())
