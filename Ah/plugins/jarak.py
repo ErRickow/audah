@@ -1,23 +1,28 @@
-import requests
-from pyrogram.types import InputMediaPhoto
-import os
+eval import requests
 
-async def ambil_gambar(message, text):
-    url = f"https://widipe.com/{text}"
-    headers = {'accept': 'image/jpeg'}
-  
-    response = requests.get(url, headers=headers)
+async def tanya(asal, tujuan):
+    url = "https://widipe.com/jarak"
+    params = {'dari': asal, 'ke': tujuan}
+    headers = {'accept': 'application/json'}
     
-    if response.status_code == 200:
-        file_path = 'indonesia_image.jpg'
-        with open(file_path, 'wb') as f:
-            f.write(response.content)
+    response = requests.get(url, headers=headers, params=params)
+    data = response.json()
 
-@Client.on_message(filters.command("rn", cmd))
-        await message.reply_photo(photo=file_path, caption=f"Gambar dari API {text}")
-        
-        os.remove(file_path)
+    if data.get('status'):
+        if 'url' in data and 'data' in data['url']:
+            gambar_url = data['url']['data']
+            deskripsi = data['url']['desc']
+
+@Client.on_message(filters.command("jarak", cmd))
+async def mbuh(client, message: Message):
+    text = get_text(message)
+    if not tujuan:
+        return await message.reply("Kasih teks GOLBOK!!")
+    await message.reply_photo(photo=gambar_url, caption=f"> Jarak dari {asal} ke {tujuan} = <code>{deskripsi}</code>")
+        else:
+           await message.reply("Gambar tidak tersedia.")
     else:
-        await message.reply("Gagal mengunduh gambar.")
-
-await ambil_gambar(message, text="malaysia")
+      await message.reply("Tidak ada hasil.")
+    asal = tanya(asal)
+    tujuan = tanya(tujuan)
+    await tanya(asal, tujuan)
