@@ -4,7 +4,7 @@ import importlib
 import logging
 from tqdm import tqdm
 from pyrogram import idle
-from Ah import ubot, BOTLOG, LOGGER, bots, ids, aiosession, LOOP
+from Ah import ubot, BOTLOG, LOGGER, bots, ids
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 
