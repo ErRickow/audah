@@ -2,7 +2,9 @@
 import logging
 import time
 import sys
+import asyncio  # Perlu untuk jeda yang asinkron
 from logging.handlers import RotatingFileHandler
+from pyrogram.errors import FloodWait  # Import untuk menangani FloodWait
 from aiohttp import ClientSession
 from datetime import datetime
 from pyrogram import Client
@@ -89,125 +91,60 @@ ubot = Ubot(
     plugins=dict(root="Ah/plugins/bot"),
     in_memory=True,
 )
-bot1 = (
+
+# Fungsi untuk menangani floodwait dan memberi jeda antar akun
+async def send_message_with_delay(bot, *args, **kwargs):
+    try:
+        await bot.send_message(*args, **kwargs)
+    except FloodWait as e:
+        logger.warning(f"FloodWait: Harus menunggu {e.x} detik")
+        await asyncio.sleep(e.x)
+        await bot.send_message(*args, **kwargs)
+
+# Mengirim pesan secara bergantian dengan jeda antar bot
+async def send_message_to_all_bots(chat_id, text):
+    for bot in bots:
+        try:
+            await send_message_with_delay(bot, chat_id, text)
+        except Exception as e:
+            logger.error(f"Error saat mengirim pesan dengan {bot.name}: {e}")
+        await asyncio.sleep(1)  # Jeda 1 detik antar setiap bot
+
+bots = [
     Client(
-        name="bot1",
+        name=f"bot{i+1}",
         api_id=API_ID,
         api_hash=API_HASH,
-        session_string=STRING_SESSION1,
+        session_string=globals().get(f"STRING_SESSION{i+1}"),
         plugins=dict(root="Ah/plugins"),
     )
-    if STRING_SESSION1
-    else None
-)
+    for i in range(10)
+    if globals().get(f"STRING_SESSION{i+1}")
+]
 
-bot2 = (
-    Client(
-        name="bot2",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION2,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION2
-    else None
-)
+# Memulai semua bot
+async def start_bots():
+    for bot in bots:
+        await bot.start()
+        logger.info(f"{bot.name} started")
 
-bot3 = (
-    Client(
-        name="bot3",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION3,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION3
-    else None
-)
+# Fungsi untuk menghentikan semua bot
+async def stop_bots():
+    for bot in bots:
+        await bot.stop()
+        logger.info(f"{bot.name} stopped")
 
-bot4 = (
-    Client(
-        name="bot4",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION4,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION4
-    else None
-)
+# Mulai bot utama dan bot tambahan lainnya
+async def main():
+    await start_bots()
 
-bot5 = (
-    Client(
-        name="bot5",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION5,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION5
-    else None
-)
+    # Misalnya untuk mengirim pesan ke semua bot
+    await send_message_to_all_bots("some_chat_id", "Halo, ini pesan dari semua bot!")
 
-bot6 = (
-    Client(
-        name="bot6",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION6,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION6
-    else None
-)
+    await stop_bots()
 
-bot7 = (
-    Client(
-        name="bot7",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION7,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION7
-    else None
-)
-
-bot8 = (
-    Client(
-        name="bot8",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION8,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION8
-    else None
-)
-
-bot9 = (
-    Client(
-        name="bot9",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION9,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION9
-    else None
-)
-
-bot10 = (
-    Client(
-        name="bot10",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=STRING_SESSION10,
-        plugins=dict(root="Ah/plugins"),
-    )
-    if STRING_SESSION10
-    else None
-)
-
-
-bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5, bot6, bot7, bot8, bot9, bot10] if bot]
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("Bot dihentikan")
