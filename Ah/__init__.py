@@ -34,6 +34,7 @@ logging.getLogger("pyrogram.session.session").setLevel(logging.CRITICAL)
 
 LOGS = logging.getLogger(__name__)
 
+
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
@@ -57,7 +58,8 @@ if BOTLOG:
    BOTLOG = BOTLOG
 else:
    BOTLOG = "me"
-
+aiosession = ClientSession()
+LOOP = asyncio.get_event_loop()
 START_TIME = datetime.now()
 
 StartTime = time.time()
