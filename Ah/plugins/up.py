@@ -21,7 +21,7 @@ def check_command(command):
 @Client.on_message(filters.command("up", prefix) & filters.me)
 async def ngapdate(client, message):
     pros = await message.reply(
-        f"<b>Memeriksa pembaruan resources {client.me.mention}...</b>"
+        f"<b>Memeriksa pembaruan resources {ubot.me.mention}...</b>"
     )
     
     # Melakukan pull dari repository git
