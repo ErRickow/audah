@@ -78,6 +78,8 @@ class Ubot(Client):
         await super().start()
         logger.info("Bot Aktif Anjing")
 
+aiosession = ClientSession()
+
 ubot = Ubot(
     name="sange",
     api_id=API_ID,
