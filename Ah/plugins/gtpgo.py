@@ -17,8 +17,8 @@ async def tanya(text):
         return data['result']
     else:
         return "Tidak ada hasil yang ditemukan."
-    except requests.exceptions.RequestException as e:
-        return f"Error: {str(e)}"
+#    except requests.exceptions.RequestException as e:
+#        return f"Error: {str(e)}"
 
 @Client.on_message(filters.command("gtp", cmd))
 async def gtp(client, message: Message):
