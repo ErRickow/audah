@@ -27,7 +27,7 @@ from config import BOT_VER, BRANCH as brch
 from Ah import CMD_HELP, StartTime
 from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.constants import WWW
-from Ah import app 
+from Ah import ubot 
 from Ah.bantuan.PyroHelpers import SpeedConvert
 from Ah.utils.tools import get_readable_time
 from Ah.plugins.bot.inline import get_readable_time
@@ -84,7 +84,7 @@ async def nearest_dc(client: Client, message: Message):
 async def module_ping(client: Client, message: Message):
     cmd = message.command
     help_arg = ""
-    bot_username = (await app.get_me()).username
+    bot_username = (await ubot.get_me()).username
     if len(cmd) > 1:
         help_arg = " ".join(cmd[1:])
     elif not message.reply_to_message and len(cmd) == 1:
@@ -104,7 +104,7 @@ async def module_ping(client: Client, message: Message):
 async def module_karman(client: Client, message: Message):
     cdm = message.command
     help_arg = ""
-    bot_username = (await app.get_me()).username
+    bot_username = (await ubot.get_me()).username
     if len(cdm) > 1:
         help_arg = " ".join(cdm[1:])
     elif not message.reply_to_message and len(cdm) == 1:
