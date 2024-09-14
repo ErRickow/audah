@@ -43,7 +43,6 @@ async def start_bot():
             print(f"{e}")
         await asyncio.sleep(5)
         
-    await ubot.start()
     await idle()
     logger.info("Bot is sange")
 
