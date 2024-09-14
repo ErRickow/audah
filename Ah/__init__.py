@@ -33,6 +33,7 @@ logging.getLogger("pyrogram.session.auth").setLevel(logging.CRITICAL)
 logging.getLogger("pyrogram.session.session").setLevel(logging.CRITICAL)
 
 logger = logging.getLogger(__name__)
+LOOP = asyncio.get_event_loop()
 
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
