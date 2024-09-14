@@ -9,20 +9,18 @@ async def tanya(text):
     url = "https://widipe.com/gptgo"
     params = {'text': text}
     headers = {'accept': 'application/json'}
-    
-    try:
-        response = requests.get(url, headers=headers, params=params)
-        if response.status_code == 200:
+    response = requests.get(url, headers=headers, params=params)
+    if response.status_code == 200:
           # Memastikan status code 200
-            data = response.json()
-        if 'result' in data:
-            return data['result']
-        else:
-            return "Tidak ada hasil yang ditemukan."
+        data = response.json()
+    if 'result' in data:
+        return data['result']
+    else:
+        return "Tidak ada hasil yang ditemukan."
     except requests.exceptions.RequestException as e:
         return f"Error: {str(e)}"
 
-@Client.on_message(filters.command("gtp"))
+@Client.on_message(filters.command("gtp", cmd))
 async def gtp(client, message: Message):
     text = get_text(message)
     if not text:
