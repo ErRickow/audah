@@ -22,11 +22,11 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 async def start_bot():
-    ubot.start
     print("LOG: Founded Bot token Booting..")
     for module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
         importlib.import_module("Ah.plugins" + module)
         logger.info(f"Module {module} imported")
+    await ubot.start()
     
     for bot in bots:
         try:
