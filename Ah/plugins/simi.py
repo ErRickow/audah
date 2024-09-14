@@ -19,6 +19,7 @@ def send_simtalk(message):
 
 @Client.on_message(filters.command("simi", cmd))
 async def gtp(client, message: Message):
+    if (message_str)
     text = get_text(message)
     if not text:
         return await message.reply("Kasih teks GOLBOK!!")
