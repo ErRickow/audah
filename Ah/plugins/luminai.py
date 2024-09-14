@@ -9,7 +9,7 @@ from Ah import *
 import requests
 
 async def tanya(text):
-    url = "https://lumin-ai.xyz/"
+    url = "https://luminai.my.id/"
     data = {"content": text}
     response = requests.post(url, json=data)
     if response.status_code == 200:
