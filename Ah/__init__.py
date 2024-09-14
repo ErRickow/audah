@@ -93,14 +93,12 @@ ubot = Ubot(
 )
 
 # Fungsi untuk menangani floodwait dan memberi jeda antar akun
-# Fungsi untuk menangani floodwait dan memberi jeda antar akun
 async def send_message_with_delay(bot, *args, **kwargs):
     try:
         await bot.send_message(*args, **kwargs)
     except FloodWait as e:
-        delay = e.x + 5  # Tambahkan sedikit buffer (5 detik) untuk aman
-        logger.warning(f"FloodWait: Harus menunggu {delay} detik")
-        await asyncio.sleep(delay)  # Tunggu selama waktu floodwait
+        logger.warning(f"FloodWait: Harus menunggu {e.x} detik")
+        await asyncio.sleep(e.x)
         await bot.send_message(*args, **kwargs)
 
 # Mengirim pesan secara bergantian dengan jeda antar bot
@@ -110,7 +108,7 @@ async def send_message_to_all_bots(chat_id, text):
             await send_message_with_delay(bot, chat_id, text)
         except Exception as e:
             logger.error(f"Error saat mengirim pesan dengan {bot.name}: {e}")
-        await asyncio.sleep(5)  # Tambahkan jeda 5 detik antar setiap bot
+        await asyncio.sleep(1)  # Jeda 1 detik antar setiap bot
 
 bots = [
     Client(
