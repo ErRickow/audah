@@ -2,7 +2,6 @@ import requests
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from Ah.bantuan.tools import *
-
 from config import PREFIX as cmd
 from Ah import *
 
@@ -45,16 +44,15 @@ async def chatbot_response(client, message: Message):
     # Kirim balasan ke chat
     await message.reply(simtalk_response)
 
-# Handler untuk command "/chatbot on"
-@Client.on_message(filters.command("off", cmd) & filters.me)
-async def chatbot_on(client, message: Message):
+# Handler untuk mengatur status chatbot melalui pesan
+@Client.on_message(filters.text & filters.me)
+async def manage_chatbot_status(client, message: Message):
     global chatbot_active
-    chatbot_active = True
-    await message.reply("Chatbot diaktifkan.")
+    text = message.text.lower()
 
-# Handler untuk command "/chatbot off"
-@Client.on_message(filters.command("on", cmd) & filters.me)
-async def chatbot_off(client, message: Message):
-    global chatbot_active
-    chatbot_active = False
-    await message.reply("Chatbot dinonaktifkan.")
+    if text == "chatbot off":
+        chatbot_active = False
+        await message.reply("Chatbot dinonaktifkan.")
+    elif text == "chatbot on":
+        chatbot_active = True
+        await message.reply("Chatbot diaktifkan.")
