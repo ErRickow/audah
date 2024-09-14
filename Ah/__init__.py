@@ -1,20 +1,17 @@
-#Created By HakutakaID # TELEGRAM t.me/hakutakaid
+# Created By HakutakaID # TELEGRAM t.me/hakutakaid
 import logging
 import time
 import sys
-import asyncio  # Perlu untuk jeda yang asinkron
+import asyncio
 from logging.handlers import RotatingFileHandler
-from pyrogram.errors import FloodWait  # Import untuk menangani FloodWait
+from pyrogram.errors import FloodWait
 from aiohttp import ClientSession
 from datetime import datetime
 from pyrogram import Client
-from pyrogram import filters as indri
-from pyrogram.handlers import CallbackQueryHandler, MessageHandler
+from pyrogram.handlers import MessageHandler
 from config import *
 
-
 DATABASE_URL = DB_URL
-CMD_HELP = {}
 clients = []
 ids = []
 LOG_FILE_NAME = "logs.txt"
@@ -33,30 +30,18 @@ logger = logging.getLogger(__name__)
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
-if (
-    not API_ID
-):
-    LOGGER(__name__).warning("api id missing")
+# Check API and Session Strings
+if not API_ID:
+    LOGGER(__name__).warning("API ID missing")
     sys.exit()
-if (
-    not API_HASH
-):
-    LOGGER(__name__).warning("api Hashnya missing")
+if not API_HASH:
+    LOGGER(__name__).warning("API Hash missing")
     sys.exit()
-if (
-    not BOT_TOKEN
-):
-    LOGGER(__name__).warning("Isilah bot token nya")
+if not BOT_TOKEN:
+    LOGGER(__name__).warning("Bot token missing")
     sys.exit()
-
-if (
-    not STRING_SESSION1
-    and not STRING_SESSION2
-    and not STRING_SESSION3
-    and not STRING_SESSION4
-    and not STRING_SESSION5
-):
-    LOGGER(__name__).warning("STRING SESSION TIDAK DITEMUKAN, SHUTDOWN BOT!")
+if not STRING_SESSION1 and not STRING_SESSION2:
+    LOGGER(__name__).warning("STRING SESSION MISSING, SHUTTING DOWN BOT!")
     sys.exit()
 
 if BOTLOG:
@@ -66,8 +51,6 @@ else:
 
 START_TIME = datetime.now()
 
-StartTime = time.time()
-
 class Ubot(Client):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -76,7 +59,6 @@ class Ubot(Client):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
             return func
-
         return decorator
 
     async def start(self):
@@ -97,8 +79,9 @@ async def send_message_with_delay(bot, *args, **kwargs):
     try:
         await bot.send_message(*args, **kwargs)
     except FloodWait as e:
-        logger.warning(f"FloodWait: Harus menunggu {e.x} detik")
-        await asyncio.sleep(e.x)
+        delay = e.x + 5  # Tambahkan sedikit buffer (5 detik) untuk aman
+        logger.warning(f"FloodWait: Harus menunggu {delay} detik")
+        await asyncio.sleep(delay)  # Tunggu selama waktu floodwait
         await bot.send_message(*args, **kwargs)
 
 # Mengirim pesan secara bergantian dengan jeda antar bot
@@ -108,7 +91,7 @@ async def send_message_to_all_bots(chat_id, text):
             await send_message_with_delay(bot, chat_id, text)
         except Exception as e:
             logger.error(f"Error saat mengirim pesan dengan {bot.name}: {e}")
-        await asyncio.sleep(1)  # Jeda 1 detik antar setiap bot
+        await asyncio.sleep(5)  # Tambahkan jeda 5 detik antar setiap bot
 
 bots = [
     Client(
