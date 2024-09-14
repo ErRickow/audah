@@ -43,12 +43,12 @@ async def start_bot():
             print(f"{e}")
         await asyncio.sleep(5)
     await idle()
-    aiosession.close()
+#    aiosession.close()
     logger.info("Bot is sange")
 
 if __name__ == "__main__":
     logger.info("Starting bot")
     install()
-    LOOP.run_until_complete(start_bot())
-#    asyncio.get_event_loop().run_until_complete(start_bot())
+ #   LOOP.run_until_complete(start_bot())
+    asyncio.get_event_loop().run_until_complete(start_bot())
     logger.info("Bot stopped")
