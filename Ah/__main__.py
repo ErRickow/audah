@@ -2,6 +2,7 @@ from uvloop import install
 import asyncio
 import importlib
 import logging
+from aiohttp import ClientSession
 from tqdm import tqdm
 from pyrogram import idle
 from Ah import ubot, BOTLOG, LOGGER, bots, ids
@@ -23,6 +24,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 async def start_bot():
+    await ubot.start()
     print("LOG: Founded Bot token Booting..")
     for module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
         importlib.import_module("Ah.plugins" + module)
@@ -41,10 +43,9 @@ async def start_bot():
             ids.append(ex.id)
         except Exception as e:
             print(f"{e}")
-#        await asyncio.sleep(5)
+        await asyncio.sleep(5)
     await idle()
-    await ubot.start()
-#    aiosession.close()
+    ClientSession.close()
     logger.info("Bot is sange")
 
 if __name__ == "__main__":
