@@ -7,7 +7,7 @@ from Ah import *
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 # Status chatbot (aktif/tidak aktif)
-chatbot_active = True
+chatbot_active = False
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 def send_simtalk(message: str) -> str:
