@@ -12,3 +12,12 @@ async def tanya(text):
     return data['result'])
 else:
     return f"{response.text}"
+    
+@Client.on_message(filters.command("gtp", cmd))
+async def _(client, message):
+    text = get_text(message)
+    if not text:
+        return await message.reply("Kasih teks GOLBOK!!")
+    
+    hasil = await tanya(text)
+    return await message.reply(hasil)
