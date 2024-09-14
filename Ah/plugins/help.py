@@ -58,7 +58,7 @@ async def module_help(client: Client, message: Message):
             this_command = f"──「 **Help For {str(help_arg).upper()}** 」──\n\n"
             for x in commands:
                 this_command += f"  •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`\n\n"
-            this_command += "© yes sir?"
+            this_command += "© er?"
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.MARKDOWN
             )
@@ -97,7 +97,7 @@ async def module_helper(client: Client, message: Message):
             this_command = f"<blockquote>──「 **Bantuan Untuk {str(help_arg).upper()}** 」──\n\n"
             for x in commands:
                 this_command += f"  •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`\n\n"
-            this_command += "© Er?</blockquote>"
+            this_command += "© er?</blockquote>"
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.HTML
             )
