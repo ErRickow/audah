@@ -21,7 +21,7 @@ MSG_ON = """
 """
 
 async def main():
-    await app.start()
+    await ubot.start()
     print("LOG: Founded Bot token Booting..")
     for all_module in ALL_MODULES:
         importlib.import_module("PyroKar.modules" + all_module)
