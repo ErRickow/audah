@@ -7,7 +7,7 @@ from Ah import *
 
 async def tanya(text):
     url = "https://widipe.com/gptgo"
-    params = {'content': text}
+    params = {'text': text}
     headers = {'accept': 'application/json'}
     response = requests.get(url, headers=headers, params=params)
     if response.status_code == 200:
