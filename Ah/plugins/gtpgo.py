@@ -1,10 +1,3 @@
-import requests
-from pyrogram import Client, filters
-from pyrogram.types import Message
-from Ah.bantuan.tools import *
-
-from Ah import *
-
 async def tanya(text):
     url = "https://widipe.com/gptgo"
     params = {'content': text}
@@ -21,10 +14,10 @@ async def tanya(text):
 #        return f"Error: {str(e)}"
 
 @Client.on_message(filters.command("gtp", cmd))
-async def _(client, message: Message):
+async def gtp(client, message: Message):
     text = get_text(message)
     if not text:
         return await message.reply("Kasih teks GOLBOK!!")
     
-    hasil = tanya(text)
-    return message.reply(hasil)
+    hasil = await tanya(text)
+    return await message.reply(hasil)
