@@ -13,6 +13,7 @@ from config import *
 
 DATABASE_URL = DB_URL
 clients = []
+CMD_HELP = []
 ids = []
 LOG_FILE_NAME = "logs.txt"
 
