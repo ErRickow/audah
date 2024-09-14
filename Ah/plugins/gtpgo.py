@@ -16,7 +16,7 @@ async def tanya(text):
     if 'result' in data:
         return data['result']
     else:
-        return "Tidak ada hasil yang ditemukan."
+        return f"{response.text}"
 #    except requests.exceptions.RequestException as e:
 #        return f"Error: {str(e)}"
 
