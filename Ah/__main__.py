@@ -1,15 +1,15 @@
-#Created By HakutakaID # TELEGRAM t.me/hakutakaid
 from uvloop import install
 import asyncio
 import importlib
 import logging
+from tqdm import tqdm
 from pyrogram import idle
 from Ah import ubot, BOTLOG, LOGGER, bots, ids
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 
 BOT_VER = "0.1.0"
-CMD_HANDLER = ["." "," "?" "!"]
+CMD_HANDLER = [".", ",", "?", "!"]
 MSG_ON = """
 💢 **PyroKar Telah Hidup** 💢
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
@@ -22,9 +22,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 async def start_bot():
-    for all_module in ALL_MODULES:
-        importlib.import_module("Ah.plugins" + all_module)
-        logger.info(f"Module {all_module} imported")
+    for module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
+        importlib.import_module("Ah.plugins" + module)
+        logger.info(f"Module {module} imported")
+    
     for bot in bots:
         try:
             await bot.start()
@@ -34,7 +35,7 @@ async def start_bot():
                 await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
             except BaseException:
                 pass
-            print(f"Started as {ex.first_name} | {ex.id} ")
+            print(f"Started as {ex.first_name} | {ex.id}")
             ids.append(ex.id)
         except Exception as e:
             print(f"{e}")
