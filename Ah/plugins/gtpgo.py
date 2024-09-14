@@ -20,7 +20,7 @@ async def tanya(text):
                 else:
                     return "Tidak ada hasil yang ditemukan."
             else:
-                return f"Error: {response.status} - {await response.text()}"
+                return f"Error goblok: {response.status} - {await response.text()}"
 
 @Client.on_message(filters.command("gtp"))
 async def gtp(client, message: Message):
