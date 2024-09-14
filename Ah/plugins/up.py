@@ -18,7 +18,7 @@ from config import *
 def check_command(command):
     return shutil.which(command) is not None
 
-@Client.on_message(filters.command("up", prefix) & filters.me)
+@Client.on_message(filters.command(["up", "update"], prefix) & filters.me)
 async def ngapdate(client, message):
     pros = await message.reply(
         f"<b>Memeriksa pembaruan resources {ubot.me.mention}...</b>"
