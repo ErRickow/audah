@@ -25,7 +25,7 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.text & ~filters.bot)
+@ubot.on_message(filters.text & ~filters.bot)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
@@ -40,7 +40,7 @@ async def chatbot_response(client, message: Message):
         return
 
     # Beri respon sementara saat proses berlangsung
-    response_message = await message.reply("Sabar sebentar...")
+#    response_message = await message.reply("Sabar sebentar...")
 
     # Panggil fungsi untuk mendapatkan balasan dari Simsimi
     simtalk_response = send_simtalk(text)
@@ -49,14 +49,14 @@ async def chatbot_response(client, message: Message):
     await response_message.edit(simtalk_response)
 
 # Handler untuk command "/chatbot on"
-@Client.on_message(filters.command("chatbot on", cmd) & filters.me)
+@ubot.on_message(filters.command("chatbot on", cmd) & filters.me)
 async def chatbot_on(client, message: Message):
     global chatbot_active
     chatbot_active = True
     await message.reply("Chatbot diaktifkan.")
 
 # Handler untuk command "/chatbot off"
-@Client.on_message(filters.command("chatbot off", cmd) & filters.me)
+@ubot.on_message(filters.command("chatbot off", cmd) & filters.me)
 async def chatbot_off(client, message: Message):
     global chatbot_active
     chatbot_active = False
