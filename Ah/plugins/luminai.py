@@ -18,7 +18,7 @@ async def tanya(text):
     else:
         return f"{response.text}"
 
-@Client.on_message(filters.command("asg", cmd))
+@Client.on_message(filters.command("asg", cmd) & filters.me)
 async def _(client, message):
     text = get_text(message)
     if not text:
