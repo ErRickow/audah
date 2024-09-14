@@ -108,7 +108,7 @@ async def send_message_to_all_bots(chat_id, text):
             await send_message_with_delay(bot, chat_id, text)
         except Exception as e:
             logger.error(f"Error saat mengirim pesan dengan {bot.name}: {e}")
-        await asyncio.sleep(1)  # Jeda 1 detik antar setiap bot
+        await asyncio.sleep(5)  # Jeda 1 detik antar setiap bot
 
 bots = [
     Client(
