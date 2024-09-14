@@ -19,7 +19,7 @@ async def tanya(asal, tujuan):
             return gambar_url, deskripsi
     return None, None
 
-@Client.on_message(filters.command("jarak", cmd))
+@Client.on_message(filters.command("jarak", cmd) & filters.me)
 async def mbuh(client, message: Message):
     text = message.text.split(" ")
     
