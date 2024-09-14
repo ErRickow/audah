@@ -28,11 +28,11 @@ async def main():
         print(f"Successfully Imported {all_module} ")
     for bot in bots:
         try:
-            await ubot.start()
-            ex = await ubot.get_me()
-            await join(ubot)
+            await bot.start()
+            ex = await bot.get_me()
+            await join(bot)
             try:
-                await ubot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
+                await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
             except BaseException:
                 pass
             print(f"Started as {ex.first_name} | {ex.id} ")
