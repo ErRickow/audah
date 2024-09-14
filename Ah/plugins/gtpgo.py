@@ -25,6 +25,6 @@ async def gtp(client, message: Message):
     text = get_text(message)
     if not text:
         return await message.reply("Kasih teks GOLBOK!!")
-    pros = await message.reply("proses ..")
+    pros = await message.reply("Sabar njing ..")
     hasil = await tanya(text)
     return await pros.edit(hasil)
