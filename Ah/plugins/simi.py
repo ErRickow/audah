@@ -23,7 +23,7 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk command "/simi"
-@Client.on_message(filters.command("simi", cmd))
+@Client.on_message(filters.command("simi", cmd) & filters.me)
 async def gtp(client, message: Message):
     # Ambil teks dari pesan
     text = get_text(message)
