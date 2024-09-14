@@ -6,15 +6,16 @@ from Ah.bantuan.tools import *
 from .help import add_command_help
 from Ah import *
 
-def tanya(text):
+async def tanya(text):
     url = "https://widipe.com/gptgo"
     params = {'text': text}
     headers = {'accept': 'application/json'}
     
     try:
         response = requests.get(url, headers=headers, params=params)
-        response.raise_for_status()  # Memastikan status code 200
-        data = response.json()
+        if response.status_code == 200:
+          # Memastikan status code 200
+            data = response.json()
         if 'result' in data:
             return data['result']
         else:
