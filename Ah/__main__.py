@@ -4,7 +4,7 @@ import importlib
 import logging
 from tqdm import tqdm
 from pyrogram import idle
-from Ah import ubot, BOTLOG, LOGGER, bots, ids
+from Ah import ubot, BOTLOG, LOGGER, bots, ids, aiosession
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 
@@ -42,8 +42,8 @@ async def start_bot():
         except Exception as e:
             print(f"{e}")
         await asyncio.sleep(5)
-        
     await idle()
+    aiosession.close()
     logger.info("Bot is sange")
 
 if __name__ == "__main__":
