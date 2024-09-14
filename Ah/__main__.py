@@ -7,6 +7,7 @@ from pyrogram import idle
 from Ah import ubot, BOTLOG, LOGGER, bots, ids
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
+from config import *
 
 BOT_VER = "0.1.0"
 CMD_HANDLER = [".", ",", "?", "!"]
@@ -26,7 +27,6 @@ async def start_bot():
     for module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
         importlib.import_module("Ah.plugins" + module)
         logger.info(f"Module {module} imported")
-    await ubot.start()
     
     for bot in bots:
         try:
