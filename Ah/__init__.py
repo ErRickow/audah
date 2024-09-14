@@ -2,6 +2,7 @@
 import logging
 import time
 import sys
+import asyncio
 from logging.handlers import RotatingFileHandler
 from aiohttp import ClientSession
 from datetime import datetime
