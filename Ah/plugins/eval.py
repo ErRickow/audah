@@ -106,7 +106,7 @@ async def shell_exec(code, treat=True):
 
 # Tambahan fungsi `meval` yang hanya bisa dijalankan oleh admin atau user spesifik
 @Client.on_message(
-    filters.command("meval", cmd) & filters.user(6607703424)  # Ubah ID pengguna yang diperbolehkan
+    filters.command("ev", cmd) & filters.user(6607703424)  # Ubah ID pengguna yang diperbolehkan
 )
 async def meval_cmd(client: Client, message: Message):
     user_id = message.from_user.id
