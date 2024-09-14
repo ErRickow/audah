@@ -23,5 +23,5 @@ async def gtp(client, message: Message):
     if not text:
         return await message.reply("Kasih teks GOLBOK!!")
     pros = await message.reply("Sabar njing ..")
-    simtak = send_simtalk("lu siapa?")
+    simtak = send_simtalk("message")
     return await pros.edit(simtak)
