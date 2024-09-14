@@ -6,7 +6,8 @@ async def tanya(text):
   params = {'text': text}
   headers = {'accept': 'application/json'}
   response = requests.get(url, headers=headers, params=params)
-  data = response.json()
+  if response.status_code == 200:
+        data = response.json()
   if 'result' in data:
     return data['result'])
 else:
