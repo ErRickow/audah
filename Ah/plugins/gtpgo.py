@@ -3,7 +3,6 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from Ah.bantuan.tools import *
 
-from .help import add_command_help
 from Ah import *
 
 async def tanya(text):
