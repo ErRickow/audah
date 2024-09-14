@@ -71,6 +71,14 @@ class Ubot(Client):
         await super().start()
         logger.info("Bot started")
 
+ubot = Ubot(
+    name="sange",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+    plugins=dict(root="Ah/plugins/bot"),
+    in_memory=True,
+)
 # Fungsi untuk menangani floodwait dan memberi jeda antar pengiriman pesan
 async def send_message_with_delay(bot, chat_id, text):
     try:
