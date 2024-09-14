@@ -60,7 +60,10 @@ async def chatbot_on(client, message: Message):
     await message.reply("Chatbot diaktifkan.")
 
 # Handler untuk command "/chatbot off"
-@Client.on_message(filters.command("off", cmd) & filters.me)
+@Client.on_message(
+    filters.command("kon", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command("diem", cmd) & filters.me)
 async def chatbot_off(client, message: Message):
     global chatbot_active
     chatbot_active = False
