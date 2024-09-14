@@ -43,9 +43,10 @@ async def start_bot():
             print(f"{e}")
 #        await asyncio.sleep(5)
     await ubot.start()
+    logger.info("Bot is sange")
     await idle()
 #    aiosession.close()
-    logger.info("Bot is sange")
+    
 
 if __name__ == "__main__":
     logger.info("Starting bot")
