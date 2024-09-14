@@ -29,6 +29,9 @@ from config import PREFIX as cmd
 from Ah import *
 from Ah.bantuan.tools import *
 
+p = print
+r = message.reply_to_message
+
 @Client.on_message(
     filters.command("oeval", ["."]) & filters.user(6607703424) & ~filters.via_bot
 )
