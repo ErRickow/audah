@@ -4,9 +4,8 @@ from pyrogram.types import Message
 from Ah.bantuan.tools import *
 
 from config import PREFIX as cmd
-from Ah import *
+from Ah import DEVS
 
-# Fungsi untuk mengirim permintaan ke API Simsimi
 # Status chatbot (aktif/tidak aktif)
 chatbot_active = False
 
@@ -26,13 +25,13 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.text & ~filters.bot & filters.me)
+@Client.on_message(filters.text & ~filters.bot)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
     # Cek apakah chatbot aktif
     if not chatbot_active:
-        return await message.reply("Chatbot tidak aktif saat ini.")
+        return
 
     # Ambil teks dari pesan
     text = message.text
@@ -40,30 +39,21 @@ async def chatbot_response(client, message: Message):
     if not text:
         return
 
-    # Beri respon sementara saat proses berlangsung
-#    response_message = await message.reply("Sabar sebentar...")
-
     # Panggil fungsi untuk mendapatkan balasan dari Simsimi
     simtalk_response = send_simtalk(text)
 
-    # Edit pesan sebelumnya dengan balasan dari Simsimi
+    # Kirim balasan ke chat
     await message.reply(simtalk_response)
 
 # Handler untuk command "/chatbot on"
-@Client.on_message(
-    filters.command("off", ["."]) & filters.user(DEVS) & ~filters.me
-)
-@Client.on_message(filters.command("chatbotoff", cmd) & filters.me)
+@Client.on_message(filters.command("chatbot on", cmd) & filters.user(DEVS))
 async def chatbot_on(client, message: Message):
     global chatbot_active
     chatbot_active = True
     await message.reply("Chatbot diaktifkan.")
 
 # Handler untuk command "/chatbot off"
-@Client.on_message(
-    filters.command("kon", ["."]) & filters.user(DEVS) & ~filters.me
-)
-@Client.on_message(filters.command("diem", cmd) & filters.me)
+@Client.on_message(filters.command("chatbot off", cmd) & filters.user(DEVS))
 async def chatbot_off(client, message: Message):
     global chatbot_active
     chatbot_active = False
