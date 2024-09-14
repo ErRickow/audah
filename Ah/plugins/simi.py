@@ -50,9 +50,9 @@ async def manage_chatbot_status(client, message: Message):
     global chatbot_active
     text = message.text.lower()
 
-    if text == "chatbot off":
+    if text == "koff":
         chatbot_active = False
         await message.reply("Chatbot dinonaktifkan.")
-    elif text == "chatbot on":
+    elif text == "on":
         chatbot_active = True
         await message.reply("Chatbot diaktifkan.")
