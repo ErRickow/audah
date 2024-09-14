@@ -33,7 +33,7 @@ async def ai_hadeh(c, text):
     else:
         return f"{res.text}"
 
-@Client.on_message(filters.command("ask", cmd))
+@Client.on_message(filters.command("ask", cmd) & filters.me)
 async def handle_message(client, message):
     a = message.text
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
