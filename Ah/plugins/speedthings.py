@@ -100,7 +100,7 @@ async def module_ping(client: Client, message: Message):
             print(f"{e}")
 
 
-@Client.on_message(filters.command("kar", cmd) & filters.me)
+@Client.on_message(filters.command("er", cmd) & filters.me)
 async def module_karman(client: Client, message: Message):
     cdm = message.command
     help_arg = ""
