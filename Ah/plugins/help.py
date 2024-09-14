@@ -22,7 +22,7 @@ async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
 async def module_help(client: Client, message: Message):
     cmd = message.command
     help_arg = ""
-    bot_username = (await app.get_me()).username
+    bot_username = (await ubot.get_me()).username
     if len(cmd) > 1:
         help_arg = " ".join(cmd[1:])
     elif not message.reply_to_message and len(cmd) == 1:
