@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from Ah.bantuan.tools import *
 
 from config import PREFIX as cmd
-from Ah import DEVS
+from Ah import *
 
 # Status chatbot (aktif/tidak aktif)
 chatbot_active = True
