@@ -67,10 +67,6 @@ class Ubot(Client):
 
         return decorator
 
-    async def start(self):
-        await super().start()
-        logger.info("Bot started")
-
 ubot = Ubot(
     name="sange",
     api_id=API_ID,
