@@ -87,26 +87,7 @@ ubot = Ubot(
     plugins=dict(root="Ah/plugins/bot"),
     in_memory=True,
 )
-# Fungsi untuk menangani floodwait dan memberi jeda antar pengiriman pesan
-async def send_message_with_delay(bot, chat_id, text):
-    try:
-        await bot.send_message(chat_id, text)
-    except FloodWait as e:
-        delay = e.x + 5  # Buffer tambahan untuk aman
-        logger.warning(f"FloodWait: Harus menunggu {delay} detik")
-        await asyncio.sleep(delay)
-        await bot.send_message(chat_id, text)
 
-# Mengirim pesan secara bergantian dengan jeda antar bot untuk menghindari floodwait
-async def send_message_to_all_bots(chat_id, text):
-    for bot in bots:
-        try:
-            await send_message_with_delay(bot, chat_id, text)
-        except Exception as e:
-            logger.error(f"Error saat mengirim pesan dengan {bot.name}: {e}")
-        await asyncio.sleep(5)  # Tambahkan jeda 5 detik antar bot
-
-# Definisikan bot-bot lainnya berdasarkan session string
 bots = [
     Client(
         name=f"bot{i+1}",
@@ -117,10 +98,3 @@ bots = [
     )
     for i in range(10) if globals().get(f"STRING_SESSION{i+1}")
 ]
-
-# Jika fungsi start bot sudah ada di __main__.py, kita tidak perlu menyertakannya di sini.
-# Kita hanya perlu mengimpor fungsi pengiriman pesan ini ke bagian lain kode untuk digunakan.
-
-# Fungsi untuk mengirim pesan
-async def broadcast_message(chat_id, message):
-    await send_message_to_all_bots(chat_id, message)
