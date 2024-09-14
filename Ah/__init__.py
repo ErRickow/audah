@@ -86,15 +86,7 @@ ubot = Ubot(
     plugins=dict(root="Ah/plugins/bot"),
     in_memory=True,
 )
-# Fungsi untuk menangani floodwait dan memberi jeda antar pengiriman pesan
-async def send_message_with_delay(bot, chat_id, text):
-    try:
-        await ubot.send_message(chat_id, text)
-    except FloodWait as e:
-        delay = e.x + 5  # Buffer tambahan untuk aman
-        logger.warning(f"FloodWait: Harus menunggu {delay} detik")
-        await asyncio.sleep(delay)
-        await ubot.send_message(chat_id, text)
+# Fungsi untuk menangani floodwait dan l
 
 # Definisikan bot-bot lainnya berdasarkan session string
 bots = [
