@@ -6,6 +6,10 @@ from Ah.bantuan.tools import *
 from Ah import *
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
+# Status chatbot (aktif/tidak aktif)
+chatbot_active = True
+
+# Fungsi untuk mengirim permintaan ke API Simsimi
 def send_simtalk(message: str) -> str:
     if len(message) > 1000:
         return "Character terlalu panjang."
@@ -16,26 +20,44 @@ def send_simtalk(message: str) -> str:
                 "https://api.simsimi.vn/v1/simtalk",
                 data=params
             ).json()
-
-            # Ambil pesan dari respons API Simsimi
             return response.get("message", "Maaf, tidak bisa merespons sekarang.")
         except Exception as e:
             return f"Error: {str(e)}"
 
-# Handler untuk command "/simi"
-@Client.on_message(filters.command("simi", cmd) & filters.me)
-async def gtp(client, message: Message):
+# Handler untuk semua pesan teks
+@app.on_message(filters.text & ~filters.bot)
+async def chatbot_response(client, message: Message):
+    global chatbot_active
+
+    # Cek apakah chatbot aktif
+    if not chatbot_active:
+        return await message.reply("Chatbot tidak aktif saat ini.")
+
     # Ambil teks dari pesan
-    text = get_text(message)
+    text = message.text
 
     if not text:
-        return await message.reply("Kasih teks GOBLOK!!")
-    
+        return
+
     # Beri respon sementara saat proses berlangsung
-    pros = await message.reply("Sabar njing ..")
+#    response_message = await message.reply("Sabar sebentar...")
 
     # Panggil fungsi untuk mendapatkan balasan dari Simsimi
     simtalk_response = send_simtalk(text)
 
     # Edit pesan sebelumnya dengan balasan dari Simsimi
-    return await pros.edit(simtalk_response)
+    await response_message.edit(simtalk_response)
+
+# Handler untuk command "/chatbot on"
+@app.on_message(filters.command("chatbot on", cmd) & filters.me)
+async def chatbot_on(client, message: Message):
+    global chatbot_active
+    chatbot_active = True
+    await message.reply("Chatbot diaktifkan.")
+
+# Handler untuk command "/chatbot off"
+@app.on_message(filters.command("chatbot off", cmd) filters.me)
+async def chatbot_off(client, message: Message):
+    global chatbot_active
+    chatbot_active = False
+    await message.reply("Chatbot dinonaktifkan.")
