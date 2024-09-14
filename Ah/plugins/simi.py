@@ -3,6 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from Ah.bantuan.tools import *
 
+from config import PREFIX as cmd
 from Ah import *
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
@@ -49,7 +50,10 @@ async def chatbot_response(client, message: Message):
     await message.reply(simtalk_response)
 
 # Handler untuk command "/chatbot on"
-@Client.on_message(filters.command("on", cmd) & filters.me)
+@Client.on_message(
+    filters.command("off", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command("chatbotoff", cmd) & filters.me)
 async def chatbot_on(client, message: Message):
     global chatbot_active
     chatbot_active = True
