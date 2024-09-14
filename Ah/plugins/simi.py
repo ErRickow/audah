@@ -25,21 +25,6 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks
-
-# Handler untuk command "/chatbot on"
-@Client.on_message(filters.command("chatbot on", cmd) & filters.user(DEVS))
-async def chatbot_on(client, message: Message):
-    global chatbot_active
-    chatbot_active = True
-    await message.reply("Chatbot diaktifkan.")
-
-# Handler untuk command "/chatbot off"
-@Client.on_message(filters.command("chatbot off", cmd) & filters.user(DEVS))
-async def chatbot_off(client, message: Message):
-    global chatbot_active
-    chatbot_active = False
-    await message.reply("Chatbot dinonaktifkan.")
-  
 @Client.on_message(filters.text & ~filters.bot)
 async def chatbot_response(client, message: Message):
     global chatbot_active
@@ -59,3 +44,17 @@ async def chatbot_response(client, message: Message):
 
     # Kirim balasan ke chat
     await message.reply(simtalk_response)
+
+# Handler untuk command "/chatbot on"
+@Client.on_message(filters.command("off", cmd) & filters.user(DEVS))
+async def chatbot_on(client, message: Message):
+    global chatbot_active
+    chatbot_active = True
+    await message.reply("Chatbot diaktifkan.")
+
+# Handler untuk command "/chatbot off"
+@Client.on_message(filters.command("on", cmd) & filters.user(DEVS))
+async def chatbot_off(client, message: Message):
+    global chatbot_active
+    chatbot_active = False
+    await message.reply("Chatbot dinonaktifkan.")
