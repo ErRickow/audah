@@ -29,7 +29,6 @@ async def module_help(client: Client, message: Message):
         try:
             nice = await client.get_inline_bot_results(bot=bot_username, query="helper")
             await asyncio.gather(
-                message.delete(),
                 client.send_inline_bot_result(
                     message.chat.id, nice.query_id, nice.results[0].id
                 ),
@@ -84,7 +83,7 @@ async def module_helper(client: Client, message: Message):
         ac.align = "l"
         for x in split_list(sorted(CMD_HELP.keys()), 2):
             ac.add_row([x[0], x[1] if len(x) >= 2 else None])
-        await edit_or_reply(
+        await message.reply(
             message, f"```{str(ac)}```\n• {client.me.mention} x {ubot.me.mention} •"
         )
         await message.reply(
