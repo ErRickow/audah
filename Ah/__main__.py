@@ -21,7 +21,7 @@ MSG_ON = """
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-async def ubot():
+async def start_bot():
     for module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
         importlib.import_module("Ah.plugins" + module)
         logger.info(f"Module {module} imported")
