@@ -31,7 +31,7 @@ async def start_bot():
             ex = await bot.get_me()
             await join(bot)
             try:
-                await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, CMD_HANDLER))
+                await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
             except BaseException:
                 pass
             print(f"Started as {ex.first_name} | {ex.id} ")
