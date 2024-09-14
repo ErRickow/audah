@@ -4,6 +4,7 @@ from datetime import datetime
 from pyrogram import *
 from Ah.bantuan.tools import *
 
+from Ah.utils.tools import *
 from .help import add_command_help
 
 @Client.on_message(filters.me & filters.command("ping", cmd))
