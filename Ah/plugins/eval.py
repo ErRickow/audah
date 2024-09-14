@@ -30,7 +30,6 @@ from Ah import *
 from Ah.bantuan.tools import *
 
 p = print
-r = message.reply_to_message
 
 # Command 'oeval' untuk pengguna spesifik (user_id: 6607703424)
 @Client.on_message(
