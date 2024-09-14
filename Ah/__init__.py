@@ -89,12 +89,12 @@ ubot = Ubot(
 # Fungsi untuk menangani floodwait dan memberi jeda antar pengiriman pesan
 async def send_message_with_delay(bot, chat_id, text):
     try:
-        await bot.send_message(chat_id, text)
+        await ubot.send_message(chat_id, text)
     except FloodWait as e:
         delay = e.x + 5  # Buffer tambahan untuk aman
         logger.warning(f"FloodWait: Harus menunggu {delay} detik")
         await asyncio.sleep(delay)
-        await bot.send_message(chat_id, text)
+        await ubot.send_message(chat_id, text)
 
 # Mengirim pesan secara bergantian dengan jeda antar bot untuk menghindari floodwait
 async def send_message_to_all_bots(chat_id, text):
