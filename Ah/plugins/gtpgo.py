@@ -1,4 +1,4 @@
-import aiohttp
+import requests
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from Ah.bantuan.tools import *
@@ -6,21 +6,21 @@ from Ah.bantuan.tools import *
 from .help import add_command_help
 from Ah import *
 
-async def tanya(text):
+def tanya(text):
     url = "https://widipe.com/gptgo"
     params = {'text': text}
     headers = {'accept': 'application/json'}
     
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, headers=headers, params=params) as response:
-            if response.status == 200:
-                data = await response.json()
-                if 'result' in data:
-                    return data['result']
-                else:
-                    return "Tidak ada hasil yang ditemukan."
-            else:
-                return f"Error goblok: {response.status} - {await response.text()}"
+    try:
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()  # Memastikan status code 200
+        data = response.json()
+        if 'result' in data:
+            return data['result']
+        else:
+            return "Tidak ada hasil yang ditemukan."
+    except requests.exceptions.RequestException as e:
+        return f"Error: {str(e)}"
 
 @Client.on_message(filters.command("gtp"))
 async def gtp(client, message: Message):
@@ -28,5 +28,5 @@ async def gtp(client, message: Message):
     if not text:
         return await message.reply("Kasih teks GOLBOK!!")
     
-    hasil = await tanya(text)
+    hasil = tanya(text)
     return await message.reply(hasil)
