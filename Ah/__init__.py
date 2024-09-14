@@ -58,8 +58,6 @@ if BOTLOG:
    BOTLOG = BOTLOG
 else:
    BOTLOG = "me"
-aiosession = ClientSession()
-LOOP = asyncio.get_event_loop()
 START_TIME = datetime.now()
 
 StartTime = time.time()
