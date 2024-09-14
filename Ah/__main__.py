@@ -41,7 +41,7 @@ async def start_bot():
             ids.append(ex.id)
         except Exception as e:
             print(f"{e}")
-        await asyncio.sleep(5)
+#        await asyncio.sleep(5)
     await idle()
 #    aiosession.close()
     logger.info("Bot is sange")
