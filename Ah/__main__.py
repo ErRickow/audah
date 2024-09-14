@@ -5,7 +5,7 @@ import logging
 from aiohttp import ClientSession
 from tqdm import tqdm
 from pyrogram import idle
-from Ah import ubot, BOTLOG, LOGGER, bots, ids
+from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 from config import *
