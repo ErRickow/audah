@@ -1,4 +1,10 @@
 import requests
+from pyrogram import Client, filters, enums
+from pyrogram.types import Message
+from Ah.bantuan.tools import *
+
+from .help import add_command_help
+from Ah import *
 
 async def tanya(text):
   url = "https://widipe.com/gptgo"
