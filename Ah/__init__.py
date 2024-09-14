@@ -51,6 +51,24 @@ if BOTLOG:
    BOTLOG = BOTLOG
 else:
    BOTLOG = "me"
+START_TIME = datetime.now()
+
+StartTime = time.time()
+
+class Ubot(Client):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def on_message(self, filters=None, group=-1):
+        def decorator(func):
+            self.add_handler(MessageHandler(func, filters), group)
+            return func
+
+        return decorator
+
+    async def start(self):
+        await super().start()
+        logger.info("Bot started")
 
 # Fungsi untuk menangani floodwait dan memberi jeda antar pengiriman pesan
 async def send_message_with_delay(bot, chat_id, text):
