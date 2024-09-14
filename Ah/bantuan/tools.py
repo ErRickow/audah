@@ -24,7 +24,7 @@ from pyrogram.raw.types import *
 from pyrogram.types import *
 from pyrogram.types import Message
 
-from Ah.utils.tools import humanbytes, readable_time
+from Ah.bantuan.formatters import humanbytes, readable_time
 
 DEVS = [1191668125]
 
