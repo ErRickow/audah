@@ -13,7 +13,7 @@ async def tanya(text):
     if response.status_code == 200:
           # Memastikan status code 200
         data = response.json()
-    if 'result' in data:
+#    if 'result' in data:
         return data['result']
     else:
         return f"{response.text}"
