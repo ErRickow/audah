@@ -20,7 +20,7 @@ async def tanya(text):
 #    except requests.exceptions.RequestException as e:
 #        return f"Error: {str(e)}"
 
-@Client.on_message(filters.command("gpt4", cmd))
+@Client.on_message(filters.command("gpt4", cmd) & filters.me)
 async def gtp(client, message: Message):
     text = get_text(message)
     if not text:
