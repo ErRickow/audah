@@ -36,7 +36,7 @@ async def chatbot_response(client, message: Message):
     await message.reply(simtalk_response)
 
 
-@Client.on_message(filters.command("chatbot", cmd) & filters.me)
+@Client.on_message(filters.me & filters.command("chatbot", cmd))
 async def manage_chatbot_status(client, message: Message):
     global chatbot_active
     arg = get_text(message).lower()
