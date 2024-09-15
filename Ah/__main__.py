@@ -21,7 +21,7 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
-aiosession = ClientSession()
+
 # Tambahkan sesi aiohttp untuk request async
 
 async def main():
@@ -41,7 +41,7 @@ async def main():
             logger.error(f"Error saat memulai bot: {e}")
 
     await idle()  # Menjaga bot tetap aktif
-    await aiosession.close()
+    await ClientSession.close()
 
 if __name__ == "__main__":
     LOGGER("Pyrogram Bot").info("Bot sedang dimulai...")
