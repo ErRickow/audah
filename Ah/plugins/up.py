@@ -8,7 +8,7 @@ import subprocess
 from git import Repo
 from git.exc import InvalidGitRepositoryError
 
-from pyrogram import Client, filters
+from pyrogram import *
 from pyrogram.types import Message
 
 from Ah.bantuan.adminHelpers import DEVS
