@@ -6,7 +6,7 @@ from aiohttp import ClientSession
 from tqdm import tqdm
 from pyrogram import *
 from pyrogram.errors import FloodWait
-from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP, logger
+from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 from config import *
@@ -21,41 +21,35 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
-
 # Tambahkan sesi aiohttp untuk request async
 
-# Function Definition (Correct client name usage)
-async def send_message_with_floodwait_handling(bot_instance, chat_id, message):  # 'bot_instance' makes it clearer
-    try:
-        await bot_instance.send_message(chat_id, message)  # Use 'bot_instance' instead of 'client'
-    except FloodWait as e:
-        logger.warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
-        await asyncio.sleep(e.x)
-        await send_message_with_floodwait_handling(bot_instance, chat_id, message)  # Retry after wait
-    except Exception as e:
-        logger.error(f"Error while sending message: {e}")
+aiosession = ClientSession()
+# Fungsi untuk menangani FloodWait saat bot mengirim pesan
 
-# Inside the main() function (Update call with correct argument name)
 async def main():
     await ubot.start()
-    logger.info("Bot token ditemukan, bot sedang booting...")
-
-    # Mulai semua session bot
+    print("LOG: Founded Bot token Booting..")
+    for all_module in ALL_MODULES:
+        importlib.import_module("PyroKar.modules" + all_module)
+        print(f"Successfully Imported {all_module} ")
     for bot in bots:
         try:
             await bot.start()
             ex = await bot.get_me()
-            logger.info(f"Bot {ex.first_name} [{ex.id}] berhasil dimulai.")
+            await join(bot)
+            try:
+                await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, CMD_HANDLER))
+            except BaseException:
+                pass
+            print(f"Started as {ex.first_name} | {ex.id} ")
             ids.append(ex.id)
-            # Pass the bot instance to the function
-            await send_message_with_floodwait_handling(bot, BOTLOG, f"Bot {ex.first_name} telah dimulai.")
-            await asyncio.sleep(1)  # Penanganan agar tidak terlalu cepat antar bot
         except Exception as e:
-            logger.error(f"Error saat memulai bot: {e}")
+            print(f"{e}")
+    await idle()
+    await aiosession.close()
 
-    await idle()  # Menjaga bot tetap aktif
-    await ClientSession.close()
 
 if __name__ == "__main__":
-    LOGGER("Pyrogram Bot").info("Bot sedang dimulai...")
+    LOGGER("Er Anjing").info("The-Ubot Telah Hidup")
+    install()
     LOOP.run_until_complete(main())
