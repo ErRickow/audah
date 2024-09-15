@@ -13,7 +13,7 @@ from pyrogram.types import Message
 
 from Ah.bantuan.adminHelpers import DEVS
 from Ah import *
-from config import PREFIX as cmd
+from config import PREFFIX as cmd
 
 def check_command(command):
     return shutil.which(command) is not None
