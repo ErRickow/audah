@@ -4,7 +4,7 @@ import importlib
 import logging
 from aiohttp import ClientSession
 from tqdm import tqdm
-from pyrogram import idle
+from pyrogram import *
 from pyrogram.errors import FloodWait
 from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP
 from Ah.plugins.basic import join
