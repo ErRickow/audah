@@ -66,11 +66,11 @@ async def main():
     
     # Import modules dengan tqdm untuk progress bar
     for all_module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
-    try:
-        importlib.import_module("Ah.plugins." + all_module)
-        LOGGER("Modules").info(f"Successfully imported {all_module}")
-    except Exception as e:
-        LOGGER("Modules").error(f"Failed to import {all_module}: {e}")
+        try:
+            importlib.import_module("Ah.plugins." + all_module)
+            LOGGER("Modules").info(f"Successfully imported {all_module}")
+        except Exception as e:
+            LOGGER("Modules").error(f"Failed to import {all_module}: {e}")
 
     # Mulai semua session bot
     for bot in bots:
@@ -86,6 +86,7 @@ async def main():
             ids.append(ex.id)
         except Exception as e:
             LOGGER("Error").error(f"{e}")
+    
     await idle()
     await asyncio.sleep(500)
     await aiosession.close()
