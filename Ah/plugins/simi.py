@@ -12,7 +12,7 @@ from config import *
 chatbot_active = True
 
 # Konfigurasi logging
-HNDLR = [""]
+HNDLR = ["yu off", "xupdate"]
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 logging.basicConfig(
