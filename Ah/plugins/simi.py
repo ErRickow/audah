@@ -60,7 +60,7 @@ async def chatbot_response(client, message: Message):
     simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
-    await client.send_message(chat_id=message.chat.id, text=simtalk_response)
+    await client.send_message(chat_id=message.chat.id, text=simtalk_response, reply_to_message_id=ReplyCheck(message))
     logger.info(f"Respons dari Simsimi: {simtalk_response}")
 
 # Handler untuk mengatur status chatbot (on/off)
