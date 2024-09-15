@@ -21,13 +21,13 @@ from telegraph import exceptions, upload_file
 from config import BOT_VER, CHANNEL
 from config import PREFIX as cmd
 from config import GROUP
-from PyroKar import CMD_HELP, StartTime
-from PyroKar.helpers.basic import edit_or_reply
-from PyroKar.helpers.PyroHelpers import ReplyCheck
-from PyroKar.helpers.SQL.globals import gvarstatus
-from PyroKar.helpers.tools import convert_to_image
-from PyroKar.utils import get_readable_time
-from PyroKar.utils.misc import restart
+from Ah import CMD_HELP, StartTime
+from Ah.bantuan.basic import edit_or_reply
+from Ah.bantuan.PyroHelpers import ReplyCheck
+from Ah.bantuan.SQL.globals import gvarstatus
+from Ah.bantuan.tools import convert_to_image
+from Ah.utils import get_readable_time
+from Ah.utils.misc import restart
 
 from .help import add_command_help
 
@@ -46,7 +46,7 @@ async def alive(client: Client, message: Message):
     send = client.send_video if alive_logo.endswith(".mp4") else client.send_photo
     uptime = await get_readable_time((time.time() - StartTime))
     man = (
-        f"**༺ [PyroKar-Userbot](https://github.com/ArmanGG01/PyroKar-Userbot) ༻**\n\n"
+        f"**༺ [Ah-Userbot](https://github.com/ArmanGG01/Ah-Userbot) ༻**\n\n"
         f"<b>{alive_text}</b>\n\n"
         f"{emoji} <b>Master :</b> {client.me.mention} \n"
         f"{emoji} <b>Modules :</b> <code>{len(modules)} Modules</code> \n"
@@ -73,7 +73,7 @@ async def alive(client: Client, message: Message):
 @Client.on_message(filters.command("setalivelogo", cmd) & filters.me)
 async def setalivelogo(client: Client, message: Message):
     try:
-        import PyroKar.helpers.SQL.globals as sql
+        import Ah.bantuan.SQL.globals as sql
     except AttributeError:
         await message.edit("**Running on Non-SQL mode!**")
         return
@@ -110,7 +110,7 @@ async def setalivelogo(client: Client, message: Message):
 @Client.on_message(filters.command("setalivetext", cmd) & filters.me)
 async def setalivetext(client: Client, message: Message):
     try:
-        import PyroKar.helpers.SQL.globals as sql
+        import Ah.bantuan.SQL.globals as sql
     except AttributeError:
         await message.edit("**Running on Non-SQL mode!**")
         return
@@ -137,7 +137,7 @@ async def setalivetext(client: Client, message: Message):
 @Client.on_message(filters.command("setemoji", cmd) & filters.me)
 async def setemoji(client: Client, message: Message):
     try:
-        import PyroKar.helpers.SQL.globals as sql
+        import Ah.bantuan.SQL.globals as sql
     except AttributeError:
         await message.edit("**Running on Non-SQL mode!**")
         return
