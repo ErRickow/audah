@@ -51,4 +51,7 @@ add_command_help(
     [
         ["ask", "Bertanya kepada ai."]
     ],
+    [
+        ["asg", "sama."]
+    ],
 )
