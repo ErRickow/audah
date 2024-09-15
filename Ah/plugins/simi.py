@@ -49,37 +49,63 @@ async def chatbot_response(client, message):
 
     text = message.text
 
-    # Periksa perintah "yu off" atau "stop" untuk mematikan chatbot
+    # Periksa perintah "cukup" atau "diem" untuk mematikan chatbot
     if "cukup" in text or "diem" in text:
         chatbot_active = False
         logger.info("Chatbot telah dinonaktifkan.")
         await message.reply("dih")
         return
 
-    # Periksa perintah "yu on" untuk mengaktifkan chatbot
+    # Periksa perintah "kemana lu" atau "woi" untuk mengaktifkan chatbot
     if "kemana lu" in text or "woi" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
         await message.reply("hah?")
         return
 
-    # Periksa perintah "up" untuk melakukan update userbot
+    # Periksa perintah "update" untuk melakukan update userbot
     if "update" in text:
         logger.info("Memulai proses update userbot.")
-        await message.reply("wokey bentar ku update in ,,ttetetete")
-
-        # Lakukan tindakan update di sini (misalnya, menjalankan skrip pembaruan)
-        # Contoh update userbot dengan os.system (sesuaikan dengan cara update bot Anda)
         try:
-            await message.reply("Mengunduh pembaruan terbaru...")
-            # Misalnya: jalankan perintah git pull untuk update bot
-            result = os.system("git pull")
-            if result == 0:
-                await message.reply("Update berhasil! Silakan restart bot.")
-                logger.info("Update userbot berhasil.")
-            else:
-                await message.reply("Gagal memperbarui. Silakan cek log.")
-                logger.error("Gagal memperbarui userbot.")
+            pros = await message.reply(
+                f"<i>Memeriksa pembaruan resources {ubot.me.mention}...</i>"
+            )
+            out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
+            last_commit = subprocess.check_output(
+                ["git", "log", "-1", "--pretty=format:%h %s"]
+            ).decode("UTF-8").strip()
+
+            teks = f"<b>❒ Status resources: {ubot.me.mention}</b>\n"
+            memeg = f"<b>🎲 Perubahan logs by {client.me.mention}</b>"
+
+            if "🧩 Already up to date." in str(out):
+                return await pros.edit(
+                    f"<blockquote>{teks}┖ {out}\n<b>Last Commit:</b> {last_commit}</blockquote>"
+                )
+
+            if len(out) > 4096:
+                await pros.edit("<i>Hasil akan dikirimkan dalam bentuk file...</i>")
+                with open("output.txt", "w+") as file:
+                    file.write(out)
+                await client.send_document(
+                    message.chat.id,
+                    "output.txt",
+                    caption="<b>Perubahan logs:</b>",
+                    reply_to_message_id=message.id,
+                )
+                os.remove("output.txt")
+                return
+
+            format_line = [f"┣ {line}" for line in out.splitlines()]
+            if format_line:
+                format_line[-1] = f"┖ {format_line[-1][2:]}"
+                format_output = "\n".join(format_line)
+
+            await pros.edit(
+                f"<blockquote><b>{memeg}</b>\n\n{teks}{format_output}<br>\n\n<b>Last Commit:</b> {last_commit}</blockquote>"
+            )
+            os.execl(sys.executable, sys.executable, "-m", "Ah")
+
         except Exception as e:
             await message.reply(f"Terjadi kesalahan saat memperbarui: {e}")
             logger.error(f"Error saat memperbarui userbot: {e}")
