@@ -12,7 +12,7 @@ API_ID = os.getenv("API_ID")
 
 API_HASH = os.getenv("API_HASH")
 
-BOTLOG = os.getenv("BOTLOG")
+BOTLOG = getenv("BOTLOG", "-1002168463448")
 BOT_VER = "1.1.5@main"
 BRANCH = getenv("BRANCH", "main") #don't change
 CMD_HAND = cmd
