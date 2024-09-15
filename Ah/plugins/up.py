@@ -20,7 +20,7 @@ def check_command(command):
     return shutil.which(command) is not None
 
 @Client.on_message(
-    filters.command("up", ["1"]) & ~filters.me
+    filters.command("up", cmd) & ~filters.me
 )
 async def ngapdate(client, message):
     pros = await message.reply(
