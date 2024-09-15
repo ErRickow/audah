@@ -52,6 +52,8 @@ async def chatbot_response(client, message: Message):
     if not text:
         logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
         return
+    elif if not client:
+        message.reply("gw sapa ya")
 
     # Mendapatkan respons dari Simsimi
     logger.info(f"Mengirim pesan ke Simsimi: {text}")
