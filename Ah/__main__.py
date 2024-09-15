@@ -23,33 +23,25 @@ MSG_ON = """
 
 # Tambahkan sesi aiohttp untuk request async
 
-aiosession = ClientSession()
-# Fungsi untuk menangani FloodWait saat bot mengirim pesan
-
 async def main():
     await ubot.start()
-    print("LOG: Founded Bot token Booting..")
-    for all_module in ALL_MODULES:
-        importlib.import_module("PyroKar.modules" + all_module)
-        print(f"Successfully Imported {all_module} ")
+    logger.info("Bot token ditemukan, bot sedang booting...")
+    
+    # Mulai semua session bot
     for bot in bots:
         try:
             await bot.start()
             ex = await bot.get_me()
-            await join(bot)
-            try:
-                await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, CMD_HANDLER))
-            except BaseException:
-                pass
-            print(f"Started as {ex.first_name} | {ex.id} ")
+            logger.info(f"Bot {ex.first_name} [{ex.id}] berhasil dimulai.")
             ids.append(ex.id)
+            await send_message_with_floodwait_handling(bot, BOTLOG, f"Bot {ex.first_name} telah dimulai.")
+            await asyncio.sleep(1)  # Penanganan agar tidak terlalu cepat antar bot
         except Exception as e:
-            print(f"{e}")
-    await idle()
+            logger.error(f"Error saat memulai bot: {e}")
+
+    await idle()  # Menjaga bot tetap aktif
     await aiosession.close()
 
-
 if __name__ == "__main__":
-    LOGGER("Er Anjing").info("The-Ubot Telah Hidup")
-    install()
+    LOGGER("Pyrogram Bot").info("Bot sedang dimulai...")
     LOOP.run_until_complete(main())
