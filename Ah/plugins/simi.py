@@ -6,6 +6,16 @@ from Ah.bantuan.tools import get_text
 from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from config import *
+import re
+import asyncio
+import os
+import sys
+import shutil
+import subprocess
+
+from git import Repo
+from git.exc import InvalidGitRepositoryError
+
 
 # Status chatbot (aktif/non-aktif)
 chatbot_active = True
