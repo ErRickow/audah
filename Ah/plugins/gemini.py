@@ -54,4 +54,7 @@ add_command_help(
     [
         ["asg", "sama."]
     ],
+    [
+        ["gtp", "sama."]
+    ],
 )
