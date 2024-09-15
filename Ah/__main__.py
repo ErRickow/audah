@@ -21,6 +21,7 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
+aiosession = ClientSession()
 # Tambahkan sesi aiohttp untuk request async
 
 async def main():
