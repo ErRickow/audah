@@ -22,7 +22,7 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 
-@Client.on_message(filters.me & filters.command("chatbot", cmd))
+@Client.on_message(filters.me & filters.command("kmtl", cmd))
 async def manage_chatbot_status(client, message: Message):
     global chatbot_active
     arg = get_text(message).lower()
