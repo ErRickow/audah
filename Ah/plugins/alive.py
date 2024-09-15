@@ -29,8 +29,6 @@ from Ah.bantuan.tools import convert_to_image
 from Ah.plugins.bot.inline import get_readable_time
 from Ah.utils.misc import restart
 
-from .help import add_command_help
-
 modules = CMD_HELP
 alive_logo = (
     gvarstatus("ALIVE_LOGO") or "https://telegra.ph/file/c22cea683a0c0dd603fb1.jpg"
