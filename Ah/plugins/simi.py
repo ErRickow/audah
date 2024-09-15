@@ -1,9 +1,8 @@
 import requests
 import logging
-from pyrogram import Client, filters
+from pyrogram import *
 from pyrogram.types import Message
 from Ah.bantuan.tools import get_text
-from config import PREFIX as cmd
 from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from config import *
