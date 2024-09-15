@@ -97,7 +97,7 @@ bots = [
 ]
 
 # Fungsi untuk mengirim pesan dengan penanganan FloodWait
-async def send_message_with_floodwait_handling(client, chat_id, message):  # 'client' should be lowercase here
+async def send_message_with_floodwait_handling(client, chat_id, message):
     try:
         await client.send_message(chat_id, message)
     except FloodWait as e:
@@ -108,7 +108,7 @@ async def send_message_with_floodwait_handling(client, chat_id, message):  # 'cl
         logger.error(f"Error while sending message: {e}")
 
 # Fungsi untuk join channel/group dengan penanganan FloodWait
-async def join_channel_with_floodwait_handling(client, channel_id):  # 'client' should be lowercase here
+async def join_channel_with_floodwait_handling(client, channel_id):
     try:
         await client.join_chat(channel_id)
     except FloodWait as e:
@@ -117,3 +117,5 @@ async def join_channel_with_floodwait_handling(client, channel_id):  # 'client' 
         await join_channel_with_floodwait_handling(client, channel_id)  # Retry after wait
     except Exception as e:
         logger.error(f"Error while joining chat: {e}")
+
+# Fungsi contoh untuk handle bot
