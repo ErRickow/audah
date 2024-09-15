@@ -81,9 +81,9 @@ async def RestrictFailed(message: Message):
 # DIHAPUS = GBAN
 #gatau cok BANGSSAT LO
 DEVS = [ 
-    1448273246,
-    7399365105,
-    6607703424,
+    1448273246, #er
+    7399365105, #cibe
+    6607703424, #ci_er
     1928713379,
     1694909518,
     999191708,
