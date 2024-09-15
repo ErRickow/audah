@@ -4,7 +4,7 @@ import asyncio
 import sys
 import time
 from logging.handlers import RotatingFileHandler
-from aiohttp import ClientSession
+from aiohttp import ClientSession as aiosession
 from pyrogram import *
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from pyrogram.errors import FloodWait
