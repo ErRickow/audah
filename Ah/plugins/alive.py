@@ -48,7 +48,7 @@ async def alive(client: Client, message: Message):
     man = (
         f"**༺ [Ah-Userbot](https://xnxx.com) ༻**\n\n"
         f"<b>{alive_text}</b>\n\n"
-        f"{emoji} <b>Master :</b> {client.me.mention} \n"
+        f"{emoji} <b>Bapakku :</b> {client.me.mention} \n"
         f"{emoji} <b>Modules :</b> <code>{len(modules)} Modules</code> \n"
         f"{emoji} <b>Bot Version :</b> <code>{BOT_VER}</code> \n"
         f"{emoji} <b>Python Version :</b> <code>{python_version()}</code> \n"
