@@ -2,7 +2,6 @@ from uvloop import install
 import asyncio
 import importlib
 import logging
-import random
 from aiohttp import ClientSession
 from tqdm import tqdm
 from pyrogram import idle
@@ -22,29 +21,10 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
-# Fungsi untuk menangani FloodWait saat bot mengirim pesan
-async def send_message_with_floodwait_handling(client, chat_id, message):
-    try:
-        await client.send_message(chat_id, message)
-        await asyncio.sleep(random.uniform(1, 3))  # Tambahkan jeda acak antara 1 hingga 3 detik
-    except FloodWait as e:
-        LOGGER("FloodWait").warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
-        await asyncio.sleep(e.x)
-        await send_message_with_floodwait_handling(client, chat_id, message)  # Coba lagi setelah FloodWait selesai
-    except Exception as e:
-        LOGGER("Error").error(f"Error while sending message: {e}")
+# Tambahkan sesi aiohttp untuk request async
 
-# Fungsi untuk join channel dengan FloodWait handling
-async def join_channel_with_floodwait_handling(client, channel_id):
-    try:
-        await client.join_chat(channel_id)
-        await asyncio.sleep(random.uniform(2, 5))  # Tambahkan jeda acak antara 2 hingga 5 detik setelah bergabung
-    except FloodWait as e:
-        LOGGER("FloodWait").warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
-        await asyncio.sleep(e.x)
-        await join_channel_with_floodwait_handling(client, channel_id)  # Coba lagi setelah FloodWait selesai
-    except Exception as e:
-        LOGGER("Error").error(f"Error while joining chat: {e}")
+
+# Fungsi untuk menangani FloodWait saat bot mengirim pesan
 
 # Fungsi untuk menjalankan tindakan bot dengan penanganan FloodWait
 async def handle_bot_actions(bot):
@@ -77,7 +57,6 @@ async def main():
             await join(bot)
             try:
                 await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
-                await asyncio.sleep(random.uniform(1, 3))  # Tambahkan jeda acak antara 1 hingga 3 detik saat mengirim pesan
             except BaseException:
                 pass
             LOGGER("Bot Info").info(f"Started as {ex.first_name} | {ex.id}")
@@ -85,6 +64,7 @@ async def main():
         except Exception as e:
             LOGGER("Error").error(f"{e}")
 
+    await asyncio.sleep(100)
     await idle()
     await aiosession.close()
 
