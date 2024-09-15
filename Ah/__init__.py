@@ -117,25 +117,3 @@ async def join_channel_with_floodwait_handling(client, channel_id):
         logger.error(f"Error while joining chat: {e}")
 
 # Fungsi utama untuk menjalankan bot
-async def main():
-    await ubot.start()
-    logger.info("Bot token ditemukan, bot sedang booting...")
-    
-    # Mulai semua session bot
-    for bot in bots:
-        try:
-            await bot.start()
-            ex = await bot.get_me()
-            logger.info(f"Bot {ex.first_name} [{ex.id}] berhasil dimulai.")
-            ids.append(ex.id)
-            await send_message_with_floodwait_handling(bot, BOTLOG, f"Bot {ex.first_name} telah dimulai.")
-            await asyncio.sleep(1)  # Penanganan agar tidak terlalu cepat antar bot
-        except Exception as e:
-            logger.error(f"Error saat memulai bot: {e}")
-
-    await idle()  # Menjaga bot tetap aktif
-    await aiosession.close()
-
-if __name__ == "__main__":
-    LOGGER("Pyrogram Bot").info("Bot sedang dimulai...")
-    LOOP.run_until_complete(main())
