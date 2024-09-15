@@ -8,7 +8,7 @@ from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
 
 # Status chatbot (aktif/non-aktif)
-chatbot_active = False
+chatbot_active = True
 
 # Konfigurasi logging
 HNDLR = [""]
