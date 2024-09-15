@@ -6,7 +6,7 @@ from aiohttp import ClientSession
 from tqdm import tqdm
 from pyrogram import *
 from pyrogram.errors import FloodWait
-from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP
+from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP, logger
 from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 from config import *
