@@ -11,7 +11,7 @@ from Ah.bantuan.PyroHelpers import ReplyCheck
 chatbot_active = False
 
 # Konfigurasi logging
-HNDLR = ["start", ""]
+HNDLR = [""]
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 async def send_simtalk(message: str) -> str:
