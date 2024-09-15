@@ -52,6 +52,9 @@ async def chatbot_response(client, message: Message):
         logger.info("Chatbot sedang dinonaktifkan, tidak merespons pesan.")
         return
 
+    if f"{prefix}cmd" in text:
+        return
+
     text = message.text
     if not text:
         logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
