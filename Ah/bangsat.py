@@ -6,7 +6,7 @@ from config import PREFIX as cmd
 from Ah import *
 
 # Status chatbot (aktif/tidak aktif)
-chatbot_active = True
+chatbot_active = False
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 def send_simtalk(message: str) -> str:
@@ -24,7 +24,7 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.text & ~filters.bot)
+@Client.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
