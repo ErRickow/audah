@@ -10,8 +10,6 @@ from git.exc import InvalidGitRepositoryError
 
 from pyrogram import *
 from pyrogram.types import Message
-
-from Ah.bantuan.adminHelpers import DEVS
 from Ah import *
 
 def check_command(command):
