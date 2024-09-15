@@ -57,4 +57,7 @@ add_command_help(
     [
         ["gtp", "sama."]
     ],
+    [
+        ["au", "eror."]
+    ],
 )
