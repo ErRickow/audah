@@ -54,7 +54,7 @@ async def mentionall(client: Client, message: Message):
 @Client.on_message(filters.command("cancel", cmd) & filters.me)
 async def cancel_spam(client: Client, message: Message):
     if not message.chat.id in spam_chats:
-        return await message.edit("**Sepertinya tidak ada tagall disini.**")
+        return await message.edit("**Ngapain, bused dah.**")
     else:
         try:
             spam_chats.remove(message.chat.id)
