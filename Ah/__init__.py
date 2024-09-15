@@ -123,17 +123,3 @@ async def join_channel_with_floodwait_handling(client, channel_id):
         logger.error(f"Error while joining chat: {e}")
 
 # Fungsi contoh untuk handle bot
-async def handle_bot_actions(bot):
-    # Menangani bot action dengan penanganan FloodWait dan logging error
-    try:
-        await bot.start()
-        logger.info(f"Started bot {bot.name}")
-
-        # Replace dengan aksi bot seperti mengirim pesan atau join channel
-        await send_message_with_floodwait_handling(bot, BOTLOG, "Bot has started successfully.")
-        await join_channel_with_floodwait_handling(bot, "@example_channel")
-
-    except Exception as e:
-        logger.error(f"Unhandled exception in bot {bot.name}: {e}")
-
-# Kamu bisa menjalankan handle_bot_actions di tempat di mana kamu memulai bot, tanpa membuat fungsi start_bot baru
