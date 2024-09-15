@@ -7,6 +7,7 @@ from config import PREFIX as cmd
 from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from Ah.bantuan.adminHelpers import DEVS
+
 # Status chatbot (aktif/non-aktif)
 chatbot_active = False
 
@@ -17,8 +18,6 @@ logging.basicConfig(
     datefmt="%d-%b-%y %H:%M:%S",
 )
 logger = logging.getLogger(__name__)
-
-# Fungsi untuk mengirim permintaan ke API Simsimi # Jangan lupa impor requests
 
 # Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message: str) -> str:
@@ -39,7 +38,7 @@ async def send_simtalk(message: str) -> str:
             logger.error(f"Error saat mengirim permintaan ke Simsimi API: {str(e)}")
             return f"Error: {str(e)}"
 
-# Handler untuk semua pesan teks
+# Handler untuk semua pesan teks (respon Simsimi)
 @Client.on_message(filters.text & ~filters.bot)
 async def chatbot_response(client, message: Message):
     global chatbot_active
@@ -68,8 +67,7 @@ async def chatbot_response(client, message: Message):
 @Client.on_message(
     filters.command("ah", ["2"]) & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.command("yu", prefixes=cmd) & filters.me)
-async def manage_chatbot_status(client, message: Message):
+async def manage_chatbot_status_dev(client, message: Message):
     global chatbot_active
     arg = get_text(message)
 
@@ -83,12 +81,14 @@ async def manage_chatbot_status(client, message: Message):
 
     if arg == "off":
         chatbot_active = False
-        await message.reply("Chatbot dinonaktifkan.")
-        logger.info("Chatbot telah dinonaktifkan oleh pengguna.")
+        await message.reply("Chatbot dinonaktifkan oleh Developer.")
+        logger.info("Chatbot telah dinonaktifkan oleh developer.")
     elif arg == "on":
         chatbot_active = True
-        await message.reply("Chatbot diaktifkan.")
-        logger.info("Chatbot telah diaktifkan oleh pengguna.")
+        await message.reply("Chatbot diaktifkan oleh Developer.")
+        logger.info("Chatbot telah diaktifkan oleh developer.")
     else:
         await message.reply("Gunakan perintah: `chatbot on` atau `chatbot off`.")
         logger.warning(f"Perintah tidak valid: {arg}")
+
+# Handler untuk pengguna biasa
