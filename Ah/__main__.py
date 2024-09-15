@@ -66,8 +66,11 @@ async def main():
     
     # Import modules dengan tqdm untuk progress bar
     for all_module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
-        importlib.import_module("Ah.plugins" + all_module)
-        LOGGER("Modules").info(f"Successfully Imported {all_module} ")
+    try:
+        importlib.import_module("Ah.plugins." + all_module)
+        LOGGER("Modules").info(f"Successfully imported {all_module}")
+    except Exception as e:
+        LOGGER("Modules").error(f"Failed to import {all_module}: {e}")
 
     # Mulai semua session bot
     for bot in bots:
