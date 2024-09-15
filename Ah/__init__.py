@@ -1,13 +1,15 @@
+# Created By HakutakaID # TELEGRAM t.me/hakutakaid
 import logging
 import asyncio
 import sys
 import time
-from datetime import datetime
+import datetime
 from logging.handlers import RotatingFileHandler
-from pyrogram.handlers import MessageHandler
-from pyrogram.errors import FloodWait
-from pyrogram import Client, idle
+from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from aiohttp import ClientSession
+from pyrogram import Client
+from pyrogram.errors import FloodWait
+from datetime import datetime
 from config import *
 
 DATABASE_URL = DB_URL
@@ -55,14 +57,13 @@ if not any([STRING_SESSION1, STRING_SESSION2, STRING_SESSION3, STRING_SESSION4, 
     sys.exit()
 
 if BOTLOG:
-    BOTLOG = BOTLOG
+   BOTLOG = BOTLOG
 else:
-    BOTLOG = "me"
+   BOTLOG = "me"
 
 START_TIME = datetime.now()
 StartTime = time.time()
 
-# Class Ubot untuk mempermudah penggunaan pyrogram Client
 class Ubot(Client):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -71,6 +72,7 @@ class Ubot(Client):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
             return func
+
         return decorator
 
 ubot = Ubot(
@@ -91,7 +93,7 @@ bots = [
         session_string=globals().get(f"STRING_SESSION{i+1}"),
         plugins=dict(root="Ah/plugins"),
     )
-    for i in range(5) if globals().get(f"STRING_SESSION{i+1}")
+    for i in range(10) if globals().get(f"STRING_SESSION{i+1}")
 ]
 
 # Fungsi untuk mengirim pesan dengan penanganan FloodWait
@@ -101,7 +103,7 @@ async def send_message_with_floodwait_handling(client, chat_id, message):
     except FloodWait as e:
         logger.warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
         await asyncio.sleep(e.x)
-        await send_message_with_floodwait_handling(client, chat_id, message)
+        await send_message_with_floodwait_handling(client, chat_id, message)  # Retry after wait
     except Exception as e:
         logger.error(f"Error while sending message: {e}")
 
@@ -112,8 +114,8 @@ async def join_channel_with_floodwait_handling(client, channel_id):
     except FloodWait as e:
         logger.warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
         await asyncio.sleep(e.x)
-        await join_channel_with_floodwait_handling(client, channel_id)
+        await join_channel_with_floodwait_handling(client, channel_id)  # Retry after wait
     except Exception as e:
         logger.error(f"Error while joining chat: {e}")
 
-# Fungsi utama untuk menjalankan bot
+# Fungsi contoh untuk handle bot
