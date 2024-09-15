@@ -56,7 +56,7 @@ async def chatbot_response(client, message: Message):
     simtalk_response = send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
-    await message.reply(simtalk_response)
+    await client.send_message(simtalk_response)
     logger.info(f"Respons dari Simsimi: {simtalk_response}")
 
 
