@@ -5,7 +5,7 @@ from Ah.bantuan.tools import *
 from config import PREFIX as cmd
 from Ah import *
 
-chatbot_active = False
+chatbot_active = True
 
 def send_simtalk(message: str) -> str:
     if len(message) > 1000:
