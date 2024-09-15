@@ -47,49 +47,18 @@ async def send_simtalk(message: str) -> str:
 async def chatbot_response(client, message):
     global chatbot_active
 
-    text = message.text
-
-    # Periksa perintah "yu off" atau "stop" untuk mematikan chatbot
-    if "yu off" in text or "stop" in text:
-        chatbot_active = False
-        logger.info("Chatbot telah dinonaktifkan.")
-        await message.reply("oke sayang.")
-        return
-
-    # Periksa perintah "yu on" untuk mengaktifkan chatbot
-    if "yu on" in text:
-        chatbot_active = True
-        logger.info("Chatbot telah diaktifkan.")
-        await message.reply("hah?.")
-        return
-
-    # Periksa perintah "up" untuk melakukan update userbot
-    if "update" in text:
-        logger.info("Memulai proses update userbot.")
-        await message.reply("wokey bentar ku update in ,,ttetetete")
-
-        # Lakukan tindakan update di sini (misalnya, menjalankan skrip pembaruan)
-        # Contoh update userbot dengan os.system (sesuaikan dengan cara update bot Anda)
-        try:
-            await message.reply("Mengunduh pembaruan terbaru...")
-            # Misalnya: jalankan perintah git pull untuk update bot
-            result = os.system("git pull")
-            if result == 0:
-                await message.reply("Update berhasil! Silakan restart bot.")
-                logger.info("Update userbot berhasil.")
-            else:
-                await message.reply("Gagal memperbarui. Silakan cek log.")
-                logger.error("Gagal memperbarui userbot.")
-        except Exception as e:
-            await message.reply(f"Terjadi kesalahan saat memperbarui: {e}")
-            logger.error(f"Error saat memperbarui userbot: {e}")
-
-        return
-
-    # Cek apakah chatbot sedang aktif sebelum merespons pesan lainnya
+    # Cek apakah chatbot sedang aktif
     if not chatbot_active:
         logger.info("Chatbot sedang dinonaktifkan, tidak merespons pesan.")
         return
+
+
+    text = message.text
+    if "yu off" in text or "stop" in text:
+        chatbot_active = False
+        return 
+#        logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
+   #     return
 
     # Mendapatkan respons dari Simsimi
     logger.info(f"Mengirim pesan ke Simsimi: {text}")
