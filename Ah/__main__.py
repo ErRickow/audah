@@ -25,8 +25,39 @@ MSG_ON = """
 
 
 # Fungsi untuk menangani FloodWait saat bot mengirim pesan
+async def send_message_with_floodwait_handling(client, chat_id, message):
+    try:
+        await client.send_message(chat_id, message)
+    except FloodWait as e:
+        LOGGER("FloodWait").warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
+        await asyncio.sleep(e.x)
+        await send_message_with_floodwait_handling(client, chat_id, message)  # Coba lagi setelah FloodWait selesai
+    except Exception as e:
+        LOGGER("Error").error(f"Error while sending message: {e}")
+
+# Fungsi untuk join channel dengan FloodWait handling
+async def join_channel_with_floodwait_handling(client, channel_id):
+    try:
+        await client.join_chat(channel_id)
+    except FloodWait as e:
+        LOGGER("FloodWait").warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
+        await asyncio.sleep(e.x)
+        await join_channel_with_floodwait_handling(client, channel_id)  # Coba lagi setelah FloodWait selesai
+    except Exception as e:
+        LOGGER("Error").error(f"Error while joining chat: {e}")
 
 # Fungsi untuk menjalankan tindakan bot dengan penanganan FloodWait
+async def handle_bot_actions(bot):
+    try:
+        await bot.start()
+        LOGGER("Bot Start").info(f"Started bot {bot.name}")
+
+        # Contoh penggunaan fungsi FloodWait handling saat mengirim pesan atau bergabung dengan channel
+        await send_message_with_floodwait_handling(bot, BOTLOG, "Bot has started successfully.")
+        await join_channel_with_floodwait_handling(bot, "@example_channel")
+
+    except Exception as e:
+        LOGGER("Error").error(f"Unhandled exception in bot {bot.name}: {e}")
 
 # Main function
 async def main():
@@ -53,7 +84,6 @@ async def main():
         except Exception as e:
             LOGGER("Error").error(f"{e}")
 
-    await asyncio.sleep(100)
     await idle()
     await aiosession.close()
 
