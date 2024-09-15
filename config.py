@@ -27,7 +27,7 @@ GIT_TOKEN = getenv(
         "utf-8"
     ),
 )
-GROUP = getenv("GROUP", "Support Demus")
+GROUP = getenv("GROUP", "Pamerdong")
 
 gemini_key = os.getenv("GEMINI_KEY")
 REPO_URL = getenv("REPO_URL", "https://github.com/ErRickow/audah")
