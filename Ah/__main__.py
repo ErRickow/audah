@@ -2,7 +2,7 @@ from uvloop import install
 import asyncio
 import importlib
 import logging
-from aiohttp import ClientSession
+from aiohttp import ClientSession as aiosession
 from tqdm import tqdm
 from pyrogram import idle
 from pyrogram.errors import FloodWait
@@ -83,7 +83,7 @@ async def main():
             ids.append(ex.id)
         except Exception as e:
             LOGGER("Error").error(f"{e}")
-    await asyncio.sleep(100)
+    await asyncio.sleep(200)
     await idle()
     await aiosession.close()
 
