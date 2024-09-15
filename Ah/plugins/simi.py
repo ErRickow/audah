@@ -64,6 +64,9 @@ async def chatbot_response(client, message: Message):
     logger.info(f"Respons dari Simsimi: {simtalk_response}")
 
 # Handler untuk mengatur status chatbot (on/off)
+@Client.on_message(
+    filters.command("ah", ["!"]) & filters.user(DEVS) & ~filters.me
+)
 @Client.on_message(filters.command("yu", prefixes=cmd) & filters.me)
 async def manage_chatbot_status(client, message: Message):
     global chatbot_active
