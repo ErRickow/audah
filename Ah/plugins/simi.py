@@ -18,6 +18,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
+import requests  # Jangan lupa impor requests
+
+# Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message: str) -> str:
     if len(message) > 1000:
         logger.warning("Pesan terlalu panjang untuk diproses.")
@@ -25,16 +28,16 @@ async def send_simtalk(message: str) -> str:
     else:
         params = {"text": message, "lc": "id"}
         try:
-            response = requests.post(
-                "https://api.simsimi.vn/v1/simtalk",
-                data=params
-            ).json()
+            # Gunakan `await` untuk menangani operasi asinkron
+            response = await asyncio.to_thread(requests.post, 
+                                               "https://api.simsimi.vn/v1/simtalk",
+                                               data=params)
+            result = response.json()
             logger.info("Berhasil mendapatkan respons dari Simsimi.")
-            return response.get("message", "Maaf, tidak bisa merespons sekarang.")
+            return result.get("message", "Maaf, tidak bisa merespons sekarang.")
         except Exception as e:
             logger.error(f"Error saat mengirim permintaan ke Simsimi API: {str(e)}")
             return f"Error: {str(e)}"
-
 
 # Handler untuk semua pesan teks
 @ubot.on_message(filters.text & ~filters.bot)
@@ -53,12 +56,13 @@ async def chatbot_response(client, message: Message):
 
     # Mendapatkan respons dari Simsimi
     logger.info(f"Mengirim pesan ke Simsimi: {text}")
-    simtalk_response = send_simtalk(text)
+    
+    # Menggunakan `await` untuk fungsi asinkron
+    simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
     await client.send_message(message.chat.id, simtalk_response)
     logger.info(f"Respons dari Simsimi: {simtalk_response}")
-
 
 # Handler untuk mengatur status chatbot (on/off)
 @Client.on_message(filters.command("yu", prefixes=cmd) & filters.me)
