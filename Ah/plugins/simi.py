@@ -43,7 +43,7 @@ async def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.command(HNDLR) & filters.text & filters.me)
+@Client.on_message(filters.me)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
