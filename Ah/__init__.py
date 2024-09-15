@@ -1,136 +1,93 @@
-# Created By HakutakaID # TELEGRAM t.me/hakutakaid
-import logging
+from uvloop import install
 import asyncio
-import sys
-from logging.handlers import RotatingFileHandler
+import importlib
+import logging
 from aiohttp import ClientSession
-from pyrogram import Client
+from tqdm import tqdm
+from pyrogram import idle
 from pyrogram.errors import FloodWait
-from datetime import datetime
+from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP
+from Ah.plugins.basic import join
+from Ah.plugins import ALL_MODULES
 from config import *
 
-DATABASE_URL = DB_URL
-CMD_HELP = {}
-clients = []
-ids = []
-LOG_FILE_NAME = "logs.txt"
+BOT_VER = "0.1.0"
+PREFIX = [".", ",", "?", "!"]
+MSG_ON = """
+💢 **PyroKar Telah Hidup** 💢
+╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
+❍▹ **Userbot Version -** `{}`
+❍▹ **Ketik** `{}alive` **untuk Mengecek Bot**
+╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
+"""
 
-# Konfigurasi logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="[%(levelname)s] - %(name)s - %(message)s",
-    datefmt="%d-%b-%y %H:%M:%S",
-    handlers=[
-        RotatingFileHandler(LOG_FILE_NAME, maxBytes=50000000, backupCount=10),
-        logging.StreamHandler(),
-    ],
-)
-logging.getLogger("asyncio").setLevel(logging.CRITICAL)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-logging.getLogger("pyrogram.client").setLevel(logging.WARNING)
-logging.getLogger("pyrogram.session.auth").setLevel(logging.CRITICAL)
-logging.getLogger("pyrogram.session.session").setLevel(logging.CRITICAL)
+# Tambahkan sesi aiohttp untuk request async
+aiosession = ClientSession()
 
-logger = logging.getLogger(__name__)
-LOOP = asyncio.get_event_loop()
-
-def LOGGER(name: str) -> logging.Logger:
-    return logging.getLogger(name)
-
-# Memastikan API_ID, API_HASH, dan BOT_TOKEN tersedia
-if not API_ID:
-    LOGGER(__name__).warning("API ID missing")
-    sys.exit()
-if not API_HASH:
-    LOGGER(__name__).warning("API Hash missing")
-    sys.exit()
-if not BOT_TOKEN:
-    LOGGER(__name__).warning("Isilah bot token nya")
-    sys.exit()
-
-# Memastikan minimal satu session string terdefinisi
-if not any([STRING_SESSION1, STRING_SESSION2, STRING_SESSION3, STRING_SESSION4, STRING_SESSION5]):
-    LOGGER(__name__).warning("STRING SESSION TIDAK DITEMUKAN, SHUTDOWN BOT!")
-    sys.exit()
-
-if BOTLOG:
-   BOTLOG = BOTLOG
-else:
-   BOTLOG = "me"
-
-START_TIME = datetime.now()
-StartTime = time.time()
-
-class Ubot(Client):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-    def on_message(self, filters=None, group=-1):
-        def decorator(func):
-            self.add_handler(MessageHandler(func, filters), group)
-            return func
-
-        return decorator
-
-    async def start(self):
-        await super().start()
-        logger.info("Bot Aktif Anjing")
-
-ubot = Ubot(
-    name="sange",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN,
-    plugins=dict(root="Ah/plugins/bot"),
-    in_memory=True,
-)
-
-# Membuat daftar bots berdasarkan session string
-bots = [
-    Client(
-        name=f"bot{i+1}",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=globals().get(f"STRING_SESSION{i+1}"),
-        plugins=dict(root="Ah/plugins"),
-    )
-    for i in range(10) if globals().get(f"STRING_SESSION{i+1}")
-]
-
-# Fungsi untuk mengirim pesan dengan penanganan FloodWait
+# Fungsi untuk menangani FloodWait saat bot mengirim pesan
 async def send_message_with_floodwait_handling(client, chat_id, message):
     try:
         await client.send_message(chat_id, message)
     except FloodWait as e:
-        logger.warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
+        LOGGER("FloodWait").warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
         await asyncio.sleep(e.x)
-        await send_message_with_floodwait_handling(client, chat_id, message)  # Retry after wait
+        await send_message_with_floodwait_handling(client, chat_id, message)  # Coba lagi setelah FloodWait selesai
     except Exception as e:
-        logger.error(f"Error while sending message: {e}")
+        LOGGER("Error").error(f"Error while sending message: {e}")
 
-# Fungsi untuk join channel/group dengan penanganan FloodWait
+# Fungsi untuk join channel dengan FloodWait handling
 async def join_channel_with_floodwait_handling(client, channel_id):
     try:
         await client.join_chat(channel_id)
     except FloodWait as e:
-        logger.warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
+        LOGGER("FloodWait").warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
         await asyncio.sleep(e.x)
-        await join_channel_with_floodwait_handling(client, channel_id)  # Retry after wait
+        await join_channel_with_floodwait_handling(client, channel_id)  # Coba lagi setelah FloodWait selesai
     except Exception as e:
-        logger.error(f"Error while joining chat: {e}")
+        LOGGER("Error").error(f"Error while joining chat: {e}")
 
-# Fungsi contoh untuk handle bot
+# Fungsi untuk menjalankan tindakan bot dengan penanganan FloodWait
 async def handle_bot_actions(bot):
-    # Menangani bot action dengan penanganan FloodWait dan logging error
     try:
         await bot.start()
-        logger.info(f"Started bot {bot.name}")
+        LOGGER("Bot Start").info(f"Started bot {bot.name}")
 
-        # Replace dengan aksi bot seperti mengirim pesan atau join channel
+        # Contoh penggunaan fungsi FloodWait handling saat mengirim pesan atau bergabung dengan channel
         await send_message_with_floodwait_handling(bot, BOTLOG, "Bot has started successfully.")
         await join_channel_with_floodwait_handling(bot, "@example_channel")
 
     except Exception as e:
-        logger.error(f"Unhandled exception in bot {bot.name}: {e}")
+        LOGGER("Error").error(f"Unhandled exception in bot {bot.name}: {e}")
 
-# Kamu bisa menjalankan handle_bot_actions di tempat di mana kamu memulai bot, tanpa membuat fungsi start_bot baru
+# Main function
+async def main():
+    await ubot.start()
+    LOGGER("LOG").info("Founded Bot token Booting..")
+    
+    # Import modules dengan tqdm untuk progress bar
+    for all_module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
+        importlib.import_module("Ah.plugins" + all_module)
+        LOGGER("Modules").info(f"Successfully Imported {all_module} ")
+
+    # Mulai semua session bot
+    for bot in bots:
+        try:
+            await handle_bot_actions(bot)  # Menggunakan fungsi handle_bot_actions untuk setiap bot
+            ex = await bot.get_me()
+            await join(bot)
+            try:
+                await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
+            except BaseException:
+                pass
+            LOGGER("Bot Info").info(f"Started as {ex.first_name} | {ex.id}")
+            ids.append(ex.id)
+        except Exception as e:
+            LOGGER("Error").error(f"{e}")
+
+    await idle()
+    await aiosession.close()
+
+if __name__ == "__main__":
+    LOGGER("Er Anjing").info("The-Ubot Telah Hidup")
+    install()
+    LOOP.run_until_complete(main())
