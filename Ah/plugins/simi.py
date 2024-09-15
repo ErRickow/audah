@@ -18,7 +18,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
-def send_simtalk(message: str) -> str:
+async def send_simtalk(message: str) -> str:
     if len(message) > 1000:
         logger.warning("Pesan terlalu panjang untuk diproses.")
         return "Character terlalu panjang."
