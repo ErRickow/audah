@@ -10,7 +10,7 @@ from config import *  # Perbaiki import typo
 from Ah.bantuan.adminHelpers import DEVS
 
 # Status chatbot (aktif/non-aktif)
-chatbot_active = False
+chatbot_active = True
 
 # Konfigurasi logging
 logging.basicConfig(
