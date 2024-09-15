@@ -5,8 +5,10 @@ from Ah.bantuan.tools import *
 from config import PREFIX as cmd
 from Ah import *
 
-chatbot_active = True
+# Status chatbot (aktif/tidak aktif)
+chatbot_active = False
 
+# Fungsi untuk mengirim permintaan ke API Simsimi
 def send_simtalk(message: str) -> str:
     if len(message) > 1000:
         return "Character terlalu panjang."
@@ -21,13 +23,14 @@ def send_simtalk(message: str) -> str:
         except Exception as e:
             return f"Error: {str(e)}"
 
+# Handler untuk semua pesan teks
 @Client.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
     # Cek apakah chatbot aktif
     if not chatbot_active:
-        return await message.reply("off chatbotnya")
+        return
 
     # Ambil teks dari pesan
     text = message.text
@@ -41,16 +44,15 @@ async def chatbot_response(client, message: Message):
     # Kirim balasan ke chat
     await message.reply(simtalk_response)
 
-
-@Client.on_message(filters.me & filters.command("kmtl", cmd))
-async def manage_chatbot_status(client: Client, message: Message):
+# Handler untuk mengatur status chatbot melalui pesan
+@Client.on_message(filters.text & filters.me)
+async def manage_chatbot_status(client, message: Message):
     global chatbot_active
-    arg = get_text(message).lower()
+    text = message.text.lower()
 
-    if arg == "off":
+    if text == "koff":
         chatbot_active = False
         await message.reply("Chatbot dinonaktifkan.")
-    elif arg == "on":
+    elif text == "on":
         chatbot_active = True
         await message.reply("Chatbot diaktifkan.")
-        
