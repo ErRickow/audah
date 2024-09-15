@@ -71,8 +71,11 @@ class Ubot(Client):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
             return func
-
         return decorator
+
+    async def start(self):
+        await super().start()
+        logger.info("Bot started")
 
 ubot = Ubot(
     name="sange",
