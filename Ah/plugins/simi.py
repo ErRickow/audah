@@ -9,7 +9,7 @@ from Ah.bantuan.PyroHelpers import ReplyCheck
 from config import *
 
 # Status chatbot (aktif/non-aktif)
-chatbot_active = False
+chatbot_active = True
 
 # Konfigurasi logging
 HNDLR = ["yu off", "xupdate"]
