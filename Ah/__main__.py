@@ -23,7 +23,7 @@ MSG_ON = """
 
 # Tambahkan sesi aiohttp untuk request async
 
-aiosession = ClientSession()
+
 # Fungsi untuk menangani FloodWait saat bot mengirim pesan
 
 async def main():
@@ -46,7 +46,7 @@ async def main():
         except Exception as e:
             print(f"{e}")
     await idle()
-    await aiosession.close()
+    await ClientSession.close()
 
 
 if __name__ == "__main__":
