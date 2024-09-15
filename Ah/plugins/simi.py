@@ -56,8 +56,6 @@ async def chatbot_response(client, message: Message):
 
     text = message.text
     if f"{PREFFIX}cmd" in text:
-        return
-    if not text:
         logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
         return
 
