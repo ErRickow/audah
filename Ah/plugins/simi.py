@@ -56,7 +56,7 @@ async def chatbot_response(client, message: Message):
 
     text = message.text
     if f"{HNDLR}cmd" in text:
-        logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
+#        logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
         return
 
     # Mendapatkan respons dari Simsimi
