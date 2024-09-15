@@ -83,7 +83,7 @@ async def main():
             ids.append(ex.id)
         except Exception as e:
             LOGGER("Error").error(f"{e}")
-    await asyncio.sleep(200)
+    await asyncio.sleep(500)
     await idle()
     await aiosession.close()
 
