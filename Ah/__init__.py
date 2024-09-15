@@ -74,10 +74,6 @@ class Ubot(Client):
 
         return decorator
 
-    async def start(self):
-        await super().start()
-        logger.info("Bot Aktif Anjing")
-
 ubot = Ubot(
     name="sange",
     api_id=API_ID,
@@ -108,7 +104,7 @@ async def send_message_with_floodwait_handling(client, chat_id, message):
         await asyncio.sleep(e.x)
         await send_message_with_floodwait_handling(client, chat_id, message)  # Retry after wait
     except Exception as e:
-        logger.error(f"Error while sending message: {e}")
+        logger.exception(f"Error while sending message: {e}")
 
 # Fungsi untuk join channel/group dengan penanganan FloodWait
 async def join_channel_with_floodwait_handling(client, channel_id):
@@ -119,7 +115,7 @@ async def join_channel_with_floodwait_handling(client, channel_id):
         await asyncio.sleep(e.x)
         await join_channel_with_floodwait_handling(client, channel_id)  # Retry after wait
     except Exception as e:
-        logger.error(f"Error while joining chat: {e}")
+        logger.exception(f"Error while joining chat: {e}")
 
 # Fungsi contoh untuk handle bot
 async def handle_bot_actions(bot):
@@ -133,6 +129,4 @@ async def handle_bot_actions(bot):
         await join_channel_with_floodwait_handling(bot, "@example_channel")
 
     except Exception as e:
-        logger.error(f"Unhandled exception in bot {bot.name}: {e}")
-
-# Kamu bisa menjalankan handle_bot_actions di tempat di mana kamu memulai bot, tanpa membuat fungsi start_bot baru
+        logger.exception(f"Unhandled exception in bot {bot.name}: {e}")
