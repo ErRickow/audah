@@ -6,7 +6,7 @@ from config import PREFIX as cmd
 from Ah import *
 
 # Status chatbot (aktif/tidak aktif)
-chatbot_active = False
+chatbot_active = True
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 def send_simtalk(message: str) -> str:
