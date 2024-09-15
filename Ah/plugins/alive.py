@@ -26,7 +26,7 @@ from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from Ah.bantuan.SQL.globals import gvarstatus
 from Ah.bantuan.tools import convert_to_image
-from Ah.utils import get_readable_time
+from Ah.plugins.bot.inline import get_readable_time
 from Ah.utils.misc import restart
 
 from .help import add_command_help
