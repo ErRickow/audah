@@ -10,24 +10,7 @@ from aiohttp import ClientSession
 from pyrogram import Client
 from pyrogram.errors import FloodWait
 from datetime import datetime
-from config import (
-    API_HASH,
-    API_ID,
-    DB_URL,
-    BOTLOG,
-    STRING_SESSION1,
-    STRING_SESSION2,
-    STRING_SESSION3,
-    STRING_SESSION4,
-    STRING_SESSION5,
-    STRING_SESSION6,
-    STRING_SESSION7,
-    STRING_SESSION8,
-    STRING_SESSION9,
-    STRING_SESSION10,
-    SUDO_USERS,
-    BOT_TOKEN
-)
+from config import *
 
 DATABASE_URL = DB_URL
 CMD_HELP = {}
