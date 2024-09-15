@@ -6,6 +6,7 @@ from Ah.bantuan.tools import get_text
 from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from Ah.bantuan.cmd import *
+from congig import *
 from Ah.bantuan.adminHelpers import DEVS
 
 # Status chatbot (aktif/non-aktif)
