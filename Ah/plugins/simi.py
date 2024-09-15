@@ -1,18 +1,23 @@
 import requests
-import asyncio
 import logging
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from Ah.bantuan.tools import get_text
 from config import PREFIX as cmd
-
 from Ah import *
 
-# Konfigurasi logging
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+# Status chatbot (aktif/non-aktif)
+chatbot_active = False
 
-# Variabel global untuk mengatur status chatbot
-chatbot_active = True
+# Konfigurasi logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(levelname)s] - %(name)s - %(message)s",
+    datefmt="%d-%b-%y %H:%M:%S",
+)
+logger = logging.getLogger(__name__)
+
+# Fungsi untuk mengirim permintaan ke API Simsimi # Jangan lupa impor requests
 
 # Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message: str) -> str:
@@ -35,7 +40,7 @@ async def send_simtalk(message: str) -> str:
 
 # Handler untuk semua pesan teks
 @ubot.on_message(filters.text & ~filters.bot)
-async def chatbot_response(client: Client, message: Message):
+async def chatbot_response(client, message: Message):
     global chatbot_active
 
     # Cek apakah chatbot sedang aktif
@@ -50,23 +55,19 @@ async def chatbot_response(client: Client, message: Message):
 
     # Mendapatkan respons dari Simsimi
     logger.info(f"Mengirim pesan ke Simsimi: {text}")
+    
+    # Menggunakan `await` untuk fungsi asinkron
     simtalk_response = await send_simtalk(text)
 
-    # Meneruskan pesan ke chat yang sama
-    try:
-        # Forward pesan asli ke chat yang sama untuk konfirmasi
-        await client.forward_messages(chat_id=message.chat.id, from_chat_id=message.chat.id, message_ids=message.message_id)
-        # Mengirimkan respons kembali ke pengguna
-        await client.send_message(message.chat.id, simtalk_response)
-        logger.info(f"Respons dari Simsimi: {simtalk_response}")
-    except Exception as e:
-        logger.error(f"Error saat meneruskan pesan dan mengirim balasan ke pengguna: {str(e)}")
+    # Mengirimkan respons kembali ke pengguna
+    await client.send_message(message.chat.id, simtalk_response)
+    logger.info(f"Respons dari Simsimi: {simtalk_response}")
 
 # Handler untuk mengatur status chatbot (on/off)
 @Client.on_message(filters.command("yu", prefixes=cmd) & filters.me)
-async def manage_chatbot_status(client: Client, message: Message):
+async def manage_chatbot_status(client, message: Message):
     global chatbot_active
-    arg = message.text.split(' ', 1)[1] if ' ' in message.text else ''
+    arg = get_text(message)
 
     # Cek jika `arg` None atau bukan string
     if not isinstance(arg, str) or not arg:
