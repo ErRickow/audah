@@ -55,8 +55,9 @@ async def chatbot_response(client, message: Message):
 
 
     text = message.text
-    if "{cmd}yu" in text:
+    if "{cmd}yu" in text or "stop" in text:
         chatbot_active = False
+        return 
 #        logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
    #     return
 
