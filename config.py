@@ -20,6 +20,7 @@ OWNER_ID = getenv("OWNER_ID", "6607703424")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL = getenv("CHANNEL", "Pamerdong")
 PREFFIX = getenv("PREFIX", "x")
+PREFIX = getenv("PREFIX", "1")
 DB_URL = getenv("DATABASE_URL", "sqlite:///tron.db")
 GIT_TOKEN = getenv(
     "GIT_TOKEN",
