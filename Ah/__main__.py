@@ -57,7 +57,7 @@ async def handle_bot_actions(bot):
         await join_channel_with_floodwait_handling(bot, "@example_channel")
 
     except Exception as e:
-        LOGGER("Error").error(f"Unhandled exception in bot {bot.name}: {e}")
+        LOGGER("Error Bangsat").error(f"Unhandled exception in bot {bot.name}: {e}")
 
 # Main function
 async def main():
