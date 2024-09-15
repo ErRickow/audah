@@ -1,4 +1,4 @@
-import aiohttp
+import requests
 import logging
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -14,6 +14,16 @@ chatbot_active = False
 HNDLR = [""]
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(levelname)s] - %(name)s - %(message)s",
+    datefmt="%d-%b-%y %H:%M:%S",
+)
+logger = logging.getLogger(name)
+
+# Fungsi untuk mengirim permintaan ke API Simsimi # Jangan lupa impor requests
+
+# Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message: str) -> str:
     if len(message) > 1000:
         logger.warning("Pesan terlalu panjang untuk diproses.")
@@ -21,17 +31,19 @@ async def send_simtalk(message: str) -> str:
     else:
         params = {"text": message, "lc": "id"}
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.post("https://api.simsimi.vn/v1/simtalk", data=params) as response:
-                    result = await response.json()
-                    logger.info("Berhasil mendapatkan respons dari Simsimi.")
-                    return result.get("message", "Maaf, tidak bisa merespons sekarang.")
+            # Gunakan await untuk menangani operasi asinkron
+            response = await asyncio.to_thread(requests.post, 
+                                               "https://api.simsimi.vn/v1/simtalk",
+                                               data=params)
+            result = response.json()
+            logger.info("Berhasil mendapatkan respons dari Simsimi.")
+            return result.get("message", "Maaf, tidak bisa merespons sekarang.")
         except Exception as e:
             logger.error(f"Error saat mengirim permintaan ke Simsimi API: {str(e)}")
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.command(HNDLR) & filters.text & ~filters.bot & filters.me)
+@Client.on_message(filters.command(HNDLR) & filters.text & filters.me)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
