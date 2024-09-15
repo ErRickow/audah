@@ -6,7 +6,7 @@ from Ah.bantuan.tools import get_text
 from config import PREFIX as cmd
 from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
-from config import PREFFIX as cmd
+from config import prefix as cmd
 from Ah.bantuan.adminHelpers import DEVS
 
 # Status chatbot (aktif/non-aktif)
