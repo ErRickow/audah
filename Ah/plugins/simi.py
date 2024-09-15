@@ -17,8 +17,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Fungsi untuk mengirim permintaan ke API Simsimi
-import requests  # Jangan lupa impor requests
+# Fungsi untuk mengirim permintaan ke API Simsimi # Jangan lupa impor requests
 
 # Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message: str) -> str:
