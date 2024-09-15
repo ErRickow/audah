@@ -11,12 +11,7 @@ from Ah.bantuan.PyroHelpers import ReplyCheck
 chatbot_active = False
 
 # Konfigurasi logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="[%(levelname)s] - %(name)s - %(message)s",
-    datefmt="%d-%b-%y %H:%M:%S",
-)
-logger = logging.getLogger(name)
+
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 async def send_simtalk(message: str) -> str:
