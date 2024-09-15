@@ -27,7 +27,7 @@ async def chatbot_response(client, message: Message):
 
     # Cek apakah chatbot aktif
     if not chatbot_active:
-        return
+        return await message.reply("off chatbotnya")
 
     # Ambil teks dari pesan
     text = message.text
