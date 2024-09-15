@@ -26,34 +26,29 @@ MSG_ON = """
 
 # Fungsi untuk menangani FloodWait saat bot mengirim pesan
 
-# Main function
 async def main():
-    await ubot.start()
-    LOGGER("LOG").info("Founded Bot token Booting..")
-    
-    # Import modules dengan tqdm untuk progress bar
-    for all_module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
-        importlib.import_module("Ah.plugins" + all_module)
-        LOGGER("Modules").info(f"Successfully Imported {all_module} ")
-
-    # Mulai semua session bot
+    await app.start()
+    print("LOG: Founded Bot token Booting..")
+    for all_module in ALL_MODULES:
+        importlib.import_module("PyroKar.modules" + all_module)
+        print(f"Successfully Imported {all_module} ")
     for bot in bots:
         try:
- #           await handle_bot_actions(bot)  # Menggunakan fungsi handle_bot_actions untuk setiap bot
+            await bot.start()
             ex = await bot.get_me()
             await join(bot)
             try:
-                await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
+                await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, CMD_HANDLER))
             except BaseException:
                 pass
-            LOGGER("Bot Info").info(f"Started as {ex.first_name} | {ex.id}")
+            print(f"Started as {ex.first_name} | {ex.id} ")
             ids.append(ex.id)
         except Exception as e:
-            LOGGER("Error").error(f"{e}")
-
-    await asyncio.sleep(100)
+            print(f"{e}")
+            await asyncio.sleep(100)
     await idle()
     await aiosession.close()
+
 
 if __name__ == "__main__":
     LOGGER("Er Anjing").info("The-Ubot Telah Hidup")
