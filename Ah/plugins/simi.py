@@ -61,16 +61,16 @@ async def chatbot_response(client, message: Message):
 
 
 # Handler untuk mengatur status chatbot (on/off)
-@Client.on_message(filters.command("chatbot", prefixes=cmd) & filters.me)
+@Client.on_message(filters.command("kntl", prefixes=cmd) & filters.me)
 async def manage_chatbot_status(client, message: Message):
     global chatbot_active
     arg = get_text(message).lower()
 
-    if arg == "off":
+    if arg == "diem":
         chatbot_active = False
         await message.reply("Chatbot dinonaktifkan.")
         logger.info("Chatbot telah dinonaktifkan oleh pengguna.")
-    elif arg == "on":
+    elif arg == "yu":
         chatbot_active = True
         await message.reply("Chatbot diaktifkan.")
         logger.info("Chatbot telah diaktifkan oleh pengguna.")
