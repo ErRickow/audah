@@ -13,12 +13,11 @@ from pyrogram.types import Message
 
 from Ah.bantuan.adminHelpers import DEVS
 from Ah import *
-from config import PREFFIX as cmd
 
 def check_command(command):
     return shutil.which(command) is not None
 
-@Client.on_message(filters.command(["up", "update"], cmd) & filters.me)
+@Client.on_message(filters.me & filters.command("ping", cmd))
 async def ngapdate(client, message):
     pros = await message.reply(
         f"<b>Memeriksa pembaruan resources {ubot.me.mention}...</b>"
