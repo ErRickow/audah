@@ -14,7 +14,7 @@ from config import (
     API_HASH,
     API_ID,
     DB_URL,
-    BOTLOG_CHATID,
+    BOTLOG,
     STRING_SESSION1,
     STRING_SESSION2,
     STRING_SESSION3,
