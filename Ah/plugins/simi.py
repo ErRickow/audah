@@ -58,7 +58,7 @@ async def chatbot_response(client, message: Message):
     if "{cmd}yu" in text:
         chatbot_active = False
 #        logger.warning("Pesan kosong diterima, tidak ada yang bisa diproses.")
-        return
+   #     return
 
     # Mendapatkan respons dari Simsimi
     logger.info(f"Mengirim pesan ke Simsimi: {text}")
