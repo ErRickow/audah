@@ -62,7 +62,7 @@ async def chatbot_response(client, message: Message):
 
 
 # Handler untuk mengatur status chatbot (on/off)
-@Client.on_message(filters.command("yu", prefixes=cmd) & filters.me)
+@Client.on_message(filters.command("yu", cmd) & filters.me)
 async def manage_chatbot_status(client, message: Message):
     global chatbot_active
     arg = get_text(message)
