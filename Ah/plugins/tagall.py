@@ -12,7 +12,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PREFIX as cmd
-from PyroKar.helpers.tools import get_arg
+from Ah.bantuan.tools import get_arg
 
 from .help import add_command_help
 
