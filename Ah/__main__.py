@@ -27,17 +27,6 @@ MSG_ON = """
 # Fungsi untuk menangani FloodWait saat bot mengirim pesan
 
 # Fungsi untuk menjalankan tindakan bot dengan penanganan FloodWait
-async def handle_bot_actions(bot):
-    try:
-        await bot.start()
-        LOGGER("Bot Start").info(f"Started bot {bot.name}")
-
-        # Contoh penggunaan fungsi FloodWait handling saat mengirim pesan atau bergabung dengan channel
-        await send_message_with_floodwait_handling(bot, BOTLOG, "Bot has started successfully.")
-        await join_channel_with_floodwait_handling(bot, "@example_channel")
-
-    except Exception as e:
-        LOGGER("Error").error(f"Unhandled exception in bot {bot.name}: {e}")
 
 # Main function
 async def main():
