@@ -114,7 +114,7 @@ bots = [
 ]
 
 # Fungsi untuk mengirim pesan dengan penanganan FloodWait
-async def send_message_with_floodwait_handling(Client, chat_id, message):
+async def send_message_with_floodwait_handling(client, chat_id, message):  # 'client' should be lowercase here
     try:
         await client.send_message(chat_id, message)
     except FloodWait as e:
