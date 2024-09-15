@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import logging
 from pyrogram import Client, filters
 from pyrogram.types import Message
@@ -11,7 +11,7 @@ from Ah.bantuan.PyroHelpers import ReplyCheck
 chatbot_active = False
 
 # Konfigurasi logging
-HNDLR = [""]
+HNDLR = ["start", ""]
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
 async def send_simtalk(message: str) -> str:
@@ -21,16 +21,14 @@ async def send_simtalk(message: str) -> str:
     else:
         params = {"text": message, "lc": "id"}
         try:
-            response = requests.post(
-                "https://api.simsimi.vn/v1/simtalk",
-                data=params
-            ).json()
-            logger.info("Berhasil mendapatkan respons dari Simsimi.")
-            return response.get("message", "Maaf, tidak bisa merespons sekarang.")
+            async with aiohttp.ClientSession() as session:
+                async with session.post("https://api.simsimi.vn/v1/simtalk", data=params) as response:
+                    result = await response.json()
+                    logger.info("Berhasil mendapatkan respons dari Simsimi.")
+                    return result.get("message", "Maaf, tidak bisa merespons sekarang.")
         except Exception as e:
             logger.error(f"Error saat mengirim permintaan ke Simsimi API: {str(e)}")
             return f"Error: {str(e)}"
-
 
 # Handler untuk semua pesan teks
 @Client.on_message(filters.command(HNDLR) & filters.text & ~filters.bot)
@@ -49,10 +47,10 @@ async def chatbot_response(client, message: Message):
 
     # Mendapatkan respons dari Simsimi
     logger.info(f"Mengirim pesan ke Simsimi: {text}")
-    simtalk_response = send_simtalk(text)
+    simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
-    await message.reply(message.chat.id, simtalk_response, reply_to_message_id=ReplyCheck(message))
+    await message.reply(simtalk_response, reply_to_message_id=ReplyCheck(message))
     logger.info(f"Respons dari Simsimi: {simtalk_response}")
 
 
