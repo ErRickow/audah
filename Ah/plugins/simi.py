@@ -60,7 +60,7 @@ async def chatbot_response(client, message):
     if "kemana lu" in text or "woi" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
-        await message.reply("hah?.")
+        await message.reply("hah?")
         return
 
     # Periksa perintah "up" untuk melakukan update userbot
