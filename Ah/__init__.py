@@ -5,6 +5,7 @@ import sys
 import time
 import datetime
 from logging.handlers import RotatingFileHandler
+from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from aiohttp import ClientSession
 from pyrogram import Client
 from pyrogram.errors import FloodWait
