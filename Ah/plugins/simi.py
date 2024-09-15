@@ -122,7 +122,7 @@ async def chatbot_response(client, message):
     simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
-    await message.reply(f"<blockquote>{simtalk_response}</blockquote>")
+    await message.reply(f"<blockquote>r.{client.me.mention}\n\n{simtalk_response}</blockquote>")
     logger.info(f"Respons dari Simsimi: {simtalk_response}")
 
 
