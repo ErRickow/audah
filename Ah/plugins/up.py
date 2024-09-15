@@ -17,7 +17,7 @@ from Ah import *
 def check_command(command):
     return shutil.which(command) is not None
 
-@Client.on_message(filters.me & filters.command("ping", cmd))
+@Client.on_message(filters.me & filters.command("up", cmd))
 async def ngapdate(client, message):
     pros = await message.reply(
         f"<b>Memeriksa pembaruan resources {ubot.me.mention}...</b>"
