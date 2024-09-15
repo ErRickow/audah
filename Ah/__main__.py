@@ -2,7 +2,7 @@ from uvloop import install
 import asyncio
 import importlib
 import logging
-from aiohttp import ClientSession
+from aiohttp import ClientSession as aiosession
 from tqdm import tqdm
 from pyrogram import *
 from pyrogram.errors import FloodWait
@@ -46,7 +46,7 @@ async def main():
         except Exception as e:
             print(f"{e}")
     await idle()
-    await ClientSession.close()
+    await aiosession.close()
 
 
 if __name__ == "__main__":
