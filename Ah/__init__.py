@@ -6,7 +6,6 @@ import time
 import datetime
 from logging.handlers import RotatingFileHandler
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
-from aiohttp import ClientSession
 from pyrogram import Client
 from pyrogram.errors import FloodWait
 from datetime import datetime
@@ -98,25 +97,3 @@ bots = [
 ]
 
 # Fungsi untuk mengirim pesan dengan penanganan FloodWait
-async def send_message_with_floodwait_handling(client, chat_id, message):
-    try:
-        await client.send_message(chat_id, message)
-    except FloodWait as e:
-        logger.warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
-        await asyncio.sleep(e.x)
-        await send_message_with_floodwait_handling(client, chat_id, message)  # Retry after wait
-    except Exception as e:
-        logger.error(f"Error while sending message: {e}")
-
-# Fungsi untuk join channel/group dengan penanganan FloodWait
-async def join_channel_with_floodwait_handling(client, channel_id):
-    try:
-        await client.join_chat(channel_id)
-    except FloodWait as e:
-        logger.warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
-        await asyncio.sleep(e.x)
-        await join_channel_with_floodwait_handling(client, channel_id)  # Retry after wait
-    except Exception as e:
-        logger.error(f"Error while joining chat: {e}")
-
-# Fungsi contoh untuk handle bot
