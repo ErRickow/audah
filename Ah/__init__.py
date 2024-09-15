@@ -93,7 +93,8 @@ bots = [
         session_string=globals().get(f"STRING_SESSION{i+1}"),
         plugins=dict(root="Ah/plugins"),
     )
-    for i in range(10) if globals().get(f"STRING_SESSION{i+1}")
+    for i in range(10)
+    if globals().get(f"STRING_SESSION{i+1}")
 ]
 
 # Fungsi untuk mengirim pesan dengan penanganan FloodWait
