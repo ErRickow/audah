@@ -26,7 +26,7 @@ async def mentionall(client: Client, message: Message):
     direp = message.reply_to_message
     args = get_arg(message)
     if not direp and not args:
-        return await message.edit("**Berikan saya pesan atau balas ke pesan!**")
+        return await message.reply("**Berikan saya pesan atau balas ke pesan!**")
 
     spam_chats.append(chat_id)
     usrnum = 0
