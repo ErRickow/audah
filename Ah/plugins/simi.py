@@ -5,6 +5,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from config import PREFIX as cmd
 
+from Ah import *
+
 # Konfigurasi logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
