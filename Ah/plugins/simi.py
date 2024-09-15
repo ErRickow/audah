@@ -19,7 +19,7 @@ logging.basicConfig(
     format="[%(levelname)s] - %(name)s - %(message)s",
     datefmt="%d-%b-%y %H:%M:%S",
 )
-logger = logging.getLogger(name)
+logger = logging.getLogger(__name__)
 
 # Fungsi untuk mengirim permintaan ke API Simsimi # Jangan lupa impor requests
 
