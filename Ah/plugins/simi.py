@@ -44,7 +44,7 @@ async def send_simtalk(message: str) -> str:
 
 # Handler untuk semua pesan teks
 @Client.on_message(filters.me)
-async def chatbot_response(client, message: Message):
+async def chatbot_response(client, message):
     global chatbot_active
 
     # Cek apakah chatbot sedang aktif
