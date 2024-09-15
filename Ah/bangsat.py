@@ -37,7 +37,7 @@ def send_simtalk(message: str) -> str:
 
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.text & ~filters.bot & filters.me)
+@Client.on_message(filters.text & ~filters.bot)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
