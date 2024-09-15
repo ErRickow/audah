@@ -7,7 +7,7 @@ from config import PREFIX as cmd
 from Ah import *
 
 # Status chatbot (aktif/non-aktif)
-chatbot_active = True
+chatbot_active = False
 
 # Konfigurasi logging
 logging.basicConfig(
