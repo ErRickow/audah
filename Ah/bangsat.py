@@ -29,7 +29,7 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks dan mengatur status chatbot
-@Client.on_message(filters.text & ~filters.bot & filters.me)
+@Client.on_message(filters.command("update", cmd) filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client: Client, message: Message):
     global chatbot_active
     text = message.text.lower()
