@@ -60,7 +60,7 @@ async def cancel_spam(client: Client, message: Message):
             spam_chats.remove(message.chat.id)
         except:
             pass
-        return await message.reply("**oke kancel.**")
+        return await message.reply("**✅ oke kancel.**")
 
 
 add_command_help(
