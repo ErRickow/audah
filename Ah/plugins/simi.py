@@ -66,7 +66,7 @@ async def chatbot_response(client, message):
     # Periksa perintah "up" untuk melakukan update userbot
     if "update" in text:
         logger.info("Memulai proses update userbot.")
-        await message.reply("Memulai proses update userbot...")
+        await message.reply("wokey bentar ku update in ,,ttetetete")
 
         # Lakukan tindakan update di sini (misalnya, menjalankan skrip pembaruan)
         # Contoh update userbot dengan os.system (sesuaikan dengan cara update bot Anda)
