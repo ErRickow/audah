@@ -5,7 +5,7 @@ from Ah.bantuan.tools import *
 from config import PREFIX as cmd
 from Ah import *
 
-chatbot_active = True
+chatbot_active = False
 
 def send_simtalk(message: str) -> str:
     if len(message) > 1000:
@@ -36,7 +36,7 @@ async def chatbot_response(client, message: Message):
     await message.reply(simtalk_response)
 
 
-@Client.on_message(filters.command("chatbot") & filters.me)
+@Client.on_message(filters.command("chatbot", cmd) & filters.me)
 async def manage_chatbot_status(client, message: Message):
     global chatbot_active
     arg = get_text(message).lower()
