@@ -45,7 +45,7 @@ async def chatbot_response(client, message: Message):
     await message.reply(simtalk_response)
 
 # Handler untuk mengatur status chatbot melalui pesan
-@Client.on_message(filters.text & filters.me)
+@Client.on_message(filters.text)
 async def manage_chatbot_status(client, message: Message):
     global chatbot_active
     text = message.text.lower()
