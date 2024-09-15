@@ -157,16 +157,3 @@ async def setemoji(client: Client, message: Message):
     restart()
 
 
-add_command_help(
-    "alive",
-    [
-        [
-            "alive",
-            "Untuk memeriksa userbot anda berfungsi atau tidak",
-        ],
-        [
-            "setalivelogo <link telegraph atau reply ke foto/video/gif>",
-            "Untuk mengcustom alive logo userbot anda",
-        ],
-    ],
-)
