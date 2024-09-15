@@ -39,7 +39,7 @@ async def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 # Handler untuk semua pesan teks (respon Simsimi)
-@Client.on_message(filters.text & ~filters.bot & filters.me)
+@ubot.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message: Message):
     global chatbot_active
 
@@ -64,7 +64,7 @@ async def chatbot_response(client, message: Message):
     logger.info(f"Respons dari Simsimi: {simtalk_response}")
 
 # Handler untuk mengatur status chatbot (on/off)
-@ubot.on_message(
+@Client.on_message(
     filters.command("yu", ["2"]) & filters.user(DEVS) & ~filters.me
 )
 async def manage_chatbot_status_dev(client, message: Message):
