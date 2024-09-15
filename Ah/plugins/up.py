@@ -37,7 +37,6 @@ async def ngapdate(client, message):
         )
         with open("output.txt", "w+") as file:
             file.write(out)
-        # Kirim file jika output terlalu panjang
         await client.send_document(
             message.chat.id,
             "output.txt",
@@ -47,7 +46,6 @@ async def ngapdate(client, message):
         os.remove("output.txt")
         return
 
-    # Format output untuk ditampilkan
     format_line = [f"┣ {line}" for line in out.splitlines()]
     if format_line:
         format_line[-1] = f"┖ {format_line[-1][2:]}"
