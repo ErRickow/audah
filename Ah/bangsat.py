@@ -34,15 +34,3 @@ async def manage_chatbot_status(client, message: Message):
         chatbot_active = True
         await message.reply("Chatbot diaktifkan.")
         
-@Client.on_message(filters.text & ~filters.bot & filters.me)
-async def chatbot_response(client, message: Message):
-    global chatbot_active
-
-    if not chatbot_active:
-        return
-    text = message.text
-
-    if not text:
-        return
-    simtalk_response = send_simtalk(text)
-    await message.reply(simtalk_response)
