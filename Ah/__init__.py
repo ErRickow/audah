@@ -6,6 +6,7 @@ import time
 from logging.handlers import RotatingFileHandler
 from aiohttp import ClientSession
 from pyrogram import Client
+from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from pyrogram.errors import FloodWait
 from datetime import datetime
 from config import *
