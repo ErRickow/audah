@@ -1,14 +1,12 @@
 # Created By HakutakaID # TELEGRAM t.me/hakutakaid
 import logging
-import time
-import sys
 import asyncio
+import sys
 from logging.handlers import RotatingFileHandler
 from aiohttp import ClientSession
-from datetime import datetime
 from pyrogram import Client
-from pyrogram import filters as indri
-from pyrogram.handlers import CallbackQueryHandler, MessageHandler
+from pyrogram.errors import FloodWait
+from datetime import datetime
 from config import *
 
 DATABASE_URL = DB_URL
@@ -61,7 +59,6 @@ else:
    BOTLOG = "me"
 
 START_TIME = datetime.now()
-
 StartTime = time.time()
 
 class Ubot(Client):
@@ -88,6 +85,7 @@ ubot = Ubot(
     in_memory=True,
 )
 
+# Membuat daftar bots berdasarkan session string
 bots = [
     Client(
         name=f"bot{i+1}",
@@ -98,3 +96,41 @@ bots = [
     )
     for i in range(10) if globals().get(f"STRING_SESSION{i+1}")
 ]
+
+# Fungsi untuk mengirim pesan dengan penanganan FloodWait
+async def send_message_with_floodwait_handling(client, chat_id, message):
+    try:
+        await client.send_message(chat_id, message)
+    except FloodWait as e:
+        logger.warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
+        await asyncio.sleep(e.x)
+        await send_message_with_floodwait_handling(client, chat_id, message)  # Retry after wait
+    except Exception as e:
+        logger.error(f"Error while sending message: {e}")
+
+# Fungsi untuk join channel/group dengan penanganan FloodWait
+async def join_channel_with_floodwait_handling(client, channel_id):
+    try:
+        await client.join_chat(channel_id)
+    except FloodWait as e:
+        logger.warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
+        await asyncio.sleep(e.x)
+        await join_channel_with_floodwait_handling(client, channel_id)  # Retry after wait
+    except Exception as e:
+        logger.error(f"Error while joining chat: {e}")
+
+# Fungsi contoh untuk handle bot
+async def handle_bot_actions(bot):
+    # Menangani bot action dengan penanganan FloodWait dan logging error
+    try:
+        await bot.start()
+        logger.info(f"Started bot {bot.name}")
+
+        # Replace dengan aksi bot seperti mengirim pesan atau join channel
+        await send_message_with_floodwait_handling(bot, BOTLOG, "Bot has started successfully.")
+        await join_channel_with_floodwait_handling(bot, "@example_channel")
+
+    except Exception as e:
+        logger.error(f"Unhandled exception in bot {bot.name}: {e}")
+
+# Kamu bisa menjalankan handle_bot_actions di tempat di mana kamu memulai bot, tanpa membuat fungsi start_bot baru
