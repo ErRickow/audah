@@ -6,6 +6,7 @@ from Ah.bantuan.tools import get_text
 from config import PREFIX as cmd
 from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
+from config import *
 
 # Status chatbot (aktif/non-aktif)
 chatbot_active = True
