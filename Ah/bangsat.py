@@ -22,6 +22,18 @@ def send_simtalk(message: str) -> str:
             return f"Error: {str(e)}"
 
 
+@Client.on_message(filters.me & filters.command("chatbot", cmd))
+async def manage_chatbot_status(client, message: Message):
+    global chatbot_active
+    arg = get_text(message).lower()
+
+    if arg == "off":
+        chatbot_active = False
+        await message.reply("Chatbot dinonaktifkan.")
+    elif arg == "on":
+        chatbot_active = True
+        await message.reply("Chatbot diaktifkan.")
+        
 @Client.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message: Message):
     global chatbot_active
@@ -34,16 +46,3 @@ async def chatbot_response(client, message: Message):
         return
     simtalk_response = send_simtalk(text)
     await message.reply(simtalk_response)
-
-
-@Client.on_message(filters.me & filters.command("chatbot", cmd))
-async def manage_chatbot_status(client, message: Message):
-    global chatbot_active
-    arg = get_text(message).lower()
-
-    if arg == "off":
-        chatbot_active = False
-        await message.reply("Chatbot dinonaktifkan.")
-    elif arg == "on":
-        chatbot_active = True
-        await message.reply("Chatbot diaktifkan.")
