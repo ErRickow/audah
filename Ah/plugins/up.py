@@ -23,8 +23,6 @@ async def ngapdate(client, message):
     
     # Melakukan pull dari repository git
     out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
-    
-    # Mendapatkan commit terakhir
     last_commit = subprocess.check_output(["git", "log", "-1", "--pretty=format:%h %s"]).decode("UTF-8").strip()
     
     teks = f"<b>❒ Status resources: {ubot.me.mention}</b>\n"
