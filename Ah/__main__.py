@@ -82,7 +82,6 @@ async def main():
                 pass
             LOGGER("Bot Info").info(f"Started as {ex.first_name} | {ex.id}")
             ids.append(ex.id)
-            await asyncio.sleep(100)
         except Exception as e:
             LOGGER("Error").error(f"{e}")
 
