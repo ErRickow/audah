@@ -50,14 +50,14 @@ async def chatbot_response(client, message):
     text = message.text
 
     # Periksa perintah "yu off" atau "stop" untuk mematikan chatbot
-    if "yu off" in text or "stop" in text:
+    if "cukup" in text or "diem" in text:
         chatbot_active = False
         logger.info("Chatbot telah dinonaktifkan.")
         await message.reply("oke sayang.")
         return
 
     # Periksa perintah "yu on" untuk mengaktifkan chatbot
-    if "yu on" in text:
+    if "kemana lu" in text or "stop" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
         await message.reply("hah?.")
