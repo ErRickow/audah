@@ -147,7 +147,7 @@ async def setemoji(client: Client, message: Message):
         != 1
         else None
     )
-    Man = await message.reply(message, "`Processing...`")
+    Man = await message.reply(message, f"`{emo.load} Processing...`")
     if not emoji:
         return await edit_or_reply(message, "**Berikan Sebuah Emoji**")
     sql.addgvar("ALIVE_EMOJI", emoji)
