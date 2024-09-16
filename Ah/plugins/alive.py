@@ -122,7 +122,7 @@ async def setalivetext(client: Client, message: Message):
     )
     if message.reply_to_message:
         text = message.reply_to_message.text or message.reply_to_message.caption
-    Man = await message.reply(message, "`Processing...`")
+    Man = await message.reply(message, f"`{emo.load} Processing...`")
     if not text:
         return await edit_or_reply(
             message, "**Berikan Sebuah Text atau Reply ke text**"
