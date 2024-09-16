@@ -132,4 +132,4 @@ async def chatbot_response(client, message):
     simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
-    await message.reply(f"<blockquote>❏ AutoAi</blockquote>\n├• {client.me.mention} fixed\n<pre>└• {simtalk_response}</pre>")
+    await message.reply(f"<blockquote>❏ AutoAi</blockquote>\n├• {client.me.mention} fixed by {bang}\n<pre>└• {simtalk_response}</pre>")
