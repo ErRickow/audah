@@ -75,7 +75,7 @@ async def setalivelogo(client: Client, message: Message):
     except AttributeError:
         await message.reply("**Running on Non-SQL mode!**")
         return
-    Man = await message.reply(message, "<i>{emo.load} Processing...<i>")
+    Man = await message.reply(message, f"<i>{emo.load} Processing...<i>")
     link = (
         message.text.split(None, 1)[1]
         if len(
