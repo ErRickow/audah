@@ -137,7 +137,7 @@ async def setemoji(client: Client, message: Message):
     try:
         import Ah.bantuan.SQL.globals as sql
     except AttributeError:
-        await message.edit("**Running on Non-SQL mode!**")
+        await message.reply("**Running on Non-SQL mode!**")
         return
     emoji = (
         message.text.split(None, 1)[1]
