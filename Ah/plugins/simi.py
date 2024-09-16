@@ -74,7 +74,7 @@ async def chatbot_response(client, message):
         return
 
     # Periksa perintah "update" untuk melakukan update userbot
-    if "update" in text:
+    if "update" in text or "up" in text:
         logger.info("Memulai proses update userbot.")
         try:
             pros = await message.reply(
