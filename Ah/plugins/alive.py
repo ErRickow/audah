@@ -99,7 +99,7 @@ async def setalivelogo(client: Client, message: Message):
         os.remove(m_d)
     sql.addgvar("ALIVE_LOGO", link)
     await Man.edit(
-        f"**Berhasil Mengcustom ALIVE LOGO Menjadi {link}**",
+        f"{emo.benar} **Berhasil Mengcustom ALIVE LOGO Menjadi {link}**",
         disable_web_page_preview=True,
     )
     restart()
