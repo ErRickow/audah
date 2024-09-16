@@ -38,7 +38,7 @@ modules = CMD_HELP
 
 @Client.on_message(filters.command(["speed", "speedtest"], cmd) & filters.me)
 async def speed_test(client: Client, message: Message):
-    new_msg = await message.reply(message, "`Running speed test . . .`")
+    new_msg = await message.reply(f"{emo.load} `Running speed test . . .`")
     spd = speedtest.Speedtest()
 
     new_msg = await message.edit(
