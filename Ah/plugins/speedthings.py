@@ -46,7 +46,7 @@ async def speed_test(client: Client, message: Message):
     )
     spd.get_best_server()
 
-    new_msg = await message.edit(f"`{new_msg.text}`\n" "`Testing download speed . . .`")
+    new_msg = await message.reply(f"`{new_msg.text}`\n" "`Testing download speed . . .`")
     spd.download()
 
     new_msg = await message.edit(f"`{new_msg.text}`\n" "`Testing upload speed . . .`")
