@@ -132,30 +132,3 @@ async def chatbot_response(client, message):
 
     # Mengirimkan respons kembali ke pengguna
     await message.reply(f"<blockquote>AutoAi {client.me.mention}</blockquote>\n\n<pre>{simtalk_response}</pre>")
-
-
-# Handler untuk mengatur status chatbot (on/off)
-@Client.on_message(filters.me & filters.command("yu", cmd))
-async def manage_chatbot_status(client, message: Message):
-    global chatbot_active
-    arg = get_text(message)
-
-    # Cek jika arg None atau bukan string
-    if not isinstance(arg, str) or not arg:
-        await message.reply("Format perintah tidak valid. Gunakan chatbot on atau chatbot off.")
-        logger.warning("Argumen tidak valid atau None diterima.")
-        return
-
-    arg = arg.lower()
-
-    if arg == "off":
-        chatbot_active = False
-        await message.reply("Chatbot dinonaktifkan.")
-        logger.info("Chatbot telah dinonaktifkan oleh pengguna.")
-    elif arg == "on":
-        chatbot_active = True
-        await message.reply("Chatbot diaktifkan.")
-        logger.info("Chatbot telah diaktifkan oleh pengguna.")
-    else:
-        await message.reply("Gunakan perintah: chatbot on atau chatbot off.")
-        logger.warning(f"Perintah tidak valid: {arg}")
