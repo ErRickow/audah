@@ -3,6 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InputMediaPhoto, Message
 import io
 from Ah import *
+from .help import add_command_help
 
 async def ambil_ppcp(message: Message):
     url = "https://widipe.com/ppcp"
@@ -42,3 +43,9 @@ async def ambil_ppcp(message: Message):
 @Client.on_message(filters.command("ppcp", cmd) & filters.me)
 async def handle_ppcp(client: Client, message: Message):
     await ambil_ppcp(message)  # Panggil dengan objek message yang benar
+add_command_help(
+    "ping",
+    [
+        ["ping", "Untuk melihat respon bot."]
+    ],
+)
