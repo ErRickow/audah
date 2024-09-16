@@ -19,7 +19,6 @@ from pyrogram.types import Message
 from telegraph import exceptions, upload_file
 
 from config import BOT_VER, CHANNEL
-from config import PREFIX as cmd
 from config import GROUP
 from Ah import CMD_HELP, StartTime
 from Ah.bantuan.basic import edit_or_reply
