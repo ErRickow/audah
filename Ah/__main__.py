@@ -22,36 +22,27 @@ MSG_ON = """
 
 
 # Fungsi untuk menjalankan tindakan bot
-async def handle_bot_actions(bot):
-    try:
-        await bot.start()
-        LOGGER.info(f"Started bot {bot.name}")
-        await bot.send_message(BOTLOG, "Bot has started successfully.")
-        await join(bot)
-        ex = await bot.get_me()
-        await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
-        LOGGER.info(f"Started as {ex.first_name} | {ex.id}")
-        ids.append(ex.id)
-    except Exception as e:
-        LOGGER.error(f"Error in bot {bot.name}: {e}")
-
-# Main function
 async def main():
     await ubot.start()
-    LOGGER.info("Founded Bot token Booting..")
-
-    # Import modules dengan tqdm untuk progress bar
-    for all_module in tqdm(ALL_MODULES, desc="Loading modules", unit="module"):
+    print("LOG: Founded Bot token Booting..")
+    for all_module in ALL_MODULES:
+        importlib.import_module("Ah.plugins" + all_module)
+        print(f"Successfully Imported {all_module} ")
+    for bot in bots:
         try:
-            importlib.import_module("Ah.plugins." + all_module)
-            LOGGER.info(f"Successfully imported {all_module}")
+            await bot.start()
+            ex = await bot.get_me()
+            await join(bot)
+            try:
+                await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, CMD_HANDLER))
+            except BaseException:
+                pass
+            print(f"Started as {ex.first_name} | {ex.id} ")
+            ids.append(ex.id)
         except Exception as e:
-            LOGGER.error(f"Failed to import {all_module}: {e}")
-
-    # Mulai semua session bot
-
+            print(f"{e}")
+    await asyncio.sleep(100)
     await idle()
-    await asyncio.sleep(500)
     await aiosession.close()
 
 
