@@ -74,7 +74,7 @@ async def chatbot_response(client, message):
         return
 
     # Periksa perintah "update" untuk melakukan update userbot
-    if "update" in text or "up" in text:
+    if "update" in text:
         logger.info("Memulai proses update userbot.")
         try:
             pros = await message.reply(
@@ -131,4 +131,4 @@ async def chatbot_response(client, message):
     simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
-    await message.reply(f"<blockquote>❏ AutoAi</blockquote>\n├• {client.me.mention}\n<pre>└• {simtalk_response}</pre>")
+    await message.reply(f"<blockquote>❏ AutoAi</blockquote>\n├• {client.me.mention} fixed\n<pre>└• {simtalk_response}</pre>")
