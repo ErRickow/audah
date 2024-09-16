@@ -18,7 +18,7 @@ from git.exc import InvalidGitRepositoryError
 
 
 # Status chatbot (aktif/non-aktif)
-chatbot_active = True
+chatbot_active = False
 
 # Konfigurasi logging
 HNDLR = ["yu off", "xupdate"]
