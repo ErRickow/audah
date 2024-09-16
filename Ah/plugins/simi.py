@@ -16,8 +16,7 @@ import subprocess
 from git import Repo
 from git.exc import InvalidGitRepositoryError
 
-gw = Client.get_me()
-bang = gw.mention_user("CibeeKu")
+
 # Status chatbot (aktif/non-aktif)
 chatbot_active = False
 
@@ -132,4 +131,6 @@ async def chatbot_response(client, message):
     simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
+    gw = Client.get_me()
+    bang = gw.mention_user("CibeeKu")
     await message.reply(f"<blockquote>❏ AutoAi\n├• {client.me.mention} fixed by {bang}</blockquote>\n<pre>└• {simtalk_response}</pre>")
