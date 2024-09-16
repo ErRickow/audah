@@ -39,7 +39,7 @@ alive_text = gvarstatus("ALIVE_TEKS_CUSTOM") or "💢𝘗𝘙𝘌𝘔𝘐𝘜�
 
 @Client.on_message(filters.command(["alive", "awake"], cmd) & filters.me)
 async def alive(client: Client, message: Message):
-    xx = await message.reply(message, "👑")
+    xx = await message.reply("👑")
     await asyncio.sleep(2)
     send = client.send_video if alive_logo.endswith(".mp4") else client.send_photo
     uptime = await get_readable_time((time.time() - StartTime))
@@ -75,7 +75,7 @@ async def setalivelogo(client: Client, message: Message):
     except AttributeError:
         await message.reply("**Running on Non-SQL mode!**")
         return
-    Man = await message.reply(message, f"<i>{emo.load} Processing...<i>")
+    Man = await message.reply(f"<i>{emo.load} Processing...<i>")
     link = (
         message.text.split(None, 1)[1]
         if len(
@@ -122,7 +122,7 @@ async def setalivetext(client: Client, message: Message):
     )
     if message.reply_to_message:
         text = message.reply_to_message.text or message.reply_to_message.caption
-    Man = await message.reply(message, f"`{emo.load} Processing...`")
+    Man = await message.reply(f"`{emo.load} Processing...`")
     if not text:
         return await edit_or_reply(
             message, "**Berikan Sebuah Text atau Reply ke text**"
@@ -147,9 +147,9 @@ async def setemoji(client: Client, message: Message):
         != 1
         else None
     )
-    Man = await message.reply(message, f"`{emo.load} Processing...`")
+    Man = await message.reply(f"`{emo.load} Processing...`")
     if not emoji:
-        return await message.reply(message, "**Berikan Sebuah Emoji**")
+        return await message.reply("**Berikan Sebuah Emoji**")
     sql.addgvar("ALIVE_EMOJI", emoji)
     await Man.edit(f"**Berhasil Mengcustom EMOJI ALIVE Menjadi** {emoji}")
     restart()
