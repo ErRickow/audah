@@ -124,8 +124,7 @@ async def setalivetext(client: Client, message: Message):
         text = message.reply_to_message.text or message.reply_to_message.caption
     Man = await message.reply(f"`{emo.load} Processing...`")
     if not text:
-        return await edit_or_reply(
-            message, "**Berikan Sebuah Text atau Reply ke text**"
+        return await Man.edit("**Berikan Sebuah Text atau Reply ke text**"
         )
     sql.addgvar("ALIVE_TEKS_CUSTOM", text)
     await Man.edit(f"{emo.benar} **Berhasil Mengcustom ALIVE TEXT Menjadi** `{text}`")
@@ -149,7 +148,7 @@ async def setemoji(client: Client, message: Message):
     )
     Man = await message.reply(f"`{emo.load} Processing...`")
     if not emoji:
-        return await message.reply("**Berikan Sebuah Emoji**")
+        return await Man.edit("**Berikan Sebuah Emoji**")
     sql.addgvar("ALIVE_EMOJI", emoji)
     await Man.edit(f"**Berhasil Mengcustom EMOJI ALIVE Menjadi** {emoji}")
     restart()
