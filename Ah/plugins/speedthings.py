@@ -26,7 +26,7 @@ from config import BOT_VER, BRANCH as brch
 from Ah import CMD_HELP, StartTime
 from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.constants import WWW
-from Ah import ubot 
+from Ah import ubot, emo
 from Ah.bantuan.PyroHelpers import SpeedConvert
 from Ah.utils.tools import get_readable_time
 from Ah.plugins.bot.inline import get_readable_time
@@ -38,7 +38,7 @@ modules = CMD_HELP
 
 @Client.on_message(filters.command(["speed", "speedtest"], cmd) & filters.me)
 async def speed_test(client: Client, message: Message):
-    new_msg = await edit_or_reply(message, "`Running speed test . . .`")
+    new_msg = await message.reply(message, "`Running speed test . . .`")
     spd = speedtest.Speedtest()
 
     new_msg = await message.edit(
