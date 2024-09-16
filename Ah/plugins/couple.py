@@ -32,13 +32,6 @@ async def ambil_ppcp(message):
             ]
             
             await message.reply_media_group(media)
-        else:
-            await message.reply("Gambar tidak ditemukan.")
-    
-    except requests.exceptions.RequestException as e:
-        await message.reply(f"Terjadi kesalahan saat mengambil gambar: {e}")
-    except Exception as e:
-        await message.reply(f"Kesalahan: {e}")
 
 @Client.on_message(filters.command("ppcp", cmd) & filters.me)
 async def handle_ppcp(client: Client, message: Message):
