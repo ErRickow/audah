@@ -40,6 +40,6 @@ async def ambil_ppcp(message):
     except Exception as e:
         await message.reply(f"Kesalahan: {e}")
 
-@Client.on_message(filters.command("ppcp") & filters.me)
+@Client.on_message(filters.command("ppcp", cmd) & filters.me)
 async def handle_ppcp(client: Client, message: Message):
     await ambil_ppcp(f"<blockquote>{message}</blockquote>")
