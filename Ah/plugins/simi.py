@@ -132,5 +132,5 @@ async def chatbot_response(client, message):
 
     # Mengirimkan respons kembali ke pengguna
     bang = "CibeeKu"
-    user_id = 7399365105  # Gantilah dengan ID yang valid
+    user_id = @CibeeKu  # Gantilah dengan ID yang valid
     await message.reply(f"<blockquote>❏ AutoAi\n├• {client.me.mention} fixed by [{bang}](tg://user?id={user_id})\n└• {simtalk_response}</blockquote>")
