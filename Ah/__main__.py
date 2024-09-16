@@ -49,8 +49,6 @@ async def main():
             LOGGER.error(f"Failed to import {all_module}: {e}")
 
     # Mulai semua session bot
-    for bot in bots:
-        await handle_bot_actions(bot)  
 
     await idle()
     await asyncio.sleep(500)
