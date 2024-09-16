@@ -3,6 +3,8 @@ from pyrogram import Client, filters
 from pyrogram.types import InputMediaPhoto, Message
 import io
 
+from Ah import *
+
 async def ambil_ppcp(message: Message):
     url = "https://widipe.com/ppcp"
     headers = {'accept': 'application/json'}
