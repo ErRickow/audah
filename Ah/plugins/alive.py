@@ -39,7 +39,7 @@ alive_text = gvarstatus("ALIVE_TEKS_CUSTOM") or "💢𝘗𝘙𝘌𝘔𝘐𝘜�
 
 @Client.on_message(filters.command(["alive", "awake"], cmd) & filters.me)
 async def alive(client: Client, message: Message):
-    xx = await edit_or_reply(message, "👑")
+    xx = await message.reply(message, "👑")
     await asyncio.sleep(2)
     send = client.send_video if alive_logo.endswith(".mp4") else client.send_photo
     uptime = await get_readable_time((time.time() - StartTime))
