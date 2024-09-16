@@ -58,6 +58,6 @@ async def main():
 
 
 if __name__ == "__main__":
-    LOGGER.info("The-Ubot Telah Hidup")
+    LOGGER("Er Anjing").info("The-Ubot Telah Idup")
     install()
     LOOP.run_until_complete(main()) 
