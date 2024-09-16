@@ -1,3 +1,5 @@
+# Helpers with Randy devs a.k.a xtedev
+# ©Er a.k.a @Chakszzz 
 import requests
 import logging
 from pyrogram import *
