@@ -27,6 +27,7 @@ from Ah.bantuan.SQL.globals import gvarstatus
 from Ah.bantuan.tools import convert_to_image
 from Ah.plugins.bot.inline import get_readable_time
 from Ah.utils.misc import restart
+from Ah import *
 
 modules = CMD_HELP
 alive_logo = (
