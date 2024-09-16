@@ -22,7 +22,6 @@ import speedtest
 from pyrogram import Client, filters
 from pyrogram.raw import functions
 
-from config import PREFIX as cmd
 from config import BOT_VER, BRANCH as brch
 from Ah import CMD_HELP, StartTime
 from Ah.bantuan.basic import edit_or_reply
