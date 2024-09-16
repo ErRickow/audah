@@ -26,6 +26,7 @@ from Ah.bantuan.SQL.globals import gvarstatus
 from Ah.bantuan.tools import convert_to_image
 from Ah.plugins.bot.inline import get_readable_time
 from Ah.utils.misc import restart
+from .help import add_command_help
 from Ah import *
 
 modules = CMD_HELP
@@ -153,4 +154,25 @@ async def setemoji(client: Client, message: Message):
     await Man.edit(f"**Berhasil Mengcustom EMOJI ALIVE Menjadi** {emoji}")
     restart()
 
+add_command_help(
+    "alive",
+    [
+        [
+            "alive",
+            "Untuk memeriksa userbot anda berfungsi atau tidak",
+        ],
+        [
+            "setalivelogo <link telegraph atau reply ke foto/video/gif>",
+            "Untuk mengcustom alive logo userbot anda",
+        ],
+        [
+            "setalivetext <text>",
+            "Untuk mengcustom alive text userbot anda",
+        ],
+        [
+            "setemoji <emoji>",
+            "Untuk mengcustom emoji alive userbot anda",
+        ],
+    ],
+)
 
