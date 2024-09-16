@@ -67,3 +67,4 @@ class emo:
     triangle_left = "◂"
     triangle_right = "▸"
     gagal = "✖️"
+    proses = "🔄"
