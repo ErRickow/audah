@@ -55,7 +55,7 @@ class emo:
     arrow_right = "»"
     back = "🔙 Kembali"
     bullet = "•"
-    check_mark = "✔"
+    benar = "✔"
     close = "🗑️"
     cross_mark = "✘"
     diamond_1 = "◇"
