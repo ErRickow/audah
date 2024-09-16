@@ -128,7 +128,7 @@ async def setalivetext(client: Client, message: Message):
             message, "**Berikan Sebuah Text atau Reply ke text**"
         )
     sql.addgvar("ALIVE_TEKS_CUSTOM", text)
-    await Man.edit(f"**Berhasil Mengcustom ALIVE TEXT Menjadi** `{text}`")
+    await Man.edit(f"{emo.benar} **Berhasil Mengcustom ALIVE TEXT Menjadi** `{text}`")
     restart()
 
 
