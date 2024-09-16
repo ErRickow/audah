@@ -44,8 +44,8 @@ async def ambil_ppcp(message: Message):
 async def handle_ppcp(client: Client, message: Message):
     await ambil_ppcp(message)  # Panggil dengan objek message yang benar
 add_command_help(
-    "ping",
+    "couple",
     [
-        ["ping", "Untuk melihat respon bot."]
+        ["ppcp", "Cari foto profil untuk couple."]
     ],
 )
