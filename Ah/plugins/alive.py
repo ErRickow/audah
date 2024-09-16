@@ -20,7 +20,6 @@ from telegraph import exceptions, upload_file
 
 from config import BOT_VER, CHANNEL
 from config import GROUP
-from Ah import CMD_HELP, StartTime
 from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from Ah.bantuan.SQL.globals import gvarstatus
