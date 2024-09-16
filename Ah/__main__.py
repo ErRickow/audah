@@ -25,9 +25,14 @@ MSG_ON = """
 async def main():
     await ubot.start()
     print("LOG: Founded Bot token Booting..")
+
     for all_module in ALL_MODULES:
-        importlib.import_module("Ah.plugins" + all_module)
-        print(f"Successfully Imported {all_module} ")
+        try:
+            importlib.import_module("Ah.plugins" + all_module)
+            print(f"Successfully Imported {all_module} ")
+        except Exception as e:
+            LOGGER("Module Error").error(f"Error loading module {all_module}: {e}")
+
     for bot in bots:
         try:
             await bot.start()
@@ -35,12 +40,13 @@ async def main():
             await join(bot)
             try:
                 await bot.send_message(BOTLOG, MSG_ON.format(BOT_VER, PREFIX))
-            except BaseException:
-                pass
+            except BaseException as e:
+                LOGGER("Bot Log Error").error(f"Error sending message to BOTLOG: {e}")
             print(f"Started as {ex.first_name} | {ex.id} ")
             ids.append(ex.id)
         except Exception as e:
-            print(f"{e}")
+            LOGGER("Bot Start Error").error(f"Error starting bot: {e}")
+
     await asyncio.sleep(100)
     await idle()
     await aiosession.close()
