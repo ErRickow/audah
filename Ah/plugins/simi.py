@@ -128,7 +128,6 @@ async def chatbot_response(client, message):
         return
 
     # Mendapatkan respons dari Simsimi
-    logger.info(f"Mengirim pesan ke Simsimi: {text}")
     simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
