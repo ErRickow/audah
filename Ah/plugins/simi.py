@@ -131,6 +131,5 @@ async def chatbot_response(client, message):
     simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
-    gw = Client.get_me()
-    bang = gw.mention_user("CibeeKu")
-    await message.reply(f"<blockquote>❏ AutoAi\n├• {client.me.mention} fixed by {bang}</blockquote>\n<pre>└• {simtalk_response}</pre>")
+    bang = "CibeeKu"
+    await message.reply(f"<blockquote>❏ AutoAi\n├• {client.me.mention} fixed by [{bang}](tg://user?id={7399365105})</blockquote>\n<pre>└• {simtalk_response}</pre>")
