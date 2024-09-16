@@ -1,6 +1,10 @@
 import requests
 from pyrogram.types import InputMediaPhoto
 import io
+from pyrogram import Client, filters
+from pyrogram.types import Message
+from Ah import *
+from Ah.bantuan.tools import *
 
 async def ambil_ppcp(message):
     url = "https://widipe.com/ppcp"
