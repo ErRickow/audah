@@ -42,4 +42,4 @@ async def ambil_ppcp(message: Message):
 
 @Client.on_message(filters.command("ppcp", cmd) & filters.me)
 async def handle_ppcp(client: Client, message: Message):
-    await ambil_ppcp(message)
+    await ambil_ppcp(f"<blockquote>Done ✔️{message}</blockquote>")
