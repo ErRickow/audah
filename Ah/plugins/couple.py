@@ -3,8 +3,6 @@ from pyrogram import Client, filters
 from pyrogram.types import InputMediaPhoto, Message
 import io
 
-from Ah import *
-
 async def ambil_ppcp(message: Message):
     url = "https://widipe.com/ppcp"
     headers = {'accept': 'application/json'}
@@ -27,8 +25,8 @@ async def ambil_ppcp(message: Message):
             female_image = download_image(female_url)
             
             media = [
-                InputMediaPhoto(male_image, caption="Foto Profil Laki-laki"),
-                InputMediaPhoto(female_image, caption="Foto Profil Perempuan")
+                InputMediaPhoto(male_image, caption="Foto Profil Laki-laki\nDone ✔️"),
+                InputMediaPhoto(female_image, caption="Foto Profil Perempuan\nDone ✔️")
             ]
             
             await message.reply_media_group(media)
@@ -43,6 +41,3 @@ async def ambil_ppcp(message: Message):
 @Client.on_message(filters.command("ppcp", cmd) & filters.me)
 async def handle_ppcp(client: Client, message: Message):
     await ambil_ppcp(message)  # Panggil dengan objek message yang benar
-
-    # Jika Anda ingin mengirim balasan setelah memanggil ambil_ppcp
-    await message.reply("<blockquote>Done ✔️</blockquote>")
