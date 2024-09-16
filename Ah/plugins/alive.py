@@ -92,7 +92,7 @@ async def setalivelogo(client: Client, message: Message):
         try:
             media_url = upload_file(m_d)
         except exceptions.TelegraphException as exc:
-            await Man.edit(f"**ERROR:** `{exc}`")
+            await Man.edit(f"{emo.gagal} **ERROR:** `{exc}`")
             os.remove(m_d)
             return
         link = f"https://telegra.ph/{media_url[0]}"
