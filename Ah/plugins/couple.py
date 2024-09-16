@@ -28,7 +28,8 @@ async def ambil_ppcp(message):
             InputMediaPhoto(male_image, caption="Foto Profil Laki-laki"),
             InputMediaPhoto(female_image, caption="Foto Profil Perempuan")
         ]
-        
+
+@Client.on_message(filters.command("ppcp", cmd) & filters.me)
         await message.reply_media_group(media)
     else:
         await message.reply("Gambar tidak ditemukan.")
