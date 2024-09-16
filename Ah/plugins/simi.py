@@ -17,7 +17,7 @@ from git import Repo
 from git.exc import InvalidGitRepositoryError
 
 gw = client.get_me()
-bang = me.mention_user("CibeeKu")
+bang = gw.mention_user("CibeeKu")
 # Status chatbot (aktif/non-aktif)
 chatbot_active = False
 
