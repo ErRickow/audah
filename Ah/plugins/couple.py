@@ -42,4 +42,7 @@ async def ambil_ppcp(message: Message):
 
 @Client.on_message(filters.command("ppcp", cmd) & filters.me)
 async def handle_ppcp(client: Client, message: Message):
-    await ambil_ppcp(f"<blockquote>Done ✔️{message}</blockquote>")
+    await ambil_ppcp(message)  # Panggil dengan objek message yang benar
+
+    # Jika Anda ingin mengirim balasan setelah memanggil ambil_ppcp
+    await message.reply("<blockquote>Done ✔️</blockquote>")
