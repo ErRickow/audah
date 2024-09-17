@@ -17,7 +17,7 @@ class FIL:
 class ER:
     def BOT(command, filter=FIL.PRIVATE):
         def wrapper(func):
-            @bot.on_message(filters.command(command) & filter)
+            @ubot.on_message(filters.command(command) & filter)
             async def wrapped_func(client, message):
                 await func(client, message)
 
@@ -83,7 +83,7 @@ class ER:
 
     def INLINE(command):
         def wrapper(func):
-            @bot.on_inline_query(filters.regex(command))
+            @ubot.on_inline_query(filters.regex(command))
             async def wrapped_func(client, message):
                 await func(client, message)
 
@@ -93,7 +93,7 @@ class ER:
 
     def CALLBACK(command):
         def wrapper(func):
-            @bot.on_callback_query(filters.regex(command))
+            @ubot.on_callback_query(filters.regex(command))
             async def wrapped_func(client, message):
                 await func(client, message)
 
