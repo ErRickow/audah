@@ -48,7 +48,7 @@ async def mistralai_(client: Client, message: Message):
         # Kirim pesan kesalahan ke pengguna
         await message.reply_text(f"Terjadi kesalahan: {str(e)}") 
 
-@Client.on_message(filters.command("askren", prefix) & filters.me)
+@Client.on_message(filters.command("askren", cmd) & filters.me)
 async def chatgpt_old_(client: Client, message: Message):
     if len(message.command) > 1:
         prompt = message.text.split(maxsplit=1)[1]
