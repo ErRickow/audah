@@ -7,11 +7,11 @@ class FIL:
     ME = filters.me
     GROUP = filters.group
     PRIVATE = filters.private
-#    OWNER = filters.user(OWNER_ID)
-#    SUDO = filters.user(USER_ID)
+    OWNER = filters.user(OWNER_ID)
+    SUDO = filters.user(USER_ID)
     ME_GROUP = filters.me & filters.group
-#    ME_OWNER = filters.me & filters.user(OWNER_ID)
-#    ME_USER = filters.me & filters.user(USER_ID)
+    ME_OWNER = filters.me & filters.user(OWNER_ID)
+    ME_USER = filters.me & filters.user(USER_ID)
 
 
 class KY:
