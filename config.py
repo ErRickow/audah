@@ -12,11 +12,11 @@ API_ID = os.getenv("API_ID")
 
 API_HASH = os.getenv("API_HASH")
 
-BOTLOG = getenv("BOTLOG", "-1002168463448")
+BOTLOG = int(os.getenv("BOTLOG", "-1002168463448"))
 BOT_VER = "1.1.5@main"
 BRANCH = getenv("BRANCH", "main") #don't change
 prefix = cmd
-OWNER_ID = getenv("OWNER_ID", "6607703424")
+#OWNER_ID = getenv("OWNER_ID", "6607703424")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL = getenv("CHANNEL", "Pamerdong")
 PREFFIX = getenv("PREFIX", "x")
