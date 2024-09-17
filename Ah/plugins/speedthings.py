@@ -26,7 +26,7 @@ from config import BOT_VER, BRANCH as brch
 from Ah import CMD_HELP, StartTime
 from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.constants import WWW
-from Ah import ubot, emo
+from Ah import *
 from Ah.bantuan.PyroHelpers import SpeedConvert
 from Ah.utils.tools import get_readable_time
 from Ah.plugins.bot.inline import get_readable_time
