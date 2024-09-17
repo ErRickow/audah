@@ -24,7 +24,7 @@ async def shell(_, message: Message):
     char = "#" if os.getuid() == 0 else "$"
     text = f"<b>{char}</b> <code>{cmd_text}</code>\n\n"
 
-    anu = await message.edit(text + "<b>Running...</b>")
+    anu = await message.reply(text + "<b>Running...</b>")
     try:
         start_time = perf_counter()
         stdout, stderr = cmd_obj.communicate(timeout=60)
@@ -33,9 +33,9 @@ async def shell(_, message: Message):
     else:
         stop_time = perf_counter()
         if stdout:
-            text += f"<b>Output:</b>\n<code>{stdout}</code>\n\n"
+            text += f"<pre><b>Output:</b>\n<code>{stdout}</code></pre>\n\n"
         if stderr:
-            text += f"<b>Error:</b>\n<code>{stderr}</code>\n\n"
-        text += f"<b>Completed in {round(stop_time - start_time, 5)} seconds with code {cmd_obj.returncode}</b>"
+            text += f"<pre><b>Error:</b>\n<code>{stderr}</code></pre>\n\n"
+        text += f"<pre><b>Completed in {round(stop_time - start_time, 5)} seconds with code {cmd_obj.returncode}</b></pre>"
     await anu.edit(text)
     cmd_obj.kill()
