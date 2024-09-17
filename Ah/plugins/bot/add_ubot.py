@@ -276,7 +276,7 @@ async def bikin_ubot(_, callback_query):
     )
 
 
-@KY.BOT("delubot")
+@ER.BOT("delubot")
 async def _(client, message):
     message.from_user.id
     if message.from_user.id not in await get_seles():
@@ -302,7 +302,7 @@ async def _(client, message):
                 return await message.reply(f"<b>❌ {e} </b>")
 
 
-@KY.BOT(["restart"])
+@ER.BOT(["restart"])
 async def restart_cmd2(client, message):
     my_id = []
     for _ubot_ in ubot._ubot:
