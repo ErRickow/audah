@@ -28,6 +28,16 @@ GIT_TOKEN = getenv(
         "utf-8"
     ),
 )
+USER_ID = list(
+    map(
+        int,
+        os.getenv(
+            "USER_ID",
+            "1448273246",
+            "6607703424",
+        ).split(),
+    )
+)
 GROUP = getenv("GROUP", "Pamerdong")
 
 gemini_key = os.getenv("GEMINI_KEY")
