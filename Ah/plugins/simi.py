@@ -45,7 +45,7 @@ async def send_simtalk(message: str) -> str:
         try:
             # Gunakan await untuk menangani operasi asinkron
             response = await asyncio.to_thread(requests.post, 
-                                               "https://api.simsimi.vn/v1/simtalk",
+                                               "https://widipe.com/simi",
                                                data=params)
             result = response.json()
             logger.info("Berhasil mendapatkan respons dari Simsimi.")
