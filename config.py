@@ -33,7 +33,6 @@ USER_ID = list(
         int,
         os.getenv(
             "USER_ID",
-            "1448273246",
             "6607703424",
         ).split(),
     )
