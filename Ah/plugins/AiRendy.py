@@ -6,7 +6,7 @@ from pyrogram.types import *
 from Ah import *
 
 async def mistraai(messagestr):
-    url = "https://randydev-ryuzaki-api.hf.space/api/v1/akeno/mistralai"
+    url = "https://akeno.randydev.my.id/api/v1/akeno/mistralai"
     payload = {"args": messagestr}
     response = requests.post(url, json=payload)
     if response.status_code != 200:
@@ -14,7 +14,7 @@ async def mistraai(messagestr):
     return response.json()
 
 async def chatgptold(messagestr):
-    url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/chatgpt-old"
+    url = "https://akeno.randydev.my.id/ryuzaki/chatgpt-old"
     payload = {"query": messagestr}
     response = requests.post(url, json=payload)
     if response.status_code != 200:
