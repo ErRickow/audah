@@ -138,7 +138,7 @@ async def chatbot_response(client, message):
     try:
         user = await client.get_users(username)  # Mendapatkan informasi pengguna berdasarkan username
         user_id = user.id
-        await message.reply(f"<blockquote>❏ AutoAi\n├• {client.me.mention} fixed by [{bang}](tg://user?id={user_id})\n└• {simtalk_response}</blockquote>")
+        await message.reply(f"<blockquote>❏ APA INI BANGSAT\n├• {client.me.mention}\n└• {simtalk_response}</blockquote>")
     except Exception as e:
         await message.reply("Terjadi kesalahan saat mendapatkan informasi pengguna.")
         logger.error(f"Error saat mendapatkan informasi pengguna: {e}")
