@@ -32,6 +32,7 @@ from Ah.utils.tools import get_readable_time
 from Ah.plugins.bot.inline import get_readable_time
 from Ah.bantuan.adminHelpers import DEVS
 
+from config import emo
 from .help import add_command_help
 
 modules = CMD_HELP
