@@ -27,7 +27,7 @@ class KY:
 
     def GC():
         def wrapper(func):
-            @ubot.on_message(
+            @Client.on_message(
                 filters.group & filters.incoming & filters.mentioned & ~filters.bot
             )
             async def wrapped_func(client, message):
@@ -39,7 +39,7 @@ class KY:
 
     def PC():
         def wrapper(func):
-            @ubot.on_message(
+            @Client.on_message(
                 filters.private
                 & filters.incoming
                 & ~filters.me
@@ -55,7 +55,7 @@ class KY:
 
     def PM():
         def wrapper(func):
-            @ubot.on_message(
+            @Client.on_message(
                 filters.private
                 & filters.incoming
                 & ~filters.me
@@ -72,8 +72,8 @@ class KY:
 
     def UBOT(command, filter=FIL.ME):
         def wrapper(func):
-            @ubot.on_message(filters.command(command, "^") & filters.user(USER_ID))
-            @ubot.on_message(anjay(command) & filter)
+            @Client.on_message(filters.command(command, "^") & filters.user(USER_ID))
+            @Client.on_message(anjay(command) & filter)
             async def wrapped_func(client, message):
                 await func(client, message)
 
