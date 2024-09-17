@@ -13,7 +13,7 @@ from pytz import timezone
 
 from Ah import *
 from Ah.config import *
-from Ah.plugins import loadModule
+from Ah.plugins import ALL_MODULES
 from Ah.utils import *
 from Ah.utils.dbfunctions import *
 
