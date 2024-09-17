@@ -14,7 +14,7 @@ class FIL:
     ME_USER = filters.me & filters.user(USER_ID)
 
 
-class KY:
+class ER:
     def BOT(command, filter=FIL.PRIVATE):
         def wrapper(func):
             @bot.on_message(filters.command(command) & filter)
