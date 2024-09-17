@@ -13,7 +13,7 @@ from config import *
 BOT_VER = "0.1.0"
 PREFIX = [".", ",", "?", "!"]
 MSG_ON = """
-💢 PyroKar Telah Hidup 💢
+💢 Ubot Telah Hidup 💢
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 ❍▹ Userbot Version - {}
 ❍▹ Ketik {}alive untuk Mengecek Bot
