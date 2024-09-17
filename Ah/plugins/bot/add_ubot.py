@@ -12,7 +12,7 @@ from pyrogram.types import *
 from pytz import timezone
 
 from Ah import *
-from Ah.config import *
+from config import *
 from Ah.plugins import ALL_MODULES
 from Ah.utils import *
 from Ah.utils.dbfunctions import *
@@ -31,7 +31,7 @@ async def bikin_ubot(_, callback_query):
     user_id = callback_query.from_user.id
     try:
         await callback_query.message.delete()
-        api_id_msg = await bot.ask(
+        api_id_msg = await ubot.ask(
             user_id,
             (
                 "<b>Silahkan masukkan API ID anda.</b>\n"
