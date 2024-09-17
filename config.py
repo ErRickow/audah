@@ -40,6 +40,7 @@ USER_ID = list(
 )
 GROUP = getenv("GROUP", "Pamerdong")
 
+OWNER_ID = int(os.getenv("OWNER_ID", "6607703424"))
 gemini_key = os.getenv("GEMINI_KEY")
 REPO_URL = getenv("REPO_URL", "https://github.com/ErRickow/audah")
 STRING_SESSION1 = getenv("STRING_SESSION1", "")
