@@ -10,7 +10,7 @@ from Ah.plugins.basic import join
 from Ah.plugins import ALL_MODULES
 from config import *
 
-BOT_VER = "0.1.0"
+BOT_VER = "0.0"
 PREFIX = ["."]
 MSG_ON = """
 💢 Ubot Telah Hidup 💢
