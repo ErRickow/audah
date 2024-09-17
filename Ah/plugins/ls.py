@@ -29,7 +29,7 @@ async def shell(_, message: Message):
         start_time = perf_counter()
         stdout, stderr = cmd_obj.communicate(timeout=60)
     except TimeoutExpired:
-        text += "<b>Timeout expired (60 seconds)</b>"
+        text += "<pre><b>Timeout expired (60 seconds)</b></pre>"
     else:
         stop_time = perf_counter()
         if stdout:
