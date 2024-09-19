@@ -13,7 +13,6 @@ from threading import Event
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
-from Ah import *
 from config import PREFIX as cmd
 from Ah.bantuan.basic import edit_or_reply
 from Ah.utils.misc import extract_args
