@@ -33,8 +33,8 @@ async def spam_cmd(client, message):
             except Exception as error:
                 return await spam.edit(error)
             await asyncio.sleep(1)
-            await message.delete()
-            await spam.delete()
+#            await message.delete()
+#            await spam.delete()
             for _ in range(quantity):
                 await client.send_message(
                     message.chat.id,
@@ -43,9 +43,9 @@ async def spam_cmd(client, message):
                 )
                 await asyncio.sleep(0.3)
         elif len(message.command) < 3:
-            await edit_or_reply(message, f"**Gunakan format:\n`{cmd}spam [jumlah] [pesan]`**")
+            await message.reply(f"**Gunakan format:\n`{cmd}spam [jumlah] [pesan]`**")
         else:
-            spam = await edit_or_reply(message, "`Processing...`")
+            spam = await message.reply("`Processing...`")
             try:
                 quantity = int(message.text.split(None, 2)[1])
                 spam_text = message.text.split(None, 2)[2]
