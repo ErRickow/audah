@@ -64,7 +64,7 @@ async def spam_cmd(client, message):
                     message,
                     f"**Gunakan format:\n`{cmd}dspam[jumlah] [waktu delay] [balas pesan]`**",
                 )
-            spam = await edit_or_reply(message, "`Processing...`")
+            spam = await message.reply("`Processing...`")
             try:
                 quantity = int(message.text.split(None, 3)[1])
                 delay_msg = int(message.text.split(None, 3)[2])
