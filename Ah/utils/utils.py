@@ -84,65 +84,6 @@ def extract_text_and_keyb(ikb, text: str, row_width: int = 2):
     return text, keyboard
 
 
-async def check_perms(message, permissions, text_permissions):
-    try:
-        user = await message.chat.get_member(message.from_user.id)
-    except (UserNotParticipant, PeerIdInvalid, AttributeError):
-        return False
-    if user.status == ChatMemberStatus.OWNER:
-        return True
-    if user.user.id in [OWNER_ID]:
-        return True
-    for ub in ubot._ubot:
-        if user.user.id == ub.me.id:
-            return True
-    if not permissions and user.status == ChatMemberStatus.ADMINISTRATOR:
-        return True
-    if user.status != ChatMemberStatus.ADMINISTRATOR:
-        Tm = await message.reply_text(
-            """
-<b>🙏🏻 Mohon maaf {mention} anda bukan admin dari group {chat}
-
-✅ Untuk menggunakan perintah <code>{cmd}</code> harus menjadi admin terlebih dahulu</b>
-""".format(
-                mention=message.from_user.mention,
-                chat=message.chat.title,
-                cmd=message.text.split()[0],
-            )
-        )
-        await sleep(5)
-        await Tm.delete()
-        return False
-
-    missing_perms = [
-        permission
-        for permission in (
-            [permissions] if isinstance(permissions, str) else permissions
-        )
-        if not getattr(user.privileges, permission)
-    ]
-
-    if not missing_perms:
-        return True
-    Tm = await message.reply_text(
-        """
-<b>🙏🏻 Mohon maaf {mention} anda bukan admin dari group {chat}
-
-✅ Untuk menggunakan perintah <code>{cmd}</code> harus menjadi admin terlebih dahulu 
-
-🔐 {text}</b>
-""".format(
-            mention=message.from_user.mention,
-            chat=message.chat.title,
-            cmd=message.text.split()[0],
-            text=text_permissions,
-        )
-    )
-    await sleep(5)
-    await Tm.delete()
-    return False
-
-
 def require_admin(permissions, text_permissions):
     def decorator(func):
         @wraps(func)
