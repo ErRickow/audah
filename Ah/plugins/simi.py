@@ -1,4 +1,5 @@
 # Helpers with Randy devs a.k.a xtedev
+# ang ang ang ang
 # ©Er a.k.a @Chakszzz 
 import requests
 import logging
