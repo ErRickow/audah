@@ -69,26 +69,3 @@ def humanbytes(size: int):
         size /= power
         number += 1
     return str(round(size, 2)) + " " + dict_power_n[number] + "B"
-
-
-def add_to_dict(data: dict, keys: list, value: str | int | bool = None) -> None:
-    current_level = data
-    for key in keys[:-1]:
-        current_level = current_level.setdefault(key, {})
-    current_level[keys[-1]] = value
-
-
-def get_from_dict(data: dict, key: list):
-    current_level = data
-    for k in key:
-        current_level = current_level[k]
-    return current_level
-
-
-def limit_per_page(limit: int) -> int:
-    return math.ceil(limit / 10)
-
-
-def secs_to_mins(secs: int) -> str:
-    mins, secs = divmod(secs, 60)
-    return f"{mins}:{secs}"
