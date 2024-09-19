@@ -1,33 +1,39 @@
 import requests
-import os  # Tambahkan import os untuk menghapus file
 from pyrogram import Client, filters
-from pyrogram.types import InputMediaPhoto, Message
+from pyrogram.types import Message
 from Ah import *
 from .help import add_command_help
 
-async def ambil_gambar(message):
-    url = f"https://api.waifu.pics/nsfw/neko"
-    headers = {'accept': 'image/jpeg'}
-  
-    response = requests.get(url, headers=headers)
-    
-    if response.status_code == 200:
-        file_path = 'neko_image.jpg'  # Nama file yang lebih umum
-        with open(file_path, 'wb') as f:
-            f.write(response.content)
-        await message.reply_photo(photo=file_path, caption="Berikut gambar dari API.")
+# Fungsi untuk mengambil gambar dari API dan mengirimkannya sebagai balasan
+async def ambil_gambar(client: Client, message: Message, url: str):
+    try:
+        # Mengambil gambar dari API
+        res = requests.get(url)
+        data = res.json()
+        image_url = data['url']
         
-        os.remove(file_path)  # Hapus file setelah mengirim gambar
-    else:
-        await message.reply("Gagal mengunduh gambar.")
+        # Mengirimkan gambar sebagai foto
+        await message.reply_photo(image_url)
+    except Exception as e:
+        await message.reply(f"Gagal mengambil gambar: {str(e)}")
 
+# Handler untuk perintah 'wibu' yang mengambil gambar dari API sfw/waifu
 @Client.on_message(filters.command("wibu", cmd) & filters.me)
 async def handle_wibu(client: Client, message: Message):
-    await ambil_gambar(message)  # Panggil dengan objek message yang benar
+    url = "https://api.waifu.pics/sfw/waifu"  # API untuk gambar SFW
+    await ambil_gambar(client, message, url)
 
+# Handler untuk perintah 'waifu' yang mengambil gambar dari API nsfw/waifu
+@Client.on_message(filters.command("waifu", cmd) & filters.me)
+async def handle_waifu(client: Client, message: Message):
+    url = "https://api.waifu.pics/nsfw/waifu"  # API untuk gambar NSFW
+    await ambil_gambar(client, message, url)
+
+# Menambahkan bantuan untuk perintah
 add_command_help(
     "NSFW",
     [
-        ["wibu", "Cari foto profil untuk couple."]
+        ["wibu", "Cari gambar SFW waifu dari waifu API."],
+        ["waifu", "Cari gambar NSFW waifu dari waifu API."]
     ],
 )
