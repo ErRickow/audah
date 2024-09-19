@@ -1,6 +1,6 @@
 # Helpers with Randy devs a.k.a xtedev
 # ang ang ang ang
-# ©Er a.k.a @Chakszzz 
+# ©Er a.k.a @Chakszzz
 import requests
 import logging
 from pyrogram import *
@@ -39,14 +39,26 @@ async def send_simtalk(message: str) -> str:
         logger.warning("Pesan terlalu panjang untuk diproses.")
         return "Character terlalu panjang."
     else:
-        params = {"text": message, "lc": "id"}
+        params = {"text": message, "lc": "id"}  # Language code harus string, pastikan 'lc' diisi dengan benar
         try:
             loop = asyncio.get_event_loop()
             # Menggunakan run_in_executor sebagai pengganti to_thread
             response = await loop.run_in_executor(None, requests.post, "https://api.simsimi.vn/v2/simtalk", None, params)
+            
+            if response.status_code != 200:
+                logger.error(f"Error dari Simsimi API: {response.status_code}")
+                return f"Error dari API: {response.status_code}"
+
             result = response.json()
-            logger.info("Berhasil mendapatkan respons dari Simsimi.")
-            return result.get("message", "Maaf, tidak bisa merespons sekarang.")
+
+            # Cek apakah ada field message di dalam respons JSON
+            if "message" in result:
+                logger.info("Berhasil mendapatkan respons dari Simsimi.")
+                return result.get("message", "Maaf, tidak bisa merespons sekarang.")
+            else:
+                logger.error(f"Tidak ada field 'message' di dalam respons Simsimi: {result}")
+                return "Error: Response tidak valid dari Simsimi API."
+
         except Exception as e:
             logger.error(f"Error saat mengirim permintaan ke Simsimi API: {str(e)}")
             return f"Error: {str(e)}"
