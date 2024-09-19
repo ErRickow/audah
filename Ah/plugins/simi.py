@@ -1,28 +1,42 @@
-from uvloop import install
-import asyncio
-import importlib
-import logging
-import traceback
+# Helpers with Randy devs a.k.a xtedev
+# ang ang ang ang
+# ©Er a.k.a @Chakszzz 
 import requests
-from aiohttp import ClientSession as aiosession
-from tqdm import tqdm
-from pyrogram import idle
-from Ah import ubot, BOTLOG, LOGGER, bots, ids, LOOP
-from Ah.plugins.basic import join
-from Ah.plugins import ALL_MODULES
+import logging
+from pyrogram import *
+from pyrogram.types import Message
+from Ah.bantuan.tools import get_text
+from Ah import *
+from Ah.bantuan.PyroHelpers import ReplyCheck
 from config import *
+import re
+import asyncio
+import os
+import sys
+import shutil
+import subprocess
 
-BOT_VER = "0.0"
-PREFIX = ["."]
-MSG_ON = """
-💢 Ubot Telah Hidup 💢
-╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-❍▹ Userbot Version - {}
-❍▹ Ketik {}alive untuk Mengecek Bot
-╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-"""
+from git import Repo
+from git.exc import InvalidGitRepositoryError
+
+
+# Status chatbot (aktif/non-aktif)
+chatbot_active = False
+
+# Konfigurasi logging
+HNDLR = ["yu off", "xupdate"]
 
 # Fungsi untuk mengirim permintaan ke API Simsimi
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(levelname)s] - %(name)s - %(message)s",
+    datefmt="%d-%b-%y %H:%M:%S",
+)
+logger = logging.getLogger(__name__)
+
+# Fungsi untuk mengirim permintaan ke API Simsimi # Jangan lupa impor requests
+
+# Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message: str) -> str:
     if len(message) > 1000:
         logger.warning("Pesan terlalu panjang untuk diproses.")
@@ -30,9 +44,10 @@ async def send_simtalk(message: str) -> str:
     else:
         params = {"text": message, "lc": "id"}
         try:
-            loop = asyncio.get_event_loop()
-            # Menjalankan permintaan HTTP dalam thread terpisah menggunakan executor
-            response = await loop.run_in_executor(None, requests.post, "https://api.simsimi.vn/v2/simtalk", None, params)
+            # Gunakan await untuk menangani operasi asinkron
+            response = await asyncio.to_thread(requests.post, 
+                                               "https://api.simsimi.vn/v2/simtalk",
+                                               data=params)
             result = response.json()
             logger.info("Berhasil mendapatkan respons dari Simsimi.")
             return result.get("message", "Maaf, tidak bisa merespons sekarang.")
