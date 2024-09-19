@@ -52,8 +52,8 @@ async def spam_cmd(client, message):
             except Exception as error:
                 return await spam.edit(error)
             await asyncio.sleep(1)
-            await message.delete()
-            await spam.delete()
+#            await message.delete()
+#            await spam.delete()
             for _ in range(quantity):
                 await client.send_message(message.chat.id, spam_text)
                 await asyncio.sleep(0.3)
