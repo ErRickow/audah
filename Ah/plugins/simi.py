@@ -19,22 +19,19 @@ import subprocess
 from git import Repo
 from git.exc import InvalidGitRepositoryError
 
-
 # Status chatbot (aktif/non-aktif)
 chatbot_active = False
 
 # Konfigurasi logging
 HNDLR = ["yu off", "xupdate"]
 
-# Fungsi untuk mengirim permintaan ke API Simsimi
+# Konfigurasi logging
 logging.basicConfig(
     level=logging.INFO,
     format="[%(levelname)s] - %(name)s - %(message)s",
     datefmt="%d-%b-%y %H:%M:%S",
 )
 logger = logging.getLogger(__name__)
-
-# Fungsi untuk mengirim permintaan ke API Simsimi # Jangan lupa impor requests
 
 # Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message: str) -> str:
@@ -44,10 +41,9 @@ async def send_simtalk(message: str) -> str:
     else:
         params = {"text": message, "lc": "id"}
         try:
-            # Gunakan await untuk menangani operasi asinkron
-            response = await asyncio.to_thread(requests.post, 
-                                               "https://api.simsimi.vn/v2/simtalk",
-                                               data=params)
+            loop = asyncio.get_event_loop()
+            # Menggunakan run_in_executor sebagai pengganti to_thread
+            response = await loop.run_in_executor(None, requests.post, "https://api.simsimi.vn/v2/simtalk", None, params)
             result = response.json()
             logger.info("Berhasil mendapatkan respons dari Simsimi.")
             return result.get("message", "Maaf, tidak bisa merespons sekarang.")
