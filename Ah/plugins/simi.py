@@ -62,7 +62,7 @@ async def chatbot_response(client, message):
         return
 
     # Periksa perintah "kemana lu" atau "woi" untuk mengaktifkan chatbot
-    if "kemana lu" in text or "woi" in text:
+    if "er on" in text or "woi" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
         await message.reply("Chatbot dihidupkan.")
