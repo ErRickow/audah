@@ -39,7 +39,7 @@ def send_simtalk(message):
         params = {"text": message, "lc": "id"}  # Bahasa Indonesia
         try:
             response = requests.post(
-                "https://api.simsimi.vn/v1/simtalk",
+                "https://api.simsimi.vn/v2/simtalk",
                 data=params
             ).json()
             return response.get("message", "Maaf, tidak ada respons dari Simsimi.")
