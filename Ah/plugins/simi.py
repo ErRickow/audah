@@ -3,8 +3,7 @@
 # ©Er a.k.a @Chakszzz
 import requests
 import logging
-from pyrogram import *
-from pyrogram.types import Message
+from pyrogram import Client, filters
 from Ah.bantuan.tools import get_text
 from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
@@ -15,7 +14,6 @@ import os
 import sys
 import shutil
 import subprocess
-
 from git import Repo
 from git.exc import InvalidGitRepositoryError
 
@@ -36,14 +34,23 @@ logger = logging.getLogger(__name__)
 # Fungsi untuk mengirim pesan ke Simsimi
 def send_simtalk(message):
     if len(message) > 1000:
-        return "character too big"
+        return "Character too big."
     else:
-        params = {"text": message, "lc": "id"}
-        response = requests.post(
-            "https://api.simsimi.vn/v1/simtalk",
-            data=params
-        ).json()
-        return response.get("message")
+        params = {"text": message, "lc": "id"}  # Bahasa Indonesia
+        try:
+            response = requests.post(
+                "https://api.simsimi.vn/v1/simtalk",
+                data=params
+            )
+            # Memastikan bahwa response berhasil
+            if response.status_code == 200:
+                result = response.json()
+                return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
+            else:
+                return f"Error: {response.status_code}"
+        except Exception as e:
+            return f"Error saat menghubungi API Simsimi: {str(e)}"
+
 # Handler untuk semua pesan teks
 @Client.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
@@ -55,14 +62,14 @@ async def chatbot_response(client, message):
     if "cukup" in text or "diem" in text:
         chatbot_active = False
         logger.info("Chatbot telah dinonaktifkan.")
-        await message.reply("dih")
+        await message.reply("Chatbot dimatikan.")
         return
 
     # Periksa perintah "kemana lu" atau "woi" untuk mengaktifkan chatbot
     if "kemana lu" in text or "woi" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
-        await message.reply("hah?")
+        await message.reply("Chatbot dihidupkan.")
         return
 
     # Periksa perintah "update" untuk melakukan update userbot
@@ -70,17 +77,17 @@ async def chatbot_response(client, message):
         logger.info("Memulai proses update userbot.")
         try:
             pros = await message.reply(
-                f"<i>Memeriksa pembaruan resources {ubot.me.mention}...</i>"
+                f"<i>Memeriksa pembaruan resources {client.me.mention}...</i>"
             )
             out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
             last_commit = subprocess.check_output(
                 ["git", "log", "-1", "--pretty=format:%h %s"]
             ).decode("UTF-8").strip()
 
-            teks = f"<b>❒ Status resources: {ubot.me.mention}</b>\n"
+            teks = f"<b>❒ Status resources: {client.me.mention}</b>\n"
             memeg = f"<b>🎲 Perubahan logs by {client.me.mention}</b>"
 
-            if "🧩 Already up to date." in str(out):
+            if "Already up to date." in str(out):
                 return await pros.edit(
                     f"<blockquote>{teks}┖ {out}\n<b>Last Commit:</b> {last_commit}</blockquote>"
                 )
@@ -120,15 +127,13 @@ async def chatbot_response(client, message):
         return
 
     # Mendapatkan respons dari Simsimi
-    simtalk_response = await send_simtalk(text)
+    simtalk_response = send_simtalk(text)  # Sinkron, tidak perlu await
 
     # Mengirimkan respons kembali ke pengguna
-    bang = "CibeeKu"
-    username = "CibeeKu"  # Ganti dengan username yang valid
     try:
-        user = await client.get_users(username)  # Mendapatkan informasi pengguna berdasarkan username
-        user_id = user.id
-        await message.reply(f"<blockquote>❏ APA INI BANGSAT\n├• {client.me.mention}\n└• {simtalk_response}</blockquote>")
+        await message.reply(
+            f"<blockquote>❏ Chatbot\n├• {client.me.mention}\n└• {simtalk_response}</blockquote>"
+        )
     except Exception as e:
-        await message.reply("Terjadi kesalahan saat mendapatkan informasi pengguna.")
-        logger.error(f"Error saat mendapatkan informasi pengguna: {e}")
+        await message.reply("Terjadi kesalahan saat mengirim respons.")
+        logger.error(f"Error saat mengirim respons: {e}")
