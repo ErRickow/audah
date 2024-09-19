@@ -41,7 +41,7 @@ def send_simtalk(message):
             response = requests.post(
                 "https://api.simsimi.vn/v1/simtalk",
                 data=params
-            )
+            ).json()
             # Memastikan bahwa response berhasil
             if response.status_code == 200:
                 result = response.json()
