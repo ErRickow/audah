@@ -320,12 +320,12 @@ async def remove_ubot(user_id):
 
 async def get_userbots():
     data = []
-    async for ubot in ubotdb.find({"user_id": {"$exists": 1}}):
+    async for Ah in ubotdb.find({"user_id": {"$exists": 1}}):
         data.append(
             dict(
-                name=str(ubot["user_id"]),
-                api_id=ubot["api_id"],
-                api_hash=ubot["api_hash"],
+                name=str(Ah["user_id"]),
+                api_id=Ah["api_id"],
+                api_hash=Ah["api_hash"],
                 session_string=Ah["session_string"],
             )
         )
