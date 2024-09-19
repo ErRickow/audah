@@ -77,7 +77,6 @@ async def spam_cmd(client, message):
         else:
             if len(message.command) < 4:
                 return await message.reply(
-                    message,
                     f"**Gunakan format:\n`{cmd}dspam[jumlah] [waktu delay] [balas pesan]`**",
                 )
             spam = await edit_or_reply("`Processing...`")
