@@ -34,35 +34,16 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Fungsi untuk mengirim pesan ke Simsimi
-async def send_simtalk(message: str) -> str:
+def send_simtalk(message):
     if len(message) > 1000:
-        logger.warning("Pesan terlalu panjang untuk diproses.")
-        return "Character terlalu panjang."
+        return "character too big"
     else:
-        params = {"text": message, "lc": "id"}  # Language code harus string, pastikan 'lc' diisi dengan benar
-        try:
-            loop = asyncio.get_event_loop()
-            # Menggunakan run_in_executor sebagai pengganti to_thread
-            response = await loop.run_in_executor(None, requests.post, "https://api.simsimi.vn/v2/simtalk", None, params)
-            
-            if response.status_code != 200:
-                logger.error(f"Error dari Simsimi API: {response.status_code}")
-                return f"Error dari API: {response.status_code}"
-
-            result = response.json()
-
-            # Cek apakah ada field message di dalam respons JSON
-            if "message" in result:
-                logger.info("Berhasil mendapatkan respons dari Simsimi.")
-                return result.get("message", "Maaf, tidak bisa merespons sekarang.")
-            else:
-                logger.error(f"Tidak ada field 'message' di dalam respons Simsimi: {result}")
-                return "Error: Response tidak valid dari Simsimi API."
-
-        except Exception as e:
-            logger.error(f"Error saat mengirim permintaan ke Simsimi API: {str(e)}")
-            return f"Error: {str(e)}"
-
+        params = {"text": message, "lc": "id"}
+        response = requests.post(
+            "https://api.simsimi.vn/v1/simtalk",
+            data=params
+        ).json()
+        return response.get("message")
 # Handler untuk semua pesan teks
 @Client.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
