@@ -12,7 +12,7 @@ async def ambil_gambar(message):
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
-        file_path = 'indonesia_image.jpg'
+        file_path = 'bokep.jpg'
         with open(file_path, 'wb') as f:
             f.write(response.content)
 
