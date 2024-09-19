@@ -41,11 +41,13 @@ def send_simtalk(message):
             response = requests.post(
                 "https://api.simsimi.vn/v1/simtalk",
                 data=params
-            ).json()
-            return
+            )
             # Memastikan bahwa response berhasil
             if response.status_code == 200:
-            response.get("message")
+                result = response.json()
+                return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
+            else:
+                return f"Error: {response.status_code}"
         except Exception as e:
             return f"Error saat menghubungi API Simsimi: {str(e)}"
 
