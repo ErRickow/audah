@@ -130,5 +130,3 @@ async def handle_bot_actions(bot):
 
     except Exception as e:
         logger.exception(f"Unhandled exception in bot {bot.name}: {e}")
-
-from Ah.bantuan.ha import *
