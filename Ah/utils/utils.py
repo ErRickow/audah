@@ -11,7 +11,6 @@ from pyrogram.errors import PeerIdInvalid, UserNotParticipant
 from pyrogram.types import Message
 
 from aiohttp import ClientSession as aiosession
-from config import *
 from Ah import *
 
 requirements_list = []
