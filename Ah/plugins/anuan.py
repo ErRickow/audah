@@ -1,7 +1,7 @@
 import requests
+import os  # Tambahkan import os untuk menghapus file
 from pyrogram import Client, filters
 from pyrogram.types import InputMediaPhoto, Message
-import io
 from Ah import *
 from .help import add_command_help
 
@@ -12,21 +12,22 @@ async def ambil_gambar(message):
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
-        file_path = 'bokep.jpg'
+        file_path = 'neko_image.jpg'  # Nama file yang lebih umum
         with open(file_path, 'wb') as f:
             f.write(response.content)
-        await message.reply_photo(photo=file_path, caption=f"Gambar dari API {message}")
+        await message.reply_photo(photo=file_path, caption="Berikut gambar dari API.")
         
-        os.remove(file_path)
+        os.remove(file_path)  # Hapus file setelah mengirim gambar
     else:
         await message.reply("Gagal mengunduh gambar.")
 
-@Client.on_message(filters.command("ppcp", cmd) & filters.me)
-async def handle_ppcp(client: Client, message: Message):
+@Client.on_message(filters.command("wibu", cmd) & filters.me)
+async def handle_wibu(client: Client, message: Message):
     await ambil_gambar(message)  # Panggil dengan objek message yang benar
+
 add_command_help(
-    "couple",
+    "NSFW",
     [
-        ["ppcp", "Cari foto profil untuk couple."]
+        ["wibu", "Cari foto profil untuk couple."]
     ],
 )
