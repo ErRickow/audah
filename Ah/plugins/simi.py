@@ -127,7 +127,7 @@ async def chatbot_response(client, message):
     # Mengirimkan respons kembali ke pengguna
     try:
         await message.reply(
-            f"<blockquote>❏ Chatbot\n├• {client.me.mention}\n└• {simtalk_response}</blockquote>"
+            f"<blockquote>❏ <b>INI APA BANGSAT</b>\n├• {client.me.mention}\n└• {simtalk_response}</blockquote>"
         )
     except Exception as e:
         await message.reply("Terjadi kesalahan saat mengirim respons.")
