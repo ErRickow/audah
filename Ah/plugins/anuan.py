@@ -15,17 +15,15 @@ async def ambil_gambar(message):
         file_path = 'bokep.jpg'
         with open(file_path, 'wb') as f:
             f.write(response.content)
-
-        await message.reply_photo(photo=file_path, caption=f"Gambar dari API {text}")
+        await message.reply_photo(photo=file_path, caption=f"Gambar dari API {message}")
         
         os.remove(file_path)
     else:
         await message.reply("Gagal mengunduh gambar.")
 
-await ambil_gambar(message, text="malaysia")
 @Client.on_message(filters.command("ppcp", cmd) & filters.me)
 async def handle_ppcp(client: Client, message: Message):
-    await ambil_ppcp(message)  # Panggil dengan objek message yang benar
+    await ambil_gambar(message)  # Panggil dengan objek message yang benar
 add_command_help(
     "couple",
     [
