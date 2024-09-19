@@ -12,7 +12,7 @@ from Ah.plugins import ALL_MODULES
 from config import *
 
 BOT_VER = "0.0"
-PREFIX = ["."]
+PREFIX = [""]
 MSG_ON = """
 💢 Ubot Telah Hidup 💢
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
