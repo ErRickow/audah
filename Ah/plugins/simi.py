@@ -1,6 +1,7 @@
 # Helpers with Randy devs a.k.a xtedev
 # ang ang ang ang
 # ©Er a.k.a @Chakszzz
+# cibeku too kiw
 import requests
 import logging
 from pyrogram import Client, filters
