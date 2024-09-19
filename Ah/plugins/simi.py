@@ -7,7 +7,7 @@ import logging
 from pyrogram import Client, filters
 from Ah.bantuan.tools import get_text
 from Ah.bantuan.PyroHelpers import ReplyCheck
-from config import *
+from Ah import ubot
 import re
 import asyncio
 import os
