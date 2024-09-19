@@ -6,7 +6,6 @@ import requests
 import logging
 from pyrogram import Client, filters
 from Ah.bantuan.tools import get_text
-from Ah import *
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from config import *
 import re
@@ -80,7 +79,7 @@ async def chatbot_response(client, message):
                 ["git", "log", "-1", "--pretty=format:%h %s"]
             ).decode("UTF-8").strip()
 
-            teks = f"<b>❒ Status resources: {client.me.mention}</b>\n"
+            teks = f"<b>❒ Status resources: {ubot.me.mention}</b>\n"
             memeg = f"<b>🎲 Perubahan logs by {client.me.mention}</b>"
 
             if "Already up to date." in str(out):
