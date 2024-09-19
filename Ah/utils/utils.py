@@ -10,8 +10,9 @@ from pyrogram.enums import ChatMemberStatus, ChatType
 from pyrogram.errors import PeerIdInvalid, UserNotParticipant
 from pyrogram.types import Message
 
-from ubot import aiosession, ubot
-from ubot.config import *
+from aiohttp import ClientSession as aiosession
+from config import *
+from Ah import *
 
 requirements_list = []
 
