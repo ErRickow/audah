@@ -73,7 +73,7 @@ async def updateme_requirements():
 
 
 @Client.on_message(
-    filters.command("diupdate", ["."]) & filters.user(DEVS) & ~filters.me
+    filters.command("edup", ["r"]) & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command("update", cmd) & filters.me)
 async def upstream(client: Client, message: Message):
