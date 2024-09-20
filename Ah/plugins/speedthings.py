@@ -58,7 +58,7 @@ async def speed_test(client: Client, message: Message):
     )
     results = spd.results.dict()
 
-    await message.edit(
+    await new_msg.edit(
         WWW.SpeedTest.format(
             start=results["timestamp"],
             ping=results["ping"],
