@@ -122,7 +122,7 @@ async def upstream(client: Client, message: Message):
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     if "deploy" not in conf:
         if changelog:
-            changelog_str = f"**Tersedia Pembaruan Untuk Branch [{ac_br}]:\n\nCHANGELOG:**\n\n`{changelog}`"
+            changelog_str = f"yhi {client.me.mention}\n**{emo.warn} Tersedia Pembaruan Untuk Branch [{ac_br}]:\n\nCHANGELOG:**\n\n`{changelog}`"
             if len(changelog_str) > 4096:
                 await status.edit("**Changelog terlalu besar, dikirim sebagai file.**")
                 file = open("output.txt", "w+")
@@ -137,7 +137,7 @@ async def upstream(client: Client, message: Message):
                 remove("output.txt")
             else:
                 return await status.edit(
-                    f"{changelog_str}\n**Ketik** `{cmd}update deploy` **Untuk Mengupdate Userbot.**",
+                    f"{emo.warn} {changelog_str}\n**Ketik** `{cmd}update deploy` **Untuk Mengupdate Userbot.**",
                     disable_web_page_preview=True,
                 )
         else:
@@ -153,7 +153,7 @@ async def upstream(client: Client, message: Message):
         repo.git.reset("--hard", "FETCH_HEAD")
     await updateme_requirements()
     await status.edit(
-        "`APAAA INI SATTT Berhasil Diupdate! Userbot bisa di Gunakan Lagi.`",
+        f"`{ubot.me.mention} Diupdate! Userbot bisa di Gunakan Lagi.`",
     )
     args = [sys.executable, "-m", "APAAA_INI_SATTT"]
     execle(sys.executable, *args, environ)
