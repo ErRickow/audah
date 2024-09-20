@@ -112,7 +112,7 @@ async def chatbot_response(client, message):
                 format_output = "\n".join(format_line)
 
             await pros.edit(
-                f"<blockquote><b>{memeg}</b>\n\n{teks}{format_output}<br>\n\n<b>Last Commit:</b> {last_commit}</blockquote>"
+                f"<blockquote><b>{memeg}</b>\n\n{teks}{format_output}<br>\n\n<b> {emo.load} Last Commit:</b> {last_commit}</blockquote>"
             )
             os.execl(sys.executable, sys.executable, "-m", "Ah")
 
