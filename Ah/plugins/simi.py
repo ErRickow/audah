@@ -35,7 +35,7 @@ async def send_simtalk(message):
             response = requests.post(
                 "https://api.simsimi.vn/v2/simtalk",  # Pastikan endpoint benar
                 data=params  # Batas waktu agar tidak menggantung
-            )
+            ).json()
             if response.status_code == 200:
                 return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
             else:
