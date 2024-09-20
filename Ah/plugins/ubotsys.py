@@ -178,7 +178,7 @@ async def updaterman(client: Client, message: Message):
     for checks in repo.iter_commits(f"HEAD..origin/{BRANCH}"):
         verification = str(checks.count())
     if verification == "":
-        return await response.edit("Bot is up-to-date!")
+        return await response.edit(f"Bot is up-to-date! {emo.cntng}")
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
