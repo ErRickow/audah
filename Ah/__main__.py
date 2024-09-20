@@ -15,6 +15,8 @@ BOT_VER = "3.R.0.R"
 PREFIX = [""]
 MSG_ON = """<blockquote>
 💢 {mention} **AKTIF**
+Bot Version: {bot_ver}
+Prefix: {prefix}
 ╼┅━━━━━━━━━━━━━━━┅╾</blockquote>
 """
 
@@ -53,22 +55,37 @@ async def main():
             # Mengirim log error ke botlog
             await send_error_log(all_module, error_traceback)
 
-    # Memulai bot dan menangani logika terkait
+    # Pesan untuk menginformasikan bot yang berhasil diaktifkan
+    startup_message = MSG_ON.format(
+        mention=ubot_me.mention,
+        bot_ver=BOT_VER,
+        prefix=', '.join(PREFIX)
+    )
+
+    # Menggabungkan daftar bot yang berhasil diaktifkan ke dalam satu pesan
+    active_bots = []
     for bot in bots:
         try:
             await bot.start()
             ex = await bot.get_me()
             await join(bot)
-            try:
-                await ubot.send_message(BOTLOG, MSG_ON.format(mention=ubot_me.mention, BOT_VER=BOT_VER, PREFIX=PREFIX))
-            except BaseException as e:
-                LOGGER("Bot Log Error").error(f"Error sending message to BOTLOG: {e}")
-            print(f"Started as {ex.first_name} | {ex.id}")
+            active_bots.append(f"{ex.first_name} | ID: {ex.id}")
             ids.append(ex.id)
         except Exception as e:
             # Menangkap traceback error dan mencatatnya
             error_traceback = traceback.format_exc()
             LOGGER("Bot Start Error").error(f"Error starting bot: {e}\nTraceback:\n{error_traceback}")
+
+    # Jika ada bot yang berhasil diaktifkan, tambahkan ke pesan startup
+    if active_bots:
+        startup_message += "\n\n💡 **Active Bots**:\n"
+        startup_message += "\n".join(active_bots)
+
+    # Mengirim pesan startup sekaligus
+    try:
+        await ubot.send_message(BOTLOG, startup_message)
+    except BaseException as e:
+        LOGGER("Bot Log Error").error(f"Error sending startup message to BOTLOG: {e}")
 
     await asyncio.sleep(100)
     await idle()
