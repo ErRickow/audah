@@ -154,7 +154,7 @@ async def upstream(client: Client, message: Message):
         repo.git.reset("--hard", "FETCH_HEAD")
     await updateme_requirements()
     await status.edit(
-        f"<blockquote>{ubot.me.mention} `Telah Diupdate! {emo.cntng}\n Userbot bisa di Gunakan Lagi.`</blockquote>",
+        f"<blockquote>{ubot.me.mention} `Telah Diupdate!\nUserbot bisa di Gunakan Lagi.`</blockquote>",
     )
     args = [sys.executable, "-m", "Ah"]
     execle(sys.executable, *args, environ)
