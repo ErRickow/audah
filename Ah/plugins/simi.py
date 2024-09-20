@@ -116,7 +116,7 @@ async def command_handler(client, message):
         return
 
 # Handler untuk pesan teks umum yang akan dijawab oleh Simsimi
-@Client.on_message(filters.text & ~filters.commands & ~filters.bot & filters.me)
+@Client.on_message(filters.text & ~filters.create(lambda _, __, message: message.text.startswith('/')) & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
     global chatbot_active
 
@@ -127,6 +127,7 @@ async def chatbot_response(client, message):
 
     # Mendapatkan respons dari Simsimi
     simtalk_response = await send_simtalk(message.text)
+    logger.info(f"Received message: {text}")
 
     # Mengirimkan respons kembali ke pengguna
     try:
