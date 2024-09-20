@@ -91,7 +91,7 @@ async def upstream(client: Client, message: Message):
         repo.__del__()
         return
     except GitCommandError as error:
-        await status.edit(f"{txt}\n**Kegagalan awal!** `{error}`")
+        await status.edit(f"{txt}\n**Gagal kek Satt!** `{error}`")
         repo.__del__()
         return
     except InvalidGitRepositoryError:
