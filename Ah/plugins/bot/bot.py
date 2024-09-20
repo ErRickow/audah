@@ -27,7 +27,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
            return
         await ubot.edit_inline_text(
             callback_query.inline_message_id,
-            "**— CLOSED MENU HELP**",
+            "<b>— CLOSED MENU HELP</b>",
             reply_markup=InlineKeyboardMarkup(Data.reopen),
         )
         return
@@ -58,7 +58,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
 async def on_plug_in_cb(_, callback_query: CallbackQuery):
     modul_name = callback_query.matches[0].group(1)
     commands: dict = CMD_HELP[modul_name]
-    this_command = f"<blockquote>──「 **Help For {str(modul_name).upper()}** 」──\n\n"
+    this_command = f"<blockquote>──「 <b>Bantuan untuk {str(modul_name).upper()}</b> 」──\n\n"
     for x in commands:
         this_command += f"  •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`\n\n"
     this_command += "© er?</blockquote>"
