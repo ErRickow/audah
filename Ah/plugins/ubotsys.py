@@ -215,7 +215,7 @@ add_command_help(
 @Client.on_message(filters.command("restart", cmd) & filters.me)
 async def restart_(client: Client, message: Message):
     await message.reply_text(f"`{emo.proses} {ubot.me.mention} sedang direstart...`")
-    args = [sys.executable, "-m", "APAAA_INI_SATTT"]
+    args = [sys.executable, "-m", "Ah"]
     execle(sys.executable, *args, environ)
     return
 
