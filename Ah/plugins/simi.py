@@ -32,10 +32,9 @@ async def send_simtalk(message):
                 "https://api.simsimi.vn/v2/simtalk",
                 data=params,
                 timeout=5  # Timeout request 5 detik
-            )
+            ).json()
             if response.status_code == 200:
-                result = response.json()  # Mengakses hasil jika statusnya 200
-                return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
+                return response.get("message", "Maaf, tidak ada respons dari Simsimi.")
             else:
                 return f"Error dari API Simsimi: {response.status_code}"
         except requests.exceptions.Timeout:
