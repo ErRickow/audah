@@ -70,7 +70,7 @@ async def main():
             ex = await bot.get_me()
             await join(bot)
             # Tambahkan format blockquote untuk setiap bot
-            active_bots.append(f"<blockquote>💡 {ex.first_name} | ID: {ex.id}</blockquote>")
+            active_bots.append(f"<blockquote>{ex.first_name} | ID: {ex.id}</blockquote>")
             ids.append(ex.id)
         except Exception as e:
             # Menangkap traceback error dan mencatatnya
