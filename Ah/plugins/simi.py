@@ -116,7 +116,7 @@ async def command_handler(client, message):
         return
 
 # Handler untuk pesan teks umum yang akan dijawab oleh Simsimi
-@Client.on_message(filters.text & ~filters.command & ~filters.bot & filters.me)
+@Client.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
     global chatbot_active
 
