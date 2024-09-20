@@ -44,7 +44,7 @@ async def main():
     # Load semua modul dari ALL_MODULES
     for all_module in ALL_MODULES:
         try:
-            importlib.import_module("Ah.plugins." + all_module)
+            importlib.import_module("Ah.plugins" + all_module)
             print(f"Successfully Imported {all_module}")
         except Exception as e:
             # Menangkap traceback error dan mencatatnya
