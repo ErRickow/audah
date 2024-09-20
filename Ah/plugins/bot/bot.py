@@ -60,7 +60,7 @@ async def on_plug_in_cb(_, callback_query: CallbackQuery):
     commands: dict = CMD_HELP[modul_name]
     this_command = f"<blockquote>──「 <b>Bantuan untuk {str(modul_name).upper()}</b> 」──\n\n"
     for x in commands:
-        this_command += f"  •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`\n\n"
+        this_command += f"  •  <b>Command:</b> <code>.{str(x)}</code>\n  •  <b>Function:</b> <code>{str(commands[x])}</code>\n\n"
     this_command += "© er?</blockquote>"
     bttn = [
         [InlineKeyboardButton(text="Return", callback_data="reopen")],
