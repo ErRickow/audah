@@ -83,7 +83,7 @@ async def upstream(client: Client, message: Message):
     try:
         txt = (
             "**ANJENG Pembaruan Tidak Dapat Di Lanjutkan sattt "
-            + "Terjadi Beberapa ERROR**\n\n**LOGTRACE:**\n"
+            + "Terjadi Beberapa ERROR BANGSAT**\n\n**LOGTRACE:**\n"
         )
         repo = Repo()
     except NoSuchPathError as error:
