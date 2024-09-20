@@ -222,5 +222,5 @@ async def restart_(client: Client, message: Message):
 
 @Client.on_message(filters.command("shutdown", cmd) & filters.me)
 async def shutdown_(client: Client, message: Message):
-    await message.reply_text("`APAAA INI SATTT dimatikan!`")
+    await message.reply_text(f"`{ubot.me.mention} dimatikan! {emo.cntng}`")
     sys.exit(0)
