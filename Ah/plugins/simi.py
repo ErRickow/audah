@@ -18,9 +18,6 @@ cmd_handler = ""
 chatbot_active = False
 
 # Konfigurasi logging
-HNDLR = ["yu off", "xupdate"]
-
-# Konfigurasi logging
 logging.basicConfig(
     level=logging.INFO,
     format="[%(levelname)s] - %(name)s - %(message)s",
@@ -36,11 +33,10 @@ async def send_simtalk(message):
         params = {"text": message, "lc": "id"}  # Bahasa Indonesia
         try:
             response = requests.post(
-                "https://api.simsimi.vn/v2/simtalk",
-                data=params,
+                "https://api.simsimi.vn/v2/simtalk",  # Pastikan endpoint benar
+                json=params,  # Mengirim sebagai JSON
                 timeout=5  # Batas waktu agar tidak menggantung
             )
-            # Pastikan status code 200 sebelum mengakses respons
             if response.status_code == 200:
                 result = response.json()
                 return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
@@ -51,28 +47,28 @@ async def send_simtalk(message):
         except Exception as e:
             return f"Error saat menghubungi API Simsimi: {str(e)}"
 
-# Handler untuk semua pesan teks
-@Client.on_message(filters.text & filters.command(["er on", "diem", "woi", "cukup", "pull"], cmd_handler) & ~filters.bot & filters.me)
-async def chatbot_response(client, message):
+# Handler untuk perintah spesifik (mengaktifkan/mematikan chatbot, update)
+@Client.on_message(filters.command(["er on", "diem", "woi", "cukup", "pull"], cmd_handler) & ~filters.bot & filters.me)
+async def command_handler(client, message):
     global chatbot_active
 
     text = message.text
 
-    # Periksa perintah "cukup" atau "diem" untuk mematikan chatbot
+    # Perintah untuk mematikan chatbot
     if "cukup" in text or "diem" in text:
         chatbot_active = False
         logger.info("Chatbot telah dinonaktifkan.")
         await message.reply("Chatbot dimatikan.")
         return
 
-    # Periksa perintah "er on" atau "woi" untuk mengaktifkan chatbot
+    # Perintah untuk menghidupkan chatbot
     if "er on" in text or "woi" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
         await message.reply("Chatbot dihidupkan.")
         return
 
-    # Periksa perintah "pull" untuk melakukan update userbot
+    # Perintah untuk melakukan update
     if "pull" in text:
         logger.info("Memulai proses update userbot.")
         try:
@@ -121,13 +117,18 @@ async def chatbot_response(client, message):
 
         return
 
-    # Cek apakah chatbot sedang aktif sebelum merespons pesan lainnya
+# Handler untuk pesan teks umum yang akan dijawab oleh Simsimi
+@Client.on_message(filters.text & ~filters.command & ~filters.bot & filters.me)
+async def chatbot_response(client, message):
+    global chatbot_active
+
+    # Cek apakah chatbot sedang aktif
     if not chatbot_active:
         logger.info("Chatbot sedang dinonaktifkan, tidak merespons pesan.")
         return
 
-    # Mendapatkan respons dari Simsimi secara asinkron
-    simtalk_response = await send_simtalk(text)
+    # Mendapatkan respons dari Simsimi
+    simtalk_response = await send_simtalk(message.text)
 
     # Mengirimkan respons kembali ke pengguna
     try:
