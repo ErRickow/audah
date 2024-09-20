@@ -132,7 +132,7 @@ async def upstream(client: Client, message: Message):
                 await client.send_document(
                     message.chat.id,
                     "output.txt",
-                    caption=f"**Ketik** `{cmd}update deploy` **Untuk Mengupdate Userbot.**",
+                    caption=f"from {ubot.me.mention} {emo.cntng}",
                     reply_to_message_id=status.id,
                 )
                 remove("output.txt")
