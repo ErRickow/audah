@@ -20,7 +20,7 @@ prefix = cmd
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL = getenv("CHANNEL", "Pamerdong")
 PREFFIX = getenv("PREFIX", "x", "")
-PREFIX = getenv("PREFIX", "!", "")
+PREFIX = getenv("PREFIX", "!", "", "?")
 DB_URL = getenv("DATABASE_URL", "sqlite:///tron.db")
 GIT_TOKEN = getenv(
     "GIT_TOKEN",
