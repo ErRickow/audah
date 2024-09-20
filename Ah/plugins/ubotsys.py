@@ -191,7 +191,7 @@ async def updaterman(client: Client, message: Message):
     if len(_final_updates_) > 4096:
         url = await PasteBin(updates)
         nrs = await response.edit(
-            f"<blockquote><b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n[Click Here to checkout Updates]({url})</blockquote>"
+            f"<blockquote><b>{emo.warn} Tersedia Update!</b>\n\n➣ Update lah sekarang</code>\n\n**<u>Updates:</u>**\n\n[Click Here to checkout Updates]({url})</blockquote>"
         )
     else:
         nrs = await response.edit(_final_updates_, disable_web_page_preview=True)
