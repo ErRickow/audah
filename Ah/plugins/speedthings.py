@@ -42,15 +42,15 @@ async def speed_test(client: Client, message: Message):
     new_msg = await message.reply(f"{emo.load} `Running speed test . . .`")
     spd = speedtest.Speedtest()
 
-    new_msg = await message.reply(
+    new_msg = await new_msg.edit(
         f"`{new_msg.text}`\n" "`Getting best server based on ping . . .`"
     )
     spd.get_best_server()
 
-    new_msg = await message.reply(f"`{new_msg.text}`\n" "`Testing download speed . . .`")
+    new_msg = await new_msg.edit(f"`{new_msg.text}`\n" "`Testing download speed . . .`")
     spd.download()
 
-    new_msg = await message.edit(f"`{new_msg.text}`\n" "`Testing upload speed . . .`")
+    new_msg = await new_msg.edit(f"`{new_msg.text}`\n" "`Testing upload speed . . .`")
     spd.upload()
 
     new_msg = await new_msg.edit(
