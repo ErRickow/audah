@@ -198,7 +198,7 @@ async def updaterman(client: Client, message: Message):
         nrs = await response.edit(_final_updates_, disable_web_page_preview=True)
     await bash("git stash &> /dev/null && git pull")
     await bash("pip3 install -r requirements.txt")
-    await response.edit(f"Successfully Updated Userbot to  [version: {BRANCH}] {emo.cntng}")
+    await response.edit(f"Successfully Updated Userbot {emo.cntng}")
     args = [sys.executable, "-m", "Ah"]
     execle(sys.executable, *args, environ)
     return
