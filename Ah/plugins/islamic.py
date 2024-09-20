@@ -41,7 +41,7 @@ async def sholawat_cmd(client: Client, message: Message):
                 [
                     sholawat.audio.file_id
                     async for sholawat in client.search_messages(
-                        "sholawatmajelis", filter=enums.MessagesFilter.AUDIO
+                        "pengagum_sholawat", filter=enums.MessagesFilter.AUDIO
                     )
                 ]
             ),
