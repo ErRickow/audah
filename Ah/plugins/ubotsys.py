@@ -123,7 +123,7 @@ async def upstream(client: Client, message: Message):
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     if "deploy" not in conf:
         if changelog:
-            changelog_str = f"<blockquote>yhi {client.me.mention}\n\n**{emo.warn} Tersedia Pembaruan:\n\nCHANGELOG:**\n\n`{changelog}`</blockquote>"
+            changelog_str = f"<blockquote>yhi {client.me.mention}\n\n**{emo.warn} Tersedia Pembaruan Untuk {ubot.me.mention}:\n\nCHANGELOG:**\n\n`{changelog}`</blockquote>"
             if len(changelog_str) > 4096:
                 await status.edit("**Changelog terlalu besar, dikirim sebagai file.**")
                 file = open("output.txt", "w+")
