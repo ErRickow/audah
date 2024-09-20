@@ -118,8 +118,8 @@ async def addblacklist(client: Client, message: Message):
     await message.reply(
         f"**Berhasil menambahkan** `{message.chat.id}` **ke daftar blacklist GCAST.**\n\nSilakan restart untuk menerapkan perubahan."
     )
-    # Update blacklist di file config.env
-    path = dotenv.find_dotenv("config.env")
+    # Update blacklist di file .env
+    path = dotenv.find_dotenv(".env")
     dotenv.set_key(path, "BLACKLIST_GCAST", blacklistgrup)
 
 
@@ -132,8 +132,8 @@ async def delblacklist(client: Client, message: Message):
         await message.reply(
             f"**Berhasil menghapus** `{message.chat.id}` **dari daftar blacklist GCAST.**\n\nSilakan restart untuk menerapkan perubahan."
         )
-        # Update blacklist di file config.env
-        path = dotenv.find_dotenv("config.env")
+        # Update blacklist di file .env
+        path = dotenv.find_dotenv(".env")
         dotenv.set_key(path, "BLACKLIST_GCAST", blacklistgrup)
     else:
         await message.reply("**Grup ini tidak ada dalam daftar blacklist GCAST.**")
