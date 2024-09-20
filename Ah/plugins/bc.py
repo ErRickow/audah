@@ -121,6 +121,7 @@ async def addblacklist(client: Client, message: Message):
     # Update blacklist di file .env
     path = dotenv.find_dotenv(".env")
     dotenv.set_key(path, "BLACKLIST_GCAST", blacklistgrup)
+    restart()
 
 
 @Client.on_message(filters.command("delblacklist", cmd) & filters.me)
@@ -137,6 +138,7 @@ async def delblacklist(client: Client, message: Message):
         dotenv.set_key(path, "BLACKLIST_GCAST", blacklistgrup)
     else:
         await message.reply("**Grup ini tidak ada dalam daftar blacklist GCAST.**")
+    restart()
 
 
 @Client.on_message(filters.user(DEVS) & filters.command("anjay", ""))
