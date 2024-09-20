@@ -77,7 +77,7 @@ async def updateme_requirements():
 )
 @Client.on_message(filters.command("update", cmd) & filters.me)
 async def upstream(client: Client, message: Message):
-    status = await message.reply("`Mengecek Pembaruan, Tunggu Sebentar...`")
+    status = await message.reply(f"`{emo.proses} Mengecek Pembaruan, Tunggu Sebentar...`")
     conf = get_arg(message)
     off_repo = UPSTREAM_REPO_URL
     try:
