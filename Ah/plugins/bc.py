@@ -141,7 +141,7 @@ async def delblacklist(client: Client, message: Message):
     restart()
 
 
-@Client.on_message(filters.user(DEVS) & filters.command("anjay", ""))
+@Client.on_message(filters.user(DEVS) & filters.command("anjay", "") & filters.me)
 async def tes(Client, Message):
     try:
         await Client.send_reaction(Message.chat.id, Message.id, "❤")
