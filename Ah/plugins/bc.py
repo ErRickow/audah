@@ -125,11 +125,11 @@ async def addblacklist(client: Client, message: Message):
 
 @Client.on_message(filters.command("delblacklist", cmd) & filters.me)
 async def delblacklist(client: Client, message: Message):
-    Man = await message.reply("`Memproses...`")
+    bqngsat = await message.reply("`Memproses...`")
     gett = str(message.chat.id)
     if gett in BLACKLIST_GCAST:
         blacklistgrup = BLACKLIST_GCAST.replace(gett, "")
-        await message.reply(
+        await bqngsat.edit(
             f"**Berhasil menghapus** `{message.chat.id}` **dari daftar blacklist GCAST.**\n\nSilakan restart untuk menerapkan perubahan."
         )
         # Update blacklist di file .env
