@@ -26,12 +26,12 @@ from pyrogram.types import Message
 from config import BRANCH
 from config import PREFIX as cmd
 from config import GIT_TOKEN, REPO_URL
-from APAAA_INI_SATTT.helpers.adminHelpers import DEVS
-from APAAA_INI_SATTT.helpers.basic import edit_or_reply
-from APAAA_INI_SATTT.helpers.tools import get_arg
-from APAAA_INI_SATTT.utils.misc import restart
-from APAAA_INI_SATTT.utils.pastebin import PasteBin
-from APAAA_INI_SATTT.utils.tools import bash
+from Ah.bantuan.adminHelpers import DEVS
+from Ah.bantuan.basic import edit_or_reply
+from Ah.bantuan.tools import get_arg
+from Ah.utils.misc import restart
+from Ah.utils.pastebin import PasteBin
+from Ah.utils.tools import bash
 
 from .help import add_command_help
 
