@@ -78,7 +78,7 @@ async def main():
 
     # Jika ada bot yang berhasil diaktifkan, tambahkan ke pesan startup
     if active_bots:
-        startup_message += "\n\n💡 **Active Bots**:\n"
+        startup_message += "\n\n<b>💡 **Active Bots**:</b>\n"
         startup_message += "\n".join(active_bots)
 
     # Mengirim pesan startup sekaligus
