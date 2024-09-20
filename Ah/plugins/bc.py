@@ -137,7 +137,7 @@ async def delblacklist(client: Client, message: Message):
         path = dotenv.find_dotenv(".env")
         dotenv.set_key(path, "BLACKLIST_GCAST", blacklistgrup)
     else:
-        await message.reply("**Grup ini tidak ada dalam daftar blacklist GCAST.**")
+        await bqngsat.edit("**Grup ini tidak ada dalam daftar blacklist GCAST.**")
     restart()
 
 
