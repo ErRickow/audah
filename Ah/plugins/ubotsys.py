@@ -169,7 +169,7 @@ async def updaterman(client: Client, message: Message):
     except GitCommandError:
         return await response.edit(f"{emo.gagal} Git Command Error")
     except InvalidGitRepositoryError:
-        return await response.edit("Invalid Git Repsitory")
+        return await response.edit(f"{emo.gagal} Invalid Git Repsitory")
     to_exc = f"git fetch origin {BRANCH} &> /dev/null"
     await bash(to_exc)
     await asyncio.sleep(7)
