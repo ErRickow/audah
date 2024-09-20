@@ -20,7 +20,7 @@ from Ah.bantuan.adminHelpers import DEVS
 from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.misc import HAPP, in_heroku
 from Ah.bantuan.tools import get_arg
-from PyroKar.utils.misc import restart
+from Ah.utils.misc import restart
 
 from .help import add_command_help
 
