@@ -47,7 +47,7 @@ def send_simtalk(message):
             return f"Error saat menghubungi API Simsimi: {str(e)}"
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.command(commands, cmd) filters.text & ~filters.bot & filters.me)
+@Client.on_message(filters.command(commands, cmd) & filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
     global chatbot_active
 
