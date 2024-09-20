@@ -4,16 +4,13 @@ from pyrogram import Client, filters
 from Ah.bantuan.tools import get_text
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from Ah import ubot
-import asyncio
+import subprocess
 import os
 import sys
-import subprocess
 
 cmd_handler = ""
-# Status chatbot (aktif/non-aktif)
 chatbot_active = False
 
-# Konfigurasi logging
 logging.basicConfig(
     level=logging.INFO,
     format="[%(levelname)s] - %(name)s - %(message)s",
@@ -21,55 +18,48 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Fungsi untuk mengirim pesan ke Simsimi
 async def send_simtalk(message):
     if len(message) > 1000:
         return "Character too big."
-    else:
-        params = {"text": message, "lc": "id"}  # Bahasa Indonesia
-        try:
-            response = requests.post(
-                "https://api.simsimi.vn/v2/simtalk",
-                data=params,
-                timeout=5  # Timeout request 5 detik
-            ).json()
-            if response.status_code == 200:
-                return response.get("message", "Maaf, tidak ada respons dari Simsimi.")
-            else:
-                return f"Error dari API Simsimi: {response.status_code}"
-        except requests.exceptions.Timeout:
-            return "Error: Timeout saat menghubungi API Simsimi."
-        except Exception as e:
-            return f"Error saat menghubungi API Simsimi: {str(e)}"
+    params = {"text": message, "lc": "id"}
+    try:
+        response = requests.post(
+            "https://api.simsimi.vn/v2/simtalk",
+            data=params,
+            timeout=5
+        ).json()
+        if response.status_code == 200:
+            return response.get("message", "Maaf, tidak ada respons dari Simsimi.")
+        else:
+            return f"Error dari API Simsimi: {response.status_code}"
+    except requests.exceptions.Timeout:
+        return "Error: Timeout saat menghubungi API Simsimi."
+    except Exception as e:
+        return f"Error saat menghubungi API Simsimi: {str(e)}"
 
-# Handler untuk perintah spesifik (mengaktifkan/mematikan chatbot, update)
 @Client.on_message(filters.command(["er on", "diem", "woi", "cukup", "pull"], cmd_handler) & ~filters.bot & filters.me)
 async def command_handler(client, message):
     global chatbot_active
-
     text = message.text
 
-    # Perintah untuk mematikan chatbot
+    # Periksa perintah untuk mengaktifkan atau menonaktifkan chatbot
     if "cukup" in text or "diem" in text:
         chatbot_active = False
         logger.info("Chatbot telah dinonaktifkan.")
         await message.reply("Chatbot dimatikan.")
         return
 
-    # Perintah untuk menghidupkan chatbot
     if "er on" in text or "woi" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
         await message.reply("Chatbot dihidupkan.")
         return
 
-    # Perintah untuk melakukan update
+    # Periksa perintah "pull" untuk melakukan update userbot
     if "pull" in text:
         logger.info("Memulai proses update userbot.")
         try:
-            pros = await message.reply(
-                f"<i>Memeriksa pembaruan resources {client.me.mention}...</i>"
-            )
+            pros = await message.reply(f"<i>Memeriksa pembaruan resources {client.me.mention}...</i>")
             out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
             last_commit = subprocess.check_output(
                 ["git", "log", "-1", "--pretty=format:%h %s"]
@@ -79,20 +69,13 @@ async def command_handler(client, message):
             memeg = f"<b>🎲 Perubahan logs by {client.me.mention}</b>"
 
             if "Already up to date." in str(out):
-                return await pros.edit(
-                    f"<blockquote>{teks}┖ {out}\n<b>Last Commit:</b> {last_commit}</blockquote>"
-                )
+                return await pros.edit(f"<blockquote>{teks}┖ {out}\n<b>Last Commit:</b> {last_commit}</blockquote>")
 
             if len(out) > 4096:
                 await pros.edit("<i>Hasil akan dikirimkan dalam bentuk file...</i>")
                 with open("output.txt", "w+") as file:
                     file.write(out)
-                await client.send_document(
-                    message.chat.id,
-                    "output.txt",
-                    caption="<b>Perubahan logs:</b>",
-                    reply_to_message_id=message.id,
-                )
+                await client.send_document(message.chat.id, "output.txt", caption="<b>Perubahan logs:</b>", reply_to_message_id=message.id)
                 os.remove("output.txt")
                 return
 
@@ -101,36 +84,23 @@ async def command_handler(client, message):
                 format_line[-1] = f"┖ {format_line[-1][2:]}"
                 format_output = "\n".join(format_line)
 
-            await pros.edit(
-                f"<blockquote><b>{memeg}</b>\n\n{teks}{format_output}<br>\n\n<b>Last Commit:</b> {last_commit}</blockquote>"
-            )
+            await pros.edit(f"<blockquote><b>{memeg}</b>\n\n{teks}{format_output}<br>\n\n<b>Last Commit:</b> {last_commit}</blockquote>")
             os.execl(sys.executable, sys.executable, "-m", "Ah")
 
         except Exception as e:
             await message.reply(f"Terjadi kesalahan saat memperbarui: {e}")
             logger.error(f"Error saat memperbarui userbot: {e}")
 
-        return
-
-# Handler untuk pesan teks umum yang akan dijawab oleh Simsimi
 @Client.on_message(filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
     global chatbot_active
 
-    # Cek apakah chatbot sedang aktif
-    if not chatbot_active:
-        logger.info("Chatbot sedang dinonaktifkan, tidak merespons pesan.")
-        return
+    text = message.text
+    logger.info(f"Received message: {text}")
 
-    # Mendapatkan respons dari Simsimi
-    simtalk_response = await send_simtalk(message.text)
-    logger.info(f"Received message: {message.text}")
-
-    # Mengirimkan respons kembali ke pengguna
-    try:
+    # Cek apakah chatbot aktif sebelum merespons
+    if chatbot_active:
+        simtalk_response = await send_simtalk(text)
         await message.reply(
             f"<blockquote>❏ <b>INI APA BANGSAT</b>\n├• {client.me.mention}\n└• {simtalk_response}</blockquote>"
         )
-    except Exception as e:
-        await message.reply("Terjadi kesalahan saat mengirim respons.")
-        logger.error(f"Error saat mengirim respons: {e}")
