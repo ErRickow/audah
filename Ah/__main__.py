@@ -14,10 +14,7 @@ from config import *
 
 BOT_VER = "3.R.0.R"
 PREFIX = [""]
-MSG_ON = f"""<blockquote>
-💢 {ubot.me.mention} **AKTIF**
-╼┅━━━━━━━━━━━━━━━┅╾</blockquote>
-"""
+MSG_ON = f"<blockquote>💢 {ubot.me.mention} **AKTIF**\n╼┅━━━━━━━━━━━━━━━┅╾</blockquote>"
 
 async def send_error_log(module_name, error_message):
     """
