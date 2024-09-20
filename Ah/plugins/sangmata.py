@@ -50,7 +50,7 @@ async def sg(client: Client, message: Message):
         if not stalk:
             return
         elif stalk:
-            await message.reply(stalk.text)
+            await lol.edit(stalk.text)
             await stalk.delete()
 
 
