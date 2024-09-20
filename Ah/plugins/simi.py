@@ -48,7 +48,7 @@ def send_simtalk(message):
             return f"Error saat menghubungi API Simsimi: {str(e)}"
 
 # Handler untuk semua pesan teks
-@Client.on_message(filters.command(cmd_handler) & filters.text & ~filters.bot & filters.me)
+@Client.on_message(filters.command(["er on", "diem", "woi", "cukup", "anuin", cmd_handler) & filters.text & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
     global chatbot_active
 
@@ -69,7 +69,7 @@ async def chatbot_response(client, message):
         return
 
     # Periksa perintah "update" untuk melakukan update userbot
-    if "update" in text:
+    if "anuin" in text:
         logger.info("Memulai proses update userbot.")
         try:
             pros = await message.reply(
