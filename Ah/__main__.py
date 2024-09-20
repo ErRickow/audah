@@ -69,7 +69,8 @@ async def main():
             await bot.start()
             ex = await bot.get_me()
             await join(bot)
-            active_bots.append(f"{ex.first_name} | ID: {ex.id}")
+            # Tambahkan format blockquote untuk setiap bot
+            active_bots.append(f"<blockquote>💡 {ex.first_name} | ID: {ex.id}</blockquote>")
             ids.append(ex.id)
         except Exception as e:
             # Menangkap traceback error dan mencatatnya
@@ -78,7 +79,7 @@ async def main():
 
     # Jika ada bot yang berhasil diaktifkan, tambahkan ke pesan startup
     if active_bots:
-        startup_message += "\n\n<b>💡 **Active Bots**:</b>\n"
+        startup_message += "\n\n<b>💡 Active Bots:</b>\n"
         startup_message += "\n".join(active_bots)
 
     # Mengirim pesan startup sekaligus
