@@ -105,7 +105,7 @@ async def blchatgcast(client: Client, message: Message):
 
 @Client.on_message(filters.command("addblacklist", cmd) & filters.me)
 async def addblacklist(client: Client, message: Message):
-    Man = await message.reply("`Memproses...`")
+    anu = await message.reply("`Memproses...`")
     blgc = f"{BLACKLIST_GCAST} {message.chat.id}"
     blacklistgrup = (
         blgc.replace("{", "")
@@ -115,7 +115,7 @@ async def addblacklist(client: Client, message: Message):
         .replace("]", "")
         .replace("set() ", "")
     )
-    await message.reply(
+    await anu.edit(
         f"**Berhasil menambahkan** `{message.chat.id}` **ke daftar blacklist GCAST.**\n\nSilakan restart untuk menerapkan perubahan."
     )
     # Update blacklist di file .env
