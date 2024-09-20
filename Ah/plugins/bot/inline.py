@@ -111,7 +111,6 @@ async def karman_function(message: Message, answers):
         "ㅤㅤStatus : 𝘗𝘳𝘦𝘮𝘪𝘶𝘮 \n"
         f"ㅤㅤㅤㅤmodules:</b> <code>{len(modules)} Modules</code> \n"
         f"ㅤㅤㅤㅤbot version: {BOT_VER} \n"
-        f"ㅤㅤㅤㅤbranch: {branch} \n\n"
     )
     answers.append(
         InlineQueryResultArticle(
