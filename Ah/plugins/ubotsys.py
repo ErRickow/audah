@@ -155,7 +155,7 @@ async def upstream(client: Client, message: Message):
     await status.edit(
         f"`{ubot.me.mention} Diupdate! Userbot bisa di Gunakan Lagi.`",
     )
-    args = [sys.executable, "-m", "APAAA_INI_SATTT"]
+    args = [sys.executable, "-m", "Ah"]
     execle(sys.executable, *args, environ)
     return
 
