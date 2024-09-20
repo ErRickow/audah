@@ -78,7 +78,7 @@ async def chatbot_response(client, message):
         logger.info("Memulai proses update userbot.")
         try:
             pros = await message.reply(
-                f"<i>Memeriksa pembaruan resources {client.me.mention}...</i>"
+                f"<i>{emo.proses} Memeriksa pembaruan resources {client.me.mention}...</i>"
             )
             out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
             last_commit = subprocess.check_output(
