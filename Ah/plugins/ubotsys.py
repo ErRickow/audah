@@ -163,7 +163,7 @@ async def upstream(client: Client, message: Message):
 @Client.on_message(filters.command("cupdate", ["."]) & filters.user(DEVS) & ~filters.me)
 @Client.on_message(filters.command("goupdate", cmd) & filters.me)
 async def updaterman(client: Client, message: Message):
-    response = await edit_or_reply(message, "Checking for available updates...")
+    response = await message.reply(f"{emo.proses} Checking for available updates...")
     try:
         repo = Repo()
     except GitCommandError:
