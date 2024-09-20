@@ -13,12 +13,9 @@ from config import *
 
 BOT_VER = "3.R.0.R"
 PREFIX = [""]
-MSG_ON = """
-💢 Ubot Telah Hidup 💢
-╼┅━━━━━━━━━━━━━━━┅╾
-❍▹ Userbot Version - {}
-❍▹ Ketik {}alive untuk Mengecek Bot
-╼┅━━━━━━━━━━╍━━━━┅╾
+MSG_ON = f"""<blockquote>
+💢 {ubot.me.mention} **AKTIF**
+╼┅━━━━━━━━━━━━━━━┅╾</blockquote>
 """
 
 # Fungsi untuk menjalankan tindakan bot
