@@ -138,7 +138,7 @@ async def upstream(client: Client, message: Message):
                 remove("output.txt")
             else:
                 return await status.edit(
-                    f"{emo.warn} {changelog_str}\n**Ketik** `{cmd}update deploy` **Untuk Mengupdate Userbot.**",
+                    f"{emo.warn} {changelog_str}\nfrom {ubot.me.mention} {emo.cntng}",
                     disable_web_page_preview=True,
                 )
         else:
