@@ -18,6 +18,16 @@ MSG_ON = f"""<blockquote>
 ╼┅━━━━━━━━━━━━━━━┅╾</blockquote>
 """
 
+async def send_error_log(module_name, error_message):
+    """
+    Mengirimkan pesan error ke BOTLOG jika ada kesalahan dalam memuat modul.
+    """
+    error_text = f"**Error loading module** `{module_name}`:\n```{error_message}```"
+    try:
+        await ubot.send_message(BOTLOG, error_text)
+    except BaseException as e:
+        LOGGER("Bot Log Error").error(f"Error sending error log to BOTLOG: {e}")
+
 # Fungsi untuk menjalankan tindakan bot
 async def main():
     await ubot.start()
@@ -26,12 +36,14 @@ async def main():
     # Load semua modul dari ALL_MODULES
     for all_module in ALL_MODULES:
         try:
-            importlib.import_module("Ah.plugins" + all_module)
+            importlib.import_module("Ah.plugins." + all_module)
             print(f"Successfully Imported {all_module}")
         except Exception as e:
             # Menangkap traceback error dan mencatatnya
             error_traceback = traceback.format_exc()
             LOGGER("Module Error").error(f"Error loading module {all_module}: {e}\nTraceback:\n{error_traceback}")
+            # Mengirim log error ke botlog
+            await send_error_log(all_module, error_traceback)
 
     # Memulai bot dan menangani logika terkait
     for bot in bots:
