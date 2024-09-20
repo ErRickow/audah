@@ -76,7 +76,7 @@ async def updateme_requirements():
 @Client.on_message(
     filters.command("edup", ["r"]) & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.command("update", cmd) & filters.me)
+@Client.on_message(filters.command("git", cmd) & filters.me)
 async def upstream(client: Client, message: Message):
     status = await message.reply(f"`{emo.proses} Mengecek Pembaruan, Tunggu Sebentar...`")
     conf = get_arg(message)
@@ -121,7 +121,7 @@ async def upstream(client: Client, message: Message):
     ups_rem = repo.remote("upstream")
     ups_rem.fetch(ac_br)
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
-    if "deploy" not in conf:
+    if "pull" not in conf:
         if changelog:
             changelog_str = f"<blockquote>yhi {client.me.mention}\n\n**{emo.warn} Tersedia Pembaruan Untuk {ubot.me.mention}:\n\nCHANGELOG:**\n\n`{changelog}`</blockquote>"
             if len(changelog_str) > 4096:
