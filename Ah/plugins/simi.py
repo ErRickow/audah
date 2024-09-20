@@ -1,7 +1,3 @@
-# Helpers with Randy devs a.k.a xtedev
-# ang ang ang ang
-# ©Er a.k.a @Chakszzz
-# cibeku too kiw
 import requests
 import logging
 from pyrogram import Client, filters
@@ -33,7 +29,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Fungsi untuk mengirim pesan ke Simsimi
-def send_simtalk(message):
+async def send_simtalk(message):
     if len(message) > 1000:
         return "Character too big."
     else:
@@ -41,9 +37,17 @@ def send_simtalk(message):
         try:
             response = requests.post(
                 "https://api.simsimi.vn/v2/simtalk",
-                data=params
-            ).json()
-            return response.get("message", "Maaf, tidak ada respons dari Simsimi.")
+                data=params,
+                timeout=5  # Batas waktu agar tidak menggantung
+            )
+            # Pastikan status code 200 sebelum mengakses respons
+            if response.status_code == 200:
+                result = response.json()
+                return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
+            else:
+                return f"Error dari API Simsimi: {response.status_code}"
+        except requests.exceptions.Timeout:
+            return "Error: Timeout saat menghubungi API Simsimi."
         except Exception as e:
             return f"Error saat menghubungi API Simsimi: {str(e)}"
 
@@ -61,14 +65,14 @@ async def chatbot_response(client, message):
         await message.reply("Chatbot dimatikan.")
         return
 
-    # Periksa perintah "kemana lu" atau "woi" untuk mengaktifkan chatbot
+    # Periksa perintah "er on" atau "woi" untuk mengaktifkan chatbot
     if "er on" in text or "woi" in text:
         chatbot_active = True
         logger.info("Chatbot telah diaktifkan.")
         await message.reply("Chatbot dihidupkan.")
         return
 
-    # Periksa perintah "update" untuk melakukan update userbot
+    # Periksa perintah "pull" untuk melakukan update userbot
     if "pull" in text:
         logger.info("Memulai proses update userbot.")
         try:
@@ -122,8 +126,8 @@ async def chatbot_response(client, message):
         logger.info("Chatbot sedang dinonaktifkan, tidak merespons pesan.")
         return
 
-    # Mendapatkan respons dari Simsimi
-    simtalk_response = send_simtalk(text)  # Sinkron, tidak perlu await
+    # Mendapatkan respons dari Simsimi secara asinkron
+    simtalk_response = await send_simtalk(text)
 
     # Mengirimkan respons kembali ke pengguna
     try:
