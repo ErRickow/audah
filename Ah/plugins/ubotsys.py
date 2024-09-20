@@ -198,7 +198,7 @@ async def updaterman(client: Client, message: Message):
     await bash("git stash &> /dev/null && git pull")
     await bash("pip3 install -r requirements.txt")
     await response.edit(f"Successfully Updated Userbot to  [version: {BRANCH}] {emo.cntng}")
-    args = [sys.executable, "-m", "APAAA_INI_SATTT"]
+    args = [sys.executable, "-m", "Ah"]
     execle(sys.executable, *args, environ)
     return
 
