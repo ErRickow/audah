@@ -84,7 +84,7 @@ async def ping_function(message: Message, answers):
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     msg = (
-        f"<b>💢𝐏𝐲𝐫𝐨𝐊𝐚𝐫-𝐔𝐬𝐞𝐫𝐛𝐨𝐭💢</b>\n\n"
+        f"<b>EMANG ANJENG</b>\n\n"
         f"<b>🇮🇩ᴋᴏɴᴛᴏʟ!!<b>\n"
         f"├•ᴜᴘᴛɪᴍᴇ :</b> <code>{uptime}</code>\n"
         f"├•ᴅᴜʀᴀᴛɪᴏɴ :</b> <code>{duration}ms</code>\n"
