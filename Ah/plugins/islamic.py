@@ -13,7 +13,7 @@ from .help import add_command_help
 
 @Client.on_message(filters.command(["alquran", "quran"], cmd) & filters.me)
 async def alquran_cmd(client: Client, message: Message):
-    ram = await edit_or_reply(message, "`Tunggu Sebentar...`")
+    ram = await message.reply("`Tunggu Sebentar...`")
     await gather(
         ram.delete(),
         client.send_voice(
@@ -32,7 +32,7 @@ async def alquran_cmd(client: Client, message: Message):
 
 @Client.on_message(filters.command(["sholawat", "slwt"], cmd) & filters.me)
 async def sholawat_cmd(client: Client, message: Message):
-    ram = await edit_or_reply(message, "`Tunggu Sebentar...`")
+    ram = await message.reply("`Tunggu Sebentar...`")
     await gather(
         ram.delete(),
         client.send_audio(
