@@ -90,7 +90,7 @@ async def chatbot_response(client, message):
 
             if "Already up to date." in str(out):
                 return await pros.edit(
-                    f"<blockquote>{teks}┖ {out}\n<b>Last Commit:</b> {last_commit}</blockquote>"
+                    f"<blockquote> {emo.load} {teks}┖ {out}\n<b>Last Commit:</b> {last_commit}</blockquote>"
                 )
 
             if len(out) > 4096:
