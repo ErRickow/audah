@@ -25,7 +25,7 @@ from pyrogram.types import Message
 
 from config import BRANCH
 from config import PREFIX as cmd
-from config import GIT_TOKEN, REPO_URL
+from config import GIT_TOKEN, REPO_URL, emo
 from Ah.bantuan.adminHelpers import DEVS
 from Ah.bantuan.basic import edit_or_reply
 from Ah.bantuan.tools import get_arg
@@ -77,7 +77,7 @@ async def updateme_requirements():
 )
 @Client.on_message(filters.command("update", cmd) & filters.me)
 async def upstream(client: Client, message: Message):
-    status = await edit_or_reply(message, "`Mengecek Pembaruan, Tunggu Sebentar...`")
+    status = await message.reply("`Mengecek Pembaruan, Tunggu Sebentar...`")
     conf = get_arg(message)
     off_repo = UPSTREAM_REPO_URL
     try:
