@@ -132,18 +132,18 @@ async def upstream(client: Client, message: Message):
                 await client.send_document(
                     message.chat.id,
                     "output.txt",
-                    caption=f"from {ubot.me.mention} {emo.cntng}",
+                    caption=f"<b><i>from {ubot.me.mention} {emo.cntng}</i></b>",
                     reply_to_message_id=status.id,
                 )
                 remove("output.txt")
             else:
                 return await status.edit(
-                    f"{emo.warn} {changelog_str}\nfrom {ubot.me.mention} {emo.cntng}",
+                    f"{changelog_str}\nfrom {ubot.me.mention} {emo.cntng}",
                     disable_web_page_preview=True,
                 )
         else:
             await status.edit(
-                f"\n`BOT LU is`  **up-to-date** {emo.cntng}\n",
+                f"\n`BOT LU is` **up-to-date** {emo.cntng}\n",
                 disable_web_page_preview=True,
             )
             repo.__del__()
@@ -154,7 +154,7 @@ async def upstream(client: Client, message: Message):
         repo.git.reset("--hard", "FETCH_HEAD")
     await updateme_requirements()
     await status.edit(
-        f"<blockquote>{ubot.me.mention} `Telah Diupdate! {emo.cntng} Userbot bisa di Gunakan Lagi.`</blockquote>",
+        f"<blockquote>{ubot.me.mention} `Telah Diupdate! {emo.cntng}\n Userbot bisa di Gunakan Lagi.`</blockquote>",
     )
     args = [sys.executable, "-m", "Ah"]
     execle(sys.executable, *args, environ)
