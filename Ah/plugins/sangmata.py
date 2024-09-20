@@ -24,12 +24,12 @@ from .help import add_command_help
 @Client.on_message(filters.command(["sg", "sa", "sangmata"], cmd) & filters.me)
 async def sg(client: Client, message: Message):
     args = await extract_user(message)
-    lol = await edit_or_reply(message, "`Processing...`")
+    lol = await message.reply("`Processing...`")
     if args:
         try:
             user = await client.get_users(args)
         except Exception:
-            return await lol.edit(f"`Please specify a valid user!`")
+            return await lol.edit(f"`User Tidak Valid Anjeng!`")
     bot = "SangMataInfo_bot"
     try:
         await client.send_message(bot, f"/search_id {user.id}")
