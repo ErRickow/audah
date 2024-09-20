@@ -107,10 +107,10 @@ async def create_botlog(client):
         gruplog = await client.create_supergroup("AhAhAh UserBot Log", desc)
         if await in_heroku():
             heroku_var = HAPP.config()
-            heroku_var["BOTLOG_CHATID"] = gruplog.id
+            heroku_var["BOTLOG"] = gruplog.id
         else:
             path = dotenv.find_dotenv("config.env")
-            dotenv.set_key(path, "BOTLOG_CHATID", gruplog.id)
+            dotenv.set_key(path, "BOTLOG", gruplog.id)
     except Exception:
         LOGGER("AhAhAh").warning(
             "var BOTLOG_CHATID kamu belum di isi. Buatlah grup telegram dan masukan bot @MissRose_bot lalu ketik /id Masukan id grup nya di var BOTLOG_CHATID"
