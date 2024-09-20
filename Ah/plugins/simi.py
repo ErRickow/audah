@@ -34,11 +34,9 @@ async def send_simtalk(message):
         try:
             response = requests.post(
                 "https://api.simsimi.vn/v2/simtalk",  # Pastikan endpoint benar
-                json=params,  # Mengirim sebagai JSON
-                timeout=5  # Batas waktu agar tidak menggantung
+                data=params  # Batas waktu agar tidak menggantung
             )
             if response.status_code == 200:
-                result = response.json()
                 return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
             else:
                 return f"Error dari API Simsimi: {response.status_code}"
@@ -118,7 +116,7 @@ async def command_handler(client, message):
         return
 
 # Handler untuk pesan teks umum yang akan dijawab oleh Simsimi
-@Client.on_message(filters.text & ~filters.create(lambda _, __, message: message.text.startswith('/')) & ~filters.bot & filters.me)
+@Client.on_message(filters.text & ~filters.commands & ~filters.bot & filters.me)
 async def chatbot_response(client, message):
     global chatbot_active
 
