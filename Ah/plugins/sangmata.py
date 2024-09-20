@@ -29,7 +29,7 @@ async def sg(client: Client, message: Message):
         try:
             user = await client.get_users(args)
         except Exception:
-            return await lol.edit(f"`User Tidak Valid Anjeng!`")
+            return await lol.edit(f"`User Tidak Valid! Anjeng!`")
     bot = "SangMataInfo_bot"
     try:
         await client.send_message(bot, f"/search_id {user.id}")
