@@ -143,7 +143,7 @@ async def upstream(client: Client, message: Message):
                 )
         else:
             await status.edit(
-                f"\n`Your BOT is`  **up-to-date**  `with branch`  **[{ac_br}]**\n",
+                f"\n`BOT LU is`  **up-to-date** {emo.cntng}\n",
                 disable_web_page_preview=True,
             )
             repo.__del__()
