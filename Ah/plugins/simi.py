@@ -4,14 +4,10 @@ from pyrogram import Client, filters
 from Ah.bantuan.tools import get_text
 from Ah.bantuan.PyroHelpers import ReplyCheck
 from Ah import ubot
-import re
 import asyncio
 import os
 import sys
-import shutil
 import subprocess
-from git import Repo
-from git.exc import InvalidGitRepositoryError
 
 cmd_handler = ""
 # Status chatbot (aktif/non-aktif)
@@ -33,10 +29,12 @@ async def send_simtalk(message):
         params = {"text": message, "lc": "id"}  # Bahasa Indonesia
         try:
             response = requests.post(
-                "https://api.simsimi.vn/v2/simtalk",  # Pastikan endpoint benar
-                data=params  # Batas waktu agar tidak menggantung
-            ).json()
+                "https://api.simsimi.vn/v2/simtalk",
+                data=params,
+                timeout=5  # Timeout request 5 detik
+            )
             if response.status_code == 200:
+                result = response.json()  # Mengakses hasil jika statusnya 200
                 return result.get("message", "Maaf, tidak ada respons dari Simsimi.")
             else:
                 return f"Error dari API Simsimi: {response.status_code}"
@@ -127,7 +125,7 @@ async def chatbot_response(client, message):
 
     # Mendapatkan respons dari Simsimi
     simtalk_response = await send_simtalk(message.text)
-    logger.info(f"Received message: {text}")
+    logger.info(f"Received message: {message.text}")
 
     # Mengirimkan respons kembali ke pengguna
     try:
