@@ -80,3 +80,4 @@ class emo:
     proses = "🔄"
     p = "⚙️"
     load = "⏳"
+    warn = "⚠️"
