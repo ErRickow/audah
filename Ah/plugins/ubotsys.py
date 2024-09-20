@@ -82,7 +82,7 @@ async def upstream(client: Client, message: Message):
     off_repo = UPSTREAM_REPO_URL
     try:
         txt = (
-            "**Pembaruan Tidak Dapat Di Lanjutkan Karna "
+            "**ANJENG Pembaruan Tidak Dapat Di Lanjutkan sattt "
             + "Terjadi Beberapa ERROR**\n\n**LOGTRACE:**\n"
         )
         repo = Repo()
