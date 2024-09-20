@@ -32,6 +32,7 @@ from Ah.bantuan.tools import get_arg
 from Ah.utils.misc import restart
 from Ah.utils.pastebin import PasteBin
 from Ah.utils.tools import bash
+from Ah import ubot
 
 from .help import add_command_help
 
