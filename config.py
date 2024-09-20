@@ -81,3 +81,4 @@ class emo:
     p = "⚙️"
     load = "⏳"
     warn = "⚠️"
+    cntng = "✅"
