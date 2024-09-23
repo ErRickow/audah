@@ -13,7 +13,7 @@ async def ambil_gambar(client: Client, message: Message, url: str):
         image_url = data['url']
         
         # Mengirimkan gambar sebagai foto
-        await message.reply_photo(image_url)
+        await message.reply_photo(f"{image_url}\n <a href=https://t.me/chakszzz> Wangi</a>")
     except Exception as e:
         await message.reply(f"Gagal mengambil gambar: {str(e)}")
 
