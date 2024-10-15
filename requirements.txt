@@ -22,7 +22,7 @@ psutil
 psycopg2-binary
 ptable
 pymediainfo
-pyrogram
+ErPyrogram
 python-dotenv
 requests
 speedtest-cli==2.1.3
