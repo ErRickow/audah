@@ -38,6 +38,6 @@ async def mbuh(client, message: Message):
     gambar_url, deskripsi = await tanya(asal, tujuan)
 
     if gambar_url:
-        await message.reply_photo(photo=gambar_url, caption=f"<blockquote> Jarak dari {asal} ke {tujuan} = <code>{deskripsi}</code></blockquote>")
+        await message.reply_photo(photo=gambar_url, caption=f"<blockquote> Jarak dari {asal} ke {tujuan}\n\n<code>{deskripsi}</code></blockquote>")
     else:
         await message.reply("Gambar tidak tersedia atau tidak ada hasil.")
