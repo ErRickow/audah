@@ -4,6 +4,12 @@ from pyrogram.types import Message
 from Ah import *
 from Ah.bantuan.tools import *
 
+__MODULES__ = "Jarak"
+
+
+def help_string(org):
+    return h_s(org, "help_jarak")
+
 async def tanya(asal, tujuan):
     url = "https://widipe.com/jarak"
     params = {'dari': asal, 'ke': tujuan}
