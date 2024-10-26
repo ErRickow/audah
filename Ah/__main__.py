@@ -49,6 +49,7 @@ async def main():
             error_traceback = traceback.format_exc()
             LOGGER("Module Error").error(f"Error loading module {all_module}: {e}\nTraceback:\n{error_traceback}")
             await send_error_log(all_module, error_traceback)
+            await asyncio.sleep(2)
 
     startup_message = MSG_ON.format(
         mention=ubot_me.mention,
