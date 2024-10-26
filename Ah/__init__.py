@@ -50,7 +50,6 @@ if not BOT_TOKEN:
     LOGGER(__name__).warning("Isilah bot token nya")
     sys.exit()
 
-# Memastikan minimal satu session string terdefinisi
 if not any([STRING_SESSION1, STRING_SESSION2, STRING_SESSION3, STRING_SESSION4, STRING_SESSION5]):
     LOGGER(__name__).warning("STRING SESSION TIDAK DITEMUKAN, SHUTDOWN BOT!")
     sys.exit()
@@ -94,39 +93,3 @@ bots = [
     )
     for i in range(10) if globals().get(f"STRING_SESSION{i+1}")
 ]
-
-# Fungsi untuk mengirim pesan dengan penanganan FloodWait
-async def send_message_with_floodwait_handling(client, chat_id, message):
-    try:
-        await client.send_message(chat_id, message)
-    except FloodWait as e:
-        logger.warning(f"FloodWait detected. Sleeping for {e.x} seconds.")
-        await asyncio.sleep(e.x)
-        await send_message_with_floodwait_handling(client, chat_id, message)  # Retry after wait
-    except Exception as e:
-        logger.exception(f"Error while sending message: {e}")
-
-# Fungsi untuk join channel/group dengan penanganan FloodWait
-async def join_channel_with_floodwait_handling(client, channel_id):
-    try:
-        await client.join_chat(channel_id)
-    except FloodWait as e:
-        logger.warning(f"FloodWait detected while joining chat. Sleeping for {e.x} seconds.")
-        await asyncio.sleep(e.x)
-        await join_channel_with_floodwait_handling(client, channel_id)  # Retry after wait
-    except Exception as e:
-        logger.exception(f"Error while joining chat: {e}")
-
-# Fungsi contoh untuk handle bot
-async def handle_bot_actions(bot):
-    # Menangani bot action dengan penanganan FloodWait dan logging error
-    try:
-        await bot.start()
-        logger.info(f"Started bot {bot.name}")
-
-        # Replace dengan aksi bot seperti mengirim pesan atau join channel
-        await send_message_with_floodwait_handling(bot, BOTLOG, "Bot has started successfully.")
-        await join_channel_with_floodwait_handling(bot, "@example_channel")
-
-    except Exception as e:
-        logger.exception(f"Unhandled exception in bot {bot.name}: {e}")
