@@ -35,54 +35,44 @@ async def main():
     await ubot.start()
     print("LOG: Founded Bot token Booting..")
 
-    # Dapatkan informasi pengguna bot setelah memulai
-    ubot_me = await ubot.get_me()  # Mendapatkan objek 'me'
-    
-    # Cek apakah informasi 'me' berhasil diambil
+    ubot_me = await ubot.get_me()
+    await asyncio.sleep(2)
     if ubot_me is None:
         print("Failed to get bot user information.")
-        return  # Hentikan eksekusi jika gagal mendapatkan info pengguna
+        return
 
-    # Load semua modul dari ALL_MODULES
     for all_module in ALL_MODULES:
         try:
             importlib.import_module("Ah.plugins" + all_module)
             print(f"Successfully Imported {all_module}")
         except Exception as e:
-            # Menangkap traceback error dan mencatatnya
             error_traceback = traceback.format_exc()
             LOGGER("Module Error").error(f"Error loading module {all_module}: {e}\nTraceback:\n{error_traceback}")
-            # Mengirim log error ke botlog
             await send_error_log(all_module, error_traceback)
 
-    # Pesan untuk menginformasikan bot yang berhasil diaktifkan
     startup_message = MSG_ON.format(
         mention=ubot_me.mention,
         bot_ver=BOT_VER,
         prefix=', '.join(PREFIX)
     )
 
-    # Menggabungkan daftar bot yang berhasil diaktifkan ke dalam satu pesan
     active_bots = []
     for bot in bots:
         try:
             await bot.start()
+            await asyncio.sleep(2)
             ex = await bot.get_me()
             await join(bot)
-            # Tambahkan format blockquote untuk setiap bot
             active_bots.append(f"<blockquote>{ex.first_name} | ID: {ex.id}</blockquote>")
             ids.append(ex.id)
         except Exception as e:
-            # Menangkap traceback error dan mencatatnya
             error_traceback = traceback.format_exc()
             LOGGER("Bot Start Error").error(f"Error starting bot: {e}\nTraceback:\n{error_traceback}")
 
-    # Jika ada bot yang berhasil diaktifkan, tambahkan ke pesan startup
     if active_bots:
         startup_message += "\n\n<b>💡 Active Bots:</b>\n"
         startup_message += "\n".join(active_bots)
 
-    # Mengirim pesan startup sekaligus
     try:
         await ubot.send_message(BOTLOG, startup_message)
     except BaseException as e:
